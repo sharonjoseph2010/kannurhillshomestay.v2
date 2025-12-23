@@ -122,7 +122,7 @@ export const AboutSection = () => {
           <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Our location provides easy access to multiple attractions in the Western Ghats region, 
             making it an ideal base for exploring the natural beauty and cultural richness of 
-            Kerala's hill country. We can help arrange transportation for visits to 
+            Kerala&apos;s hill country. We can help arrange transportation for visits to 
             <span className="text-primary font-medium"> Paithalmala Hill Station</span> or 
             <span className="text-primary font-medium"> Palakkayam Thattu</span>.
           </p>
