@@ -103,7 +103,7 @@ export const TestimonialsSection = () => {
                   
                   {/* Testimonial Text */}
                   <p className="text-foreground/80 leading-relaxed mb-6 flex-1 italic">
-                    "{testimonial.text}"
+                    &ldquo;{testimonial.text}&rdquo;
                   </p>
                   
                   {/* Author */}
