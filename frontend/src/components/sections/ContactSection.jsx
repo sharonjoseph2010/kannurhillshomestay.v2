@@ -31,7 +31,7 @@ export const ContactSection = () => {
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             Contact us directly via WhatsApp for instant booking and personalized assistance. 
-            We'll help plan your perfect hill station getaway!
+            We&apos;ll help plan your perfect hill station getaway!
           </p>
         </motion.div>
 
