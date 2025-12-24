@@ -135,7 +135,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/98 backdrop-blur-lg border-t border-border"
+            className="md:hidden bg-background border-t border-border shadow-medium"
           >
             <nav className="flex flex-col py-4 px-6 space-y-1">
               {navLinks.map((link, index) => (
