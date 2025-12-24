@@ -70,11 +70,22 @@ export const TestimonialsSection = () => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <span className="inline-block text-sm font-medium text-accent uppercase tracking-[0.2em] mb-4">
-            Testimonials
+            Guest Reviews
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6">
             What Our Guests Say
           </h2>
+          {/* Google Rating Badge */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-accent fill-accent" />
+              ))}
+            </div>
+            <span className="font-semibold text-foreground text-lg">5.0</span>
+            <span className="text-muted-foreground">from 14 reviews on</span>
+            <span className="font-medium text-foreground">Google</span>
+          </div>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             Real experiences from travelers who made Thushara Homestay their home away from home
           </p>
