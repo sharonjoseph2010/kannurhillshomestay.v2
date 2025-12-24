@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Navigation, Clock, Phone } from "lucide-react";
+import { MapPin, Navigation, Mountain } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -10,10 +10,10 @@ export const LocationSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const nearbyAttractions = [
-    { name: "Paithalmala", distance: "15 km", time: "45 mins" },
-    { name: "Palakkayam Thattu", distance: "22 km", time: "1 hr" },
-    { name: "Kuttippullu", distance: "18 km", time: "50 mins" },
-    { name: "Kannur Town", distance: "35 km", time: "1.5 hrs" }
+    { name: "Paithalmala", distance: "15 km" },
+    { name: "Palakkayam Thattu", distance: "22 km" },
+    { name: "Kuttippullu", distance: "18 km" },
+    { name: "Kannur Town", distance: "35 km" }
   ];
 
   return (
