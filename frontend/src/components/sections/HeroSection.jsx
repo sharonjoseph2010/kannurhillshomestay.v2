@@ -108,11 +108,12 @@ export const HeroSection = ({ images, openLightbox }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Button
               variant="hero"
               size="lg"
+              className="w-full sm:w-auto"
               onClick={() => {
                 const element = document.querySelector("#contact");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -123,7 +124,7 @@ export const HeroSection = ({ images, openLightbox }) => {
             <Button
               variant="outline"
               size="lg"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground rounded-full"
+              className="w-full sm:w-auto border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground rounded-full"
               onClick={() => openLightbox(0)}
             >
               View Gallery
