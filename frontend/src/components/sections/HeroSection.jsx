@@ -134,7 +134,7 @@ export const HeroSection = ({ images, openLightbox }) => {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+      <div className="absolute bottom-20 sm:bottom-28 left-0 right-0 z-10 flex justify-center gap-2">
         {images.map((_, index) => (
           <button
             key={index}
@@ -158,7 +158,7 @@ export const HeroSection = ({ images, openLightbox }) => {
           y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
         }}
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+        className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-10 flex justify-center text-primary-foreground/70 hover:text-primary-foreground transition-colors"
         aria-label="Scroll to content"
       >
         <ChevronDown className="w-8 h-8" />
