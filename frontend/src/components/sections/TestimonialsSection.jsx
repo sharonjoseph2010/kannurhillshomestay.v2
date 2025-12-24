@@ -11,32 +11,32 @@ export const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      name: "Priya Menon",
-      location: "Bangalore",
+      name: "Gireesh Achikkanam",
+      location: "Google Review",
       rating: 5,
-      text: "A truly magical experience! The cottage was spotless, the food from Vanitha Hotel was delicious, and the views were breathtaking. Perfect escape from city life.",
-      initials: "PM"
+      text: "Best Room Best service and Best Ambiance. Everything was perfect during our stay!",
+      initials: "GA"
     },
     {
-      name: "Rajesh Kumar",
-      location: "Chennai",
+      name: "Travel Diary",
+      location: "Google Review",
       rating: 5,
-      text: "We visited Paithalmala during our stay and it was incredible. The homestay location is perfect for exploring the region. Highly recommend!",
-      initials: "RK"
+      text: "I highly recommend! We stayed 5 people and it was very comfortable. Great experience overall.",
+      initials: "TD"
     },
     {
-      name: "Anitha Nair",
-      location: "Kochi",
+      name: "Verified Guest",
+      location: "Google Review",
       rating: 5,
-      text: "The hosts were so welcoming and helped us plan our entire trip. The traditional Kerala breakfast was the highlight of our mornings. Will definitely return!",
-      initials: "AN"
+      text: "The homestay location is perfect for exploring the region. Easy access to Paithalmala and Palakkayam Thattu. Highly recommend!",
+      initials: "VG"
     },
     {
-      name: "Suresh Pillai",
-      location: "Mumbai",
+      name: "Verified Guest",
+      location: "Google Review",
       rating: 5,
-      text: "Peaceful, serene, and authentic. This is what a real homestay experience should be. The misty mornings and cool evenings were unforgettable.",
-      initials: "SP"
+      text: "Peaceful, serene, and authentic. The service was excellent and the hosts were very helpful. Will definitely return!",
+      initials: "VG"
     }
   ];
 
