@@ -99,17 +99,14 @@ export const LocationSection = () => {
             <Card className="bg-card border-border/50 shadow-soft flex-1">
               <CardContent className="p-6">
                 <h3 className="font-serif text-lg text-foreground mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
+                  <Mountain className="w-5 h-5 text-primary" />
                   Nearby Attractions
                 </h3>
                 <ul className="space-y-3">
                   {nearbyAttractions.map((attraction, index) => (
                     <li key={index} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
                       <span className="text-foreground font-medium text-sm">{attraction.name}</span>
-                      <div className="text-right">
-                        <span className="text-muted-foreground text-xs block">{attraction.distance}</span>
-                        <span className="text-primary text-xs">{attraction.time}</span>
-                      </div>
+                      <span className="text-primary text-sm font-medium">{attraction.distance}</span>
                     </li>
                   ))}
                 </ul>
