@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Home, UtensilsCrossed, Car, Mountain, Wifi, Wind } from "lucide-react";
+import { Home, UtensilsCrossed, Car, Mountain, Map, Wind } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const AboutSection = () => {
@@ -30,9 +30,9 @@ export const AboutSection = () => {
       description: "Easy access to Paithalmala, Palakkayam Thattu & Kuttippullu"
     },
     {
-      icon: Wifi,
-      title: "Modern Amenities",
-      description: "Stay connected with complimentary WiFi throughout your stay"
+      icon: Map,
+      title: "Tour Assistance",
+      description: "We help arrange local sightseeing trips and transportation"
     },
     {
       icon: Wind,
