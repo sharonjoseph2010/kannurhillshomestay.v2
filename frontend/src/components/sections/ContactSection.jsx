@@ -99,9 +99,9 @@ export const ContactSection = () => {
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Email</p>
-                      <p className="text-foreground font-medium text-sm">info@kannurhillshomestay.com</p>
+                      <p className="text-foreground font-medium text-sm truncate">info@kannurhillshomestay.com</p>
                     </div>
                   </a>
                 </div>
