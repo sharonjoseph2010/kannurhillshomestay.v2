@@ -33,7 +33,7 @@ export const GallerySection = ({ images, openLightbox }) => {
     "col-span-1 row-span-1", // Small
     "col-span-1 row-span-2", // Tall
     "col-span-1 row-span-1", // Small
-    "col-span-2 row-span-1", // Wide
+    "col-span-1 row-span-1", // Small - was wide, now small
     "col-span-1 row-span-1", // Small
     "col-span-1 row-span-1", // Small
   ];
