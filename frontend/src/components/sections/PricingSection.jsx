@@ -145,6 +145,33 @@ export const PricingSection = () => {
           ))}
         </div>
 
+        {/* Check-in/Check-out Times */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-10"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <LogIn className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-in</p>
+              <p className="text-foreground font-semibold">12:00 PM</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <LogOut className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">Check-out</p>
+              <p className="text-foreground font-semibold">11:00 AM</p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Extra Bed Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
