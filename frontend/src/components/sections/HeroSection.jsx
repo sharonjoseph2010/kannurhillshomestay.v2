@@ -65,10 +65,10 @@ export const HeroSection = ({ images, openLightbox }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-6"
+            className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary-foreground leading-tight mb-6"
           >
-            Escape to the
-            <span className="block italic text-primary-foreground/90">Western Ghats</span>
+            Escape to the Western Ghats
+            <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 text-primary-foreground/90">Perfect Base for Paithalmala & Palakkayam Thattu</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -76,10 +76,9 @@ export const HeroSection = ({ images, openLightbox }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-lg sm:text-xl text-primary-foreground/85 leading-relaxed mb-8 max-w-2xl"
+            className="text-base sm:text-lg text-primary-foreground/85 leading-relaxed mb-8 max-w-2xl"
           >
-            Experience authentic Kerala hill life at Thushara Homestay. 
-            A peaceful retreat surrounded by misty mountains and lush greenery.
+            Experience authentic Kerala hill life at Thushara Homestay. Located just 15km from Paithalmala Hill Station, 8km from Palakkayam Thattu, and 8km from Kuttippullu. Your ideal gateway to Kerala&apos;s premier hill attractions.
           </motion.p>
 
           {/* Features */}
