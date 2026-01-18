@@ -56,7 +56,7 @@ export const HeroSection = ({ images, openLightbox }) => {
           >
             <Leaf className="w-4 h-4 text-primary-foreground" />
             <span className="text-sm font-medium text-primary-foreground">
-              Authentic Kerala Hill Experience
+              Homestay in Velladu, Kerala
             </span>
           </motion.div>
 
@@ -65,40 +65,57 @@ export const HeroSection = ({ images, openLightbox }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary-foreground leading-tight mb-6"
+            className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-5"
           >
-            Escape to the Western Ghats
-            <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 text-primary-foreground/90">Perfect Base for Paithalmala & Palakkayam Thattu</span>
+            Escape to the
+            <span className="block italic text-primary-foreground/95">Western Ghats</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - shorter */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-base sm:text-lg text-primary-foreground/85 leading-relaxed mb-8 max-w-2xl"
+            className="text-lg sm:text-xl text-primary-foreground/85 leading-relaxed mb-6 max-w-xl"
           >
-            Experience authentic Kerala hill life at Thushara Homestay. Located just 15km from Paithalmala Hill Station, 8km from Palakkayam Thattu, and 8km from Kuttippullu. Your ideal gateway to Kerala&apos;s premier hill attractions.
+            Your perfect base for exploring Paithalmala, Palakkayam Thattu & Kuttippullu.
           </motion.p>
+
+          {/* Distance Pills - SEO keywords in visual format */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="flex flex-wrap gap-2 sm:gap-3 mb-8"
+          >
+            <span className="inline-flex items-center gap-1.5 bg-primary-foreground/15 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm text-primary-foreground">
+              <MapPin className="w-3.5 h-3.5" />
+              Paithalmala 15km
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-primary-foreground/15 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm text-primary-foreground">
+              <MapPin className="w-3.5 h-3.5" />
+              Palakkayam Thattu 8km
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-primary-foreground/15 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs sm:text-sm text-primary-foreground">
+              <MapPin className="w-3.5 h-3.5" />
+              Kuttippullu 8km
+            </span>
+          </motion.div>
 
           {/* Features */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-wrap gap-6 mb-10"
+            className="flex flex-wrap gap-5 mb-10"
           >
             <div className="flex items-center gap-2 text-primary-foreground/90">
-              <MapPin className="w-5 h-5" />
-              <span className="text-sm">Velladu, Kannur</span>
+              <Star className="w-4 h-4 fill-current" />
+              <span className="text-sm">5.0 on Google</span>
             </div>
             <div className="flex items-center gap-2 text-primary-foreground/90">
-              <Star className="w-5 h-5 fill-current" />
-              <span className="text-sm">4.9 Rating</span>
-            </div>
-            <div className="flex items-center gap-2 text-primary-foreground/90">
-              <Leaf className="w-5 h-5" />
-              <span className="text-sm">Eco-Friendly</span>
+              <Leaf className="w-4 h-4" />
+              <span className="text-sm">From ₹2000/night</span>
             </div>
           </motion.div>
 
