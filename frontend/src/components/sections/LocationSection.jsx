@@ -11,9 +11,9 @@ export const LocationSection = () => {
 
   const nearbyAttractions = [
     { name: "Paithalmala", distance: "15 km" },
-    { name: "Palakkayam Thattu", distance: "22 km" },
-    { name: "Kuttippullu", distance: "18 km" },
-    { name: "Kannur Town", distance: "35 km" }
+    { name: "Palakkayam Thattu", distance: "8 km" },
+    { name: "Kuttippullu", distance: "8 km" },
+    { name: "Kannur Town", distance: "40 km" }
   ];
 
   return (
