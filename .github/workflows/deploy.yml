@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -23,16 +23,24 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies (safe mode)
+      - name: Force legacy npm mode
+        run: |
+          npm config set legacy-peer-deps true
+
+      - name: Install dependencies
         run: |
           cd frontend
-          npm install --legacy-peer-deps
           npm install ajv@6.12.6 ajv-keywords@3.5.2 --save-dev
+          npm install --force
 
-      - name: Build app
+      - name: Build React app
         run: |
           cd frontend
           npm run build
+
+      - name: Copy CNAME for custom domain
+        run: |
+          cp CNAME frontend/build/CNAME
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
