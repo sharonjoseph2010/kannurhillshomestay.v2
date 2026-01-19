@@ -88,6 +88,7 @@ export default function HomePage() {
         <PricingSection />
         <TestimonialsSection />
         <LocationSection />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />
