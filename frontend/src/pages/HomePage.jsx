@@ -7,6 +7,7 @@ import GallerySection from "@/components/sections/GallerySection";
 import PricingSection from "@/components/sections/PricingSection";
 import LocationSection from "@/components/sections/LocationSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/layout/Footer";
 import LightboxGallery from "@/components/LightboxGallery";
