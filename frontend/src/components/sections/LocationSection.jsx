@@ -85,7 +85,7 @@ export const LocationSection = () => {
                     <Button
                       variant="link"
                       className="px-0 mt-2 text-primary"
-                      onClick={() => window.open("https://maps.google.com/?q=12.4634,75.9524", "_blank")}
+                      onClick={() => window.open("https://maps.app.goo.gl/QvMVtBEhVdnxb5d36", "_blank")}
                     >
                       <Navigation className="w-4 h-4 mr-2" />
                       Get Directions
