@@ -124,6 +124,12 @@ export const Footer = () => {
               Made with <Heart className="w-4 h-4 text-accent fill-accent" /> in Kerala
             </p>
           </div>
+          {/* SEO: Local area keywords */}
+          <p className="text-xs text-primary-foreground/50 text-center mt-4 max-w-3xl mx-auto">
+            Serving guests from Alakode, Karuvanchal, Velladu, Naduvil, Vayattuparamb | 
+            Near Paithalmala Hill Station, Palakkayam Thattu, Kuttippullu | 
+            Best homestay accommodation in Kannur hills
+          </p>
         </div>
       </div>
     </footer>
