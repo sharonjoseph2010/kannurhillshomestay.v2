@@ -46,15 +46,16 @@ export const LocationSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="overflow-hidden shadow-medium border-border/50">
-              <div className="aspect-[4/3] w-full">
+            <Card className="overflow-hidden shadow-elevated border-border/50 p-3 sm:p-4">
+              <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-soft">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.2584894087743!2d75.9524!3d12.4634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDI3JzQ4LjIiTiA3NcKwNTcnMDguNyJF!5e0!3m2!1sen!2sin!4v1234567890"
-                  className="w-full h-full"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6698.4066631757505!2d75.47517289999999!3d12.166136199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba4456a09b981c5%3A0x39f2052c1342c38!2sThushara%20Homestay!5e1!3m2!1sen!2sin!4v1768812365162!5m2!1sen!2sin"
+                  className="w-full h-full rounded-xl"
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Thushara Homestay Location"
+                  title="Thushara Homestay Location - Hotels in Alakode, Karuvanchal, Velladu"
                 />
               </div>
             </Card>
