@@ -10,7 +10,7 @@ export default function PropertySelectorPage() {
       id: "thushara",
       name: "Thushara Homestay",
       location: "Velladu, Alakode",
-      image: "https://i.ibb.co/zW0kgJxC/Thushara-Homestay-Sofa.jpg",
+      image: "https://i.ibb.co/mrCb1n6w/Thushara-Homestay-Dining.jpg",
       highlights: [
         "Independent cottage",
         "Near Paithalmala",
