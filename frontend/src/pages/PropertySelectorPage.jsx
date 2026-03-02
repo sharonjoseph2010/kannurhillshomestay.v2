@@ -10,7 +10,7 @@ export default function PropertySelectorPage() {
       id: "thushara",
       name: "Thushara Homestay",
       location: "Velladu, Alakode",
-      image: "https://i.ibb.co/Sw54HWxg/Thushara-Homestay-Bedroom.jpg",
+      image: "https://i.ibb.co/zW0kgJxC/Thushara-Homestay-Sofa.jpg",
       highlights: [
         "Independent cottage",
         "Near Paithalmala",
@@ -22,7 +22,7 @@ export default function PropertySelectorPage() {
       id: "pearlnest",
       name: "Pearl Nest",
       location: "Sreekandapuram",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=60",
+      image: "/images/pearlnest/pearl-nest-homestay-sreekandapuram-kerala-bedroom.jpg",
       highlights: [
         "Hill town stay",
         "Peaceful location",
