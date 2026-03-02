@@ -1,6 +1,8 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "@/pages/HomePage";
+import PropertySelectorPage from "@/pages/PropertySelectorPage";
+import ThusharaPage from "@/pages/ThusharaPage";
+import PearlNestPage from "@/pages/PearlNestPage";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
@@ -8,8 +10,10 @@ function App() {
     <div className="App min-h-screen bg-background">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<HomePage />} />
+          <Route path="/" element={<PropertySelectorPage />} />
+          <Route path="/thushara" element={<ThusharaPage />} />
+          <Route path="/pearlnest" element={<PearlNestPage />} />
+          <Route path="*" element={<PropertySelectorPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" />
