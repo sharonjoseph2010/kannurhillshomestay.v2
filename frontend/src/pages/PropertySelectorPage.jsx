@@ -22,7 +22,7 @@ export default function PropertySelectorPage() {
       id: "pearlnest",
       name: "Pearl Nest",
       location: "Sreekandapuram",
-      image: "/images/pearlnest/pearl-nest-homestay-sreekandapuram-kerala-bedroom.jpg",
+      image: "/images/pearlnest/pearl-nest-homestay-sreekandapuram-kerala-stay.jpg",
       highlights: [
         "Hill town stay",
         "Peaceful location",
