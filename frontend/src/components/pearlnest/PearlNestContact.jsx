@@ -5,22 +5,12 @@ import { MessageCircle, Phone, Mail, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export const ContactSection = ({ config }) => {
+export const PearlNestContact = ({ config }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Default config for Thushara if not provided
-  const defaultConfig = {
-    name: "Thushara Homestay",
-    phone: "+918330094302",
-    email: "info@kannurhillshomestay.com",
-    whatsapp: "918330094302"
-  };
-
-  const propertyConfig = config || defaultConfig;
-
   const whatsappMessage = encodeURIComponent(
-    `Hi! I'm interested in booking a stay at ${propertyConfig.name}. Could you please share availability and details?`
+    "Hi! I'm interested in booking a stay at Pearl Nest in Sreekandapuram. Could you please share availability and details?"
   );
 
   return (
@@ -37,15 +27,15 @@ export const ContactSection = ({ config }) => {
             Contact Us
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground mb-6">
-            Ready to Book Your Stay?
+            Book Your Stay at Pearl Nest
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
             Contact us directly via WhatsApp for instant booking and personalized assistance. 
-            We&apos;ll help plan your perfect hill station getaway!
+            We&apos;ll help plan your perfect hill town getaway!
           </p>
         </motion.div>
 
-        {/* Contact Cards */}
+        {/* Contact Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -68,7 +58,7 @@ export const ContactSection = ({ config }) => {
                 <Button
                   variant="whatsapp"
                   size="xl"
-                  onClick={() => window.open(`https://wa.me/${propertyConfig.whatsapp}?text=${whatsappMessage}`, "_blank")}
+                  onClick={() => window.open(`https://wa.me/${config.whatsapp}?text=${whatsappMessage}`, "_blank")}
                   className="group"
                 >
                   <svg
@@ -91,7 +81,7 @@ export const ContactSection = ({ config }) => {
               <div className="p-8">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <a
-                    href={`tel:${propertyConfig.phone}`}
+                    href={`tel:${config.phone}`}
                     className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -99,11 +89,11 @@ export const ContactSection = ({ config }) => {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Call Us</p>
-                      <p className="text-foreground font-medium">{propertyConfig.phone}</p>
+                      <p className="text-foreground font-medium">{config.phone}</p>
                     </div>
                   </a>
                   <a
-                    href={`mailto:${propertyConfig.email}`}
+                    href={`mailto:${config.email}`}
                     className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -111,7 +101,7 @@ export const ContactSection = ({ config }) => {
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Email</p>
-                      <p className="text-foreground font-medium text-sm truncate">{propertyConfig.email}</p>
+                      <p className="text-foreground font-medium text-sm truncate">{config.email}</p>
                     </div>
                   </a>
                 </div>
@@ -122,7 +112,7 @@ export const ContactSection = ({ config }) => {
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20">
                   <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-foreground/80">
-                    <span className="font-medium">Important:</span> Please do not visit {propertyConfig.name} without a prior booking. You will have to return disappointed.
+                    <span className="font-medium">Note:</span> Please contact us before visiting to confirm availability and get directions to Pearl Nest.
                   </p>
                 </div>
               </div>
@@ -134,4 +124,4 @@ export const ContactSection = ({ config }) => {
   );
 };
 
-export default ContactSection;
+export default PearlNestContact;

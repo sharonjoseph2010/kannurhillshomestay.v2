@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MapPin, Phone, Mail, Heart, ChevronLeft } from "lucide-react";
 
-export const Footer = () => {
+export const PropertyFooter = ({ config }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,13 +19,19 @@ export const Footer = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <img
-                  src="https://i.ibb.co/LdvXrQkd/Thushara-Velladu-Homestay.png"
-                  alt="Thushara Homestay"
-                  className="w-12 h-12 rounded-full"
-                />
+                {config.logo ? (
+                  <img
+                    src={config.logo}
+                    alt={config.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center font-serif text-xl font-semibold">
+                    {config.shortName.charAt(0)}
+                  </div>
+                )}
                 <div>
-                  <h3 className="font-serif text-xl font-semibold">Thushara</h3>
+                  <h3 className="font-serif text-xl font-semibold">{config.shortName}</h3>
                   <p className="text-xs tracking-[0.15em] uppercase text-primary-foreground/70">Homestay</p>
                 </div>
               </div>
@@ -32,6 +39,13 @@ export const Footer = () => {
                 Experience authentic Kerala hill life. A peaceful retreat surrounded by 
                 the misty mountains of the Western Ghats.
               </p>
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 mt-4 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                View All Properties
+              </Link>
             </motion.div>
 
             {/* Contact Info */}
@@ -45,34 +59,35 @@ export const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="https://maps.google.com/?q=12.4634,75.9524"
+                    href={`https://maps.google.com/?q=${encodeURIComponent(config.address.street + ', ' + config.address.area)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      Karuvanchal - Velladu Road,<br />
-                      Kerala, India 670571
+                      {config.address.street}<br />
+                      {config.address.area}<br />
+                      {config.address.state}
                     </span>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="tel:+918330094302"
+                    href={`tel:${config.phone}`}
                     className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    <span className="text-sm">+91 83300 94302</span>
+                    <span className="text-sm">{config.phone}</span>
                   </a>
                 </li>
                 <li>
                   <a
-                    href="mailto:info@kannurhillshomestay.com"
+                    href={`mailto:${config.email}`}
                     className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                   >
                     <Mail className="w-5 h-5" />
-                    <span className="text-sm">info@kannurhillshomestay.com</span>
+                    <span className="text-sm">{config.email}</span>
                   </a>
                 </li>
               </ul>
@@ -88,7 +103,6 @@ export const Footer = () => {
               <h4 className="font-serif text-lg mb-4">Quick Links</h4>
               <ul className="space-y-2">
                 {[
-                  { label: "Home", href: "#home" },
                   { label: "About", href: "#about" },
                   { label: "Gallery", href: "#gallery" },
                   { label: "Pricing", href: "#pricing" },
@@ -118,22 +132,16 @@ export const Footer = () => {
         <div className="py-6 border-t border-primary-foreground/10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/70">
-              © {currentYear} Thushara Homestay. All rights reserved.
+              © {currentYear} {config.name}. All rights reserved.
             </p>
             <p className="text-sm text-primary-foreground/70 flex items-center gap-1">
               Made with <Heart className="w-4 h-4 text-accent fill-accent" /> in Kerala
             </p>
           </div>
-          {/* SEO: Local area keywords */}
-          <p className="text-xs text-primary-foreground/50 text-center mt-4 max-w-3xl mx-auto">
-            Serving guests from Alakode, Karuvanchal, Velladu, Naduvil, Vayattuparamb | 
-            Near Paithalmala Hill Station, Palakkayam Thattu, Kuttippullu | 
-            Best homestay accommodation in Kannur hills
-          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default PropertyFooter;
