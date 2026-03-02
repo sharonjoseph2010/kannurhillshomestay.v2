@@ -68,7 +68,7 @@ export const ContactSection = ({ config }) => {
                 <Button
                   variant="whatsapp"
                   size="xl"
-                  onClick={() => window.open(`https://wa.me/918330094302?text=${whatsappMessage}`, "_blank")}
+                  onClick={() => window.open(`https://wa.me/${propertyConfig.whatsapp}?text=${whatsappMessage}`, "_blank")}
                   className="group"
                 >
                   <svg
