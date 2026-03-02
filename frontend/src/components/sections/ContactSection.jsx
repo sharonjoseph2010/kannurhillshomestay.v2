@@ -91,7 +91,7 @@ export const ContactSection = ({ config }) => {
               <div className="p-8">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <a
-                    href="tel:+918330094302"
+                    href={`tel:${propertyConfig.phone}`}
                     className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -99,11 +99,11 @@ export const ContactSection = ({ config }) => {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Call Us</p>
-                      <p className="text-foreground font-medium">+91 83300 94302</p>
+                      <p className="text-foreground font-medium">{propertyConfig.phone}</p>
                     </div>
                   </a>
                   <a
-                    href="mailto:info@kannurhillshomestay.com"
+                    href={`mailto:${propertyConfig.email}`}
                     className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -111,7 +111,7 @@ export const ContactSection = ({ config }) => {
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Email</p>
-                      <p className="text-foreground font-medium text-sm truncate">info@kannurhillshomestay.com</p>
+                      <p className="text-foreground font-medium text-sm truncate">{propertyConfig.email}</p>
                     </div>
                   </a>
                 </div>
@@ -122,7 +122,7 @@ export const ContactSection = ({ config }) => {
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20">
                   <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-foreground/80">
-                    <span className="font-medium">Important:</span> Please do not visit Thushara Homestay without a prior booking. You will have to return disappointed.
+                    <span className="font-medium">Important:</span> Please do not visit {propertyConfig.name} without a prior booking. You will have to return disappointed.
                   </p>
                 </div>
               </div>
