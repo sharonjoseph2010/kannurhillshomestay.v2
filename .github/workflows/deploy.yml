@@ -1,3 +1,6 @@
+# IMPORTANT: PRODUCTION DEPLOYMENT WORKFLOW
+# DO NOT MODIFY THIS FILE. Editing will break GitHub Pages deployment.
+
 name: Deploy React App to Pages
 
 on:
