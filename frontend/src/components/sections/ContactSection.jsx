@@ -5,12 +5,22 @@ import { MessageCircle, Phone, Mail, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export const ContactSection = () => {
+export const ContactSection = ({ config }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Default config for Thushara if not provided
+  const defaultConfig = {
+    name: "Thushara Homestay",
+    phone: "+918330094302",
+    email: "info@kannurhillshomestay.com",
+    whatsapp: "918330094302"
+  };
+
+  const propertyConfig = config || defaultConfig;
+
   const whatsappMessage = encodeURIComponent(
-    "Hi! I'm interested in booking a stay at Thushara Homestay. Could you please share availability and details?"
+    `Hi! I'm interested in booking a stay at ${propertyConfig.name}. Could you please share availability and details?`
   );
 
   return (
