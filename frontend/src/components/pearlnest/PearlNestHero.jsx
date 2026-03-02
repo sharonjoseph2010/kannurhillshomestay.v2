@@ -67,8 +67,7 @@ export const PearlNestHero = ({ images, openLightbox }) => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-5"
           >
-            Welcome to
-            <span className="block italic text-primary-foreground/95">Pearl Nest</span>
+            Pearl Nest
           </motion.h1>
 
           {/* Subtitle */}
@@ -78,7 +77,7 @@ export const PearlNestHero = ({ images, openLightbox }) => {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="text-lg sm:text-xl text-primary-foreground/85 leading-relaxed mb-6 max-w-xl"
           >
-            A peaceful hill town retreat in the heart of Sreekandapuram.
+            Hill Town Stay in Sreekandapuram, Kannur
           </motion.p>
 
           {/* Location Pills */}

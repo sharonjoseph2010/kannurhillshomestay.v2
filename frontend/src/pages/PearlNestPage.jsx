@@ -15,31 +15,30 @@ export default function PearlNestPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Placeholder images - to be replaced later
   const images = [
     {
-      src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Exterior'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-kerala-bedroom.jpg',
+      alt: 'Bedroom at Pearl Nest Homestay in Sreekandapuram, Kannur'
     },
     {
-      src: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Bedroom'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-hillstay-view.jpg',
+      alt: 'Peaceful hill stay at Pearl Nest Homestay Sreekandapuram Kerala'
     },
     {
-      src: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Living Area'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-guestroom.jpg',
+      alt: 'Accommodation at Pearl Nest Homestay in the Kannur Hills'
     },
     {
-      src: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Bathroom'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-interior.jpg',
+      alt: 'Interior view of Pearl Nest Homestay Sreekandapuram'
     },
     {
-      src: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Kitchen'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-accommodation.jpg',
+      alt: 'Dining area at Pearl Nest Homestay Sreekandapuram Kerala'
     },
     {
-      src: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=60',
-      alt: 'Pearl Nest Interior'
+      src: '/images/pearlnest/pearl-nest-homestay-sreekandapuram-kerala-stay.jpg',
+      alt: 'Comfortable room at Pearl Nest Homestay Sreekandapuram, Kannur'
     }
   ];
 
