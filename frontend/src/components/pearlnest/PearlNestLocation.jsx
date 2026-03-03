@@ -10,7 +10,7 @@ export const PearlNestLocation = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const nearbyPlaces = [
-    { name: "Chamberi" },
+    { name: "Chemperi" },
     { name: "Payyavoor" },
     { name: "Naduvil" },
     { name: "Iritti" },
