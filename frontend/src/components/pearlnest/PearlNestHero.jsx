@@ -67,7 +67,8 @@ export const PearlNestHero = ({ images, openLightbox }) => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-5"
           >
-            Pearl Nest
+            Find the calm
+            <span className="block italic text-primary-foreground/95">away from the city.</span>
           </motion.h1>
 
           {/* Subtitle */}
