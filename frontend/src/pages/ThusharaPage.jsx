@@ -54,7 +54,7 @@ export default function ThusharaPage() {
   const propertyConfig = {
     name: "Thushara Homestay",
     shortName: "Thushara",
-    logo: "https://i.ibb.co/LdvXrQkd/Thushara-Velladu-Homestay.png",
+    logo: "https://i.ibb.co/qY1T79h5/Thushara-Logo.png",
     phone: "+918330094302",
     email: "info@kannurhillshomestay.com",
     whatsapp: "918330094302",
