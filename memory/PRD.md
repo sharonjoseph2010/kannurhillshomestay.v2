@@ -48,23 +48,31 @@ Redesign a static HTML website for "Thushara Homestay" into a modern, animated R
 - Stored locally at `/app/frontend/public/images/pearlnest/` with SEO-friendly filenames
 - Updated PearlNestPage.jsx: local image paths + SEO alt text
 - Updated PearlNestHero.jsx: hero title "Pearl Nest", subtitle "Hill Town Stay in Sreekandapuram, Kannur"
+- Updated property cards on landing page with correct images (Thushara: Dining.jpg, Pearl Nest: kerala-stay.jpg)
 - All 6 images accessible via HTTP 200; all 9 frontend tests passed
+
+### Session 4 (Pearl Nest content) — 2026-03-02
+- Landing page Pearl Nest card: "Western Ghats access" → "From ₹2500/night"
+- PearlNestAbout: 6 real feature cards (Independent 1 BHK AC Cottage, Home-Cooked Meals, Easy Access, Hill Town Setting, All Amenities Close By, Peaceful Small-Town Atmosphere)
+- PearlNestPricing: ₹2500/night, 2 people, max 3, extra ₹500 rollaway, check-in 12pm, check-out 11am
+- New PearlNestReviews: "Guest reviews coming soon." (no fake reviews)
+- PearlNestLocation: Address Kottoor, Sreekandapuram, Kannur, Kerala 670631; nearby: Chamberi, Payyavoor, Naduvil, Iritti, Kannur
+- Contact phone: +919845768698
+- All 12 frontend tests passed; Thushara 100% unchanged
 
 ## Prioritized Backlog
 
-### P0 (Critical)
-- [ ] Populate Pearl Nest page with real content (About, Pricing, Location, FAQ, Contact — all placeholder)
+### P0 (Critical) — DONE
+- [x] Populate Pearl Nest page with real content (About, Pricing, Location, Reviews, Contact)
 
 ### P1 (High)
 - [ ] Fix duplicate JSON-LD schema markup in `public/index.html` (may have 3 separate schema blocks)
-- [ ] Update Pearl Nest About section with real property description
-- [ ] Update Pearl Nest Pricing with real rates
-- [ ] Add Pearl Nest Location / Map
+- [ ] Add Pearl Nest real testimonials once guests have stayed
 
 ### P2 (Nice to have)
 - [ ] Refactor duplicated Thushara/PearlNest components into shared reusable components with props
 - [ ] Remove hidden SEO keyword div in footer; integrate keywords naturally into visible content
-- [ ] Add Pearl Nest real testimonials
+- [ ] Add proper Google Maps embed URL for Pearl Nest once address confirmed on Maps
 
 ## Constraints
 - DO NOT modify `.github/`, `.github/workflows/`, `deploy.yml`, `CNAME`
