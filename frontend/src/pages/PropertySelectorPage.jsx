@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { MapPin, Home, Mountain, ArrowRight } from "lucide-react";
+import { MapPin, Home, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -49,10 +49,13 @@ export default function PropertySelectorPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-3 mb-8"
+            className="flex items-center justify-center mb-8"
           >
-            <Mountain className="w-10 h-10 text-primary-foreground" />
-            <span className="font-serif text-2xl text-primary-foreground font-semibold">Kannur Hills Homestay</span>
+            <img
+              src="https://i.ibb.co/LdPzZ9b5/Kannur-Hills-Logo.png"
+              alt="Kannur Hills Homestay"
+              className="h-16 sm:h-20 w-auto object-contain"
+            />
           </motion.div>
           
           <motion.h1
