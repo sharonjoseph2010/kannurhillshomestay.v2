@@ -26,7 +26,7 @@ export default function PropertySelectorPage() {
       highlights: [
         "Hill town stay",
         "Peaceful location",
-        "Western Ghats access"
+        "From ₹2500/night"
       ],
       link: "/pearlnest"
     }

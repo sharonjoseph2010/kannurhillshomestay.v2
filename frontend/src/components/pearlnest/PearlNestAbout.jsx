@@ -11,33 +11,33 @@ export const PearlNestAbout = () => {
   const features = [
     {
       icon: Home,
-      title: "Comfortable Stay",
-      description: "Well-furnished rooms with modern amenities for a relaxing experience"
+      title: "Independent 1 BHK AC Cottage",
+      description: "Well-furnished rooms with modern amenities for a relaxing and comfortable stay in Sreekandapuram."
     },
     {
       icon: UtensilsCrossed,
       title: "Home-Cooked Meals",
-      description: "Delicious traditional Kerala cuisine prepared with love"
+      description: "Delicious traditional Kerala cuisine prepared with love by a home cook. Available at additional cost as per menu."
     },
     {
       icon: Car,
       title: "Easy Access",
-      description: "Conveniently located with good road connectivity"
+      description: "Conveniently located with good road connectivity and private parking space for 2 cars."
     },
     {
       icon: Mountain,
       title: "Hill Town Setting",
-      description: "Nestled in the scenic beauty of Sreekandapuram"
+      description: "Nestled in a secure and accessible residential area of Sreekandapuram in the Kannur hills."
     },
     {
       icon: TreePine,
-      title: "Nature Retreat",
-      description: "Surrounded by lush greenery and peaceful atmosphere"
+      title: "All Amenities Close By",
+      description: "Surrounded by a peaceful neighborhood with shops, restaurants, and essentials within walking distance."
     },
     {
       icon: Wind,
-      title: "Cool Climate",
-      description: "Enjoy the refreshing hill station weather year-round"
+      title: "Peaceful Small-Town Atmosphere",
+      description: "Wake up to quiet mornings and enjoy the calm, relaxed lifestyle of Sreekandapuram in Kannur district."
     }
   ];
 
@@ -79,8 +79,9 @@ export const PearlNestAbout = () => {
             Pearl Nest Homestay
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Experience the tranquility of Sreekandapuram at Pearl Nest. 
-            A perfect retreat for those seeking peace, nature, and authentic Kerala hospitality.
+            Experience the comfort and convenience of Pearl Nest, an independent 1 BHK AC cottage 
+            in the heart of <span className="text-primary font-medium">Sreekandapuram, Kannur</span>. 
+            Perfect for families, couples, and solo travelers seeking a peaceful hill town retreat with all modern amenities.
           </p>
         </motion.div>
 
@@ -119,9 +120,9 @@ export const PearlNestAbout = () => {
         >
           <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Pearl Nest offers a unique hill town experience in 
-            <span className="text-primary font-medium"> Sreekandapuram</span>, 
-            perfect for families, couples, and solo travelers looking to escape the city bustle 
-            and immerse themselves in the natural beauty of Kerala&apos;s Western Ghats.
+            <span className="text-primary font-medium"> Sreekandapuram, Kannur</span>, 
+            perfect for families, couples, and solo travelers looking to escape the city and enjoy the calm, 
+            relaxed lifestyle of Kerala&apos;s beautiful Kannur district.
           </p>
         </motion.div>
       </div>

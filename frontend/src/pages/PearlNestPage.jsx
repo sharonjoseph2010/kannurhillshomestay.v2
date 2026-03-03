@@ -5,6 +5,7 @@ import PearlNestHero from "@/components/pearlnest/PearlNestHero";
 import PearlNestAbout from "@/components/pearlnest/PearlNestAbout";
 import GallerySection from "@/components/sections/GallerySection";
 import PearlNestPricing from "@/components/pearlnest/PearlNestPricing";
+import PearlNestReviews from "@/components/pearlnest/PearlNestReviews";
 import PearlNestLocation from "@/components/pearlnest/PearlNestLocation";
 import PearlNestFAQ from "@/components/pearlnest/PearlNestFAQ";
 import PearlNestContact from "@/components/pearlnest/PearlNestContact";
@@ -45,14 +46,14 @@ export default function PearlNestPage() {
   const propertyConfig = {
     name: "Pearl Nest",
     shortName: "Pearl Nest",
-    logo: null, // Will be added later
-    phone: "+918330094302",
+    logo: null,
+    phone: "+919845768698",
     email: "info@kannurhillshomestay.com",
-    whatsapp: "918330094302",
+    whatsapp: "919845768698",
     address: {
-      street: "Sreekandapuram",
-      area: "Sreekandapuram",
-      state: "Kerala, India"
+      street: "Kottoor, Sreekandapuram",
+      area: "Kannur",
+      state: "Kerala, India 670631"
     }
   };
 
@@ -90,6 +91,7 @@ export default function PearlNestPage() {
         <PearlNestAbout />
         <GallerySection images={images} openLightbox={openLightbox} />
         <PearlNestPricing />
+        <PearlNestReviews />
         <PearlNestLocation />
         <PearlNestFAQ />
         <PearlNestContact config={propertyConfig} />
