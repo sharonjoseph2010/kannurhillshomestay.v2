@@ -74,7 +74,7 @@ export const PropertyNavbar = ({ config }) => {
                 <img
                   src={config.logo}
                   alt={`${config.name} Logo`}
-                  className="h-10 w-auto sm:h-12 rounded-full shadow-soft"
+                  className="h-14 w-auto sm:h-16 object-contain"
                 />
               ) : (
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-serif text-lg font-semibold ${
