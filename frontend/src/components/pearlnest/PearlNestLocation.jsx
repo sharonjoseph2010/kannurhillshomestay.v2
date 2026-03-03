@@ -9,11 +9,12 @@ export const PearlNestLocation = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const nearbyAttractions = [
-    { name: "Sreekandapuram Town", distance: "Nearby" },
-    { name: "Western Ghats", distance: "Accessible" },
-    { name: "Local Markets", distance: "Close by" },
-    { name: "Kannur City", distance: "Reachable" }
+  const nearbyPlaces = [
+    { name: "Chamberi" },
+    { name: "Payyavoor" },
+    { name: "Naduvil" },
+    { name: "Iritti" },
+    { name: "Kannur" }
   ];
 
   return (
@@ -35,24 +36,28 @@ export const PearlNestLocation = () => {
             Find Us In Sreekandapuram
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Pearl Nest is located in the peaceful hill town of Sreekandapuram, 
-            offering easy access to local attractions and the natural beauty of the Western Ghats.
+            Pearl Nest is located in Kottoor, Sreekandapuram — a well-connected and peaceful residential area 
+            in Kannur district, with easy road access and all essential amenities nearby.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Map Placeholder */}
+          {/* Map */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-elevated bg-secondary flex items-center justify-center">
-              <div className="text-center p-8">
-                <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                <p className="text-muted-foreground">Map will be added soon</p>
-                <p className="text-sm text-muted-foreground mt-2">Sreekandapuram, Kerala</p>
-              </div>
+            <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-elevated">
+              <iframe
+                src="https://maps.google.com/maps?q=Kottoor,+Sreekandapuram,+Kannur,+Kerala+670631&output=embed"
+                className="w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Pearl Nest Location - Kottoor, Sreekandapuram, Kannur"
+              />
             </div>
           </motion.div>
 
@@ -74,13 +79,13 @@ export const PearlNestLocation = () => {
                     <h3 className="font-serif text-lg text-foreground mb-2">Our Address</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                       Pearl Nest<br />
-                      Sreekandapuram<br />
-                      Kerala, India
+                      Kottoor, Sreekandapuram<br />
+                      Kannur, Kerala 670631
                     </p>
                     <Button
                       variant="link"
                       className="px-0 mt-2 text-primary"
-                      onClick={() => window.open("https://maps.google.com/?q=Sreekandapuram,Kerala", "_blank")}
+                      onClick={() => window.open("https://maps.google.com/?q=Kottoor,+Sreekandapuram,+Kannur,+Kerala+670631", "_blank")}
                     >
                       <Navigation className="w-4 h-4 mr-2" />
                       Get Directions
@@ -98,10 +103,10 @@ export const PearlNestLocation = () => {
                   Nearby Places
                 </h3>
                 <ul className="space-y-3">
-                  {nearbyAttractions.map((attraction, index) => (
-                    <li key={index} className="flex items-center justify-between py-2 border-b border-border/30 last:border-0">
-                      <span className="text-foreground font-medium text-sm">{attraction.name}</span>
-                      <span className="text-primary text-sm font-medium">{attraction.distance}</span>
+                  {nearbyPlaces.map((place, index) => (
+                    <li key={index} className="flex items-center py-2 border-b border-border/30 last:border-0">
+                      <span className="w-2 h-2 rounded-full bg-primary mr-3 flex-shrink-0" />
+                      <span className="text-foreground font-medium text-sm">{place.name}</span>
                     </li>
                   ))}
                 </ul>
