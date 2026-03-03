@@ -86,7 +86,7 @@ export const PropertyNavbar = ({ config }) => {
               <div className="flex flex-col">
                 <span
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-                  className={`text-xl sm:text-2xl font-medium italic tracking-wide transition-colors ${
+                  className={`text-xl sm:text-2xl font-bold italic tracking-wide transition-colors ${
                     isScrolled ? "text-foreground" : "text-primary-foreground"
                   }`}
                 >
