@@ -41,7 +41,7 @@ export default function PropertySelectorPage() {
       {/* ── Hero Section ── */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden">
 
-        {/* Ken Burns background — slow continuous zoom */}
+        {/* Ken Burns — slow zoom + subtle drift, classic for landscape photography */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -49,8 +49,11 @@ export default function PropertySelectorPage() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-          animate={{ scale: [1, 1.07] }}
-          transition={{ duration: 18, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+          animate={{
+            scale: [1, 1.08, 1],
+            x: ["0%", "-2%", "0%"],
+          }}
+          transition={{ duration: 24, ease: "easeInOut", repeat: Infinity }}
         />
 
         {/* Green overlay — fades in */}
@@ -74,12 +77,10 @@ export default function PropertySelectorPage() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex items-center justify-center gap-4 mb-6"
           >
-            <motion.img
+            <img
               src="https://i.ibb.co/LdPzZ9b5/Kannur-Hills-Logo.png"
               alt="Kannur Hills Homestay"
               className="h-20 sm:h-24 w-auto object-contain"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, delay: 1 }}
             />
             <span className="font-serif text-4xl sm:text-5xl text-primary-foreground font-bold leading-tight">
               Kannur Hills Homestay
