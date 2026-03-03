@@ -23,7 +23,7 @@ export const PearlNestFAQ = () => {
     },
     {
       question: "How can I make a booking?",
-      answer: "You can contact us via WhatsApp at +91 83300 94302 or email us at info@kannurhillshomestay.com. We'll be happy to assist you with your booking."
+      answer: "You can contact us via WhatsApp at +91 98457 68698 or email us at info@kannurhillshomestay.com. We'll be happy to assist you with your booking."
     },
     {
       question: "Is Pearl Nest suitable for families?",
