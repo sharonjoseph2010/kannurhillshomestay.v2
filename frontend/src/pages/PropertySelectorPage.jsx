@@ -49,13 +49,14 @@ export default function PropertySelectorPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-center mb-8"
+            className="flex items-center justify-center gap-3 mb-8"
           >
             <img
               src="https://i.ibb.co/LdPzZ9b5/Kannur-Hills-Logo.png"
               alt="Kannur Hills Homestay"
-              className="h-16 sm:h-20 w-auto object-contain"
+              className="h-14 sm:h-16 w-auto object-contain"
             />
+            <span className="font-serif text-2xl text-primary-foreground font-semibold">Kannur Hills Homestay</span>
           </motion.div>
           
           <motion.h1
