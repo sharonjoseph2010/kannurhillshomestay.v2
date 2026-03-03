@@ -68,39 +68,38 @@ export default function PropertySelectorPage() {
         {/* Hero content */}
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 py-20">
 
-          {/* Logo — floats gently after entrance */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="flex items-center justify-center gap-3 mb-8"
+            className="flex items-center justify-center gap-4 mb-6"
           >
             <motion.img
               src="https://i.ibb.co/LdPzZ9b5/Kannur-Hills-Logo.png"
               alt="Kannur Hills Homestay"
-              className="h-14 sm:h-16 w-auto object-contain"
+              className="h-20 sm:h-24 w-auto object-contain"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, delay: 1 }}
             />
-            <span className="font-serif text-2xl text-primary-foreground font-semibold">
+            <span className="font-serif text-4xl sm:text-5xl text-primary-foreground font-bold leading-tight">
               Kannur Hills Homestay
             </span>
           </motion.div>
 
-          <motion.h1
+          <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.7, ease: "easeOut" }}
-            className="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary-foreground mb-6"
+            className="text-base sm:text-lg text-primary-foreground/75 max-w-2xl mx-auto mb-4"
           >
             Stay in the Hills of Kannur
-          </motion.h1>
+          </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.7, ease: "easeOut" }}
-            className="text-lg sm:text-xl text-primary-foreground/85 max-w-2xl mx-auto"
+            className="text-sm sm:text-base text-primary-foreground/65 max-w-2xl mx-auto"
           >
             Choose your perfect hill stay in the Western Ghats
           </motion.p>
