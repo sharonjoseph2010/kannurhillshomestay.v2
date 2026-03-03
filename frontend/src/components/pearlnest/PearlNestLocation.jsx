@@ -10,7 +10,7 @@ export const PearlNestLocation = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const nearbyPlaces = [
-    { name: "Chamberi" },
+    { name: "Chemperi" },
     { name: "Payyavoor" },
     { name: "Naduvil" },
     { name: "Iritti" },
@@ -50,7 +50,7 @@ export const PearlNestLocation = () => {
           >
             <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] rounded-xl overflow-hidden shadow-elevated">
               <iframe
-                src="https://maps.google.com/maps?q=Kottoor,+Sreekandapuram,+Kannur,+Kerala+670631&output=embed"
+                src="https://maps.google.com/maps?q=12.039085906876565,75.51280720677588&z=16&output=embed"
                 className="w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen
@@ -85,7 +85,7 @@ export const PearlNestLocation = () => {
                     <Button
                       variant="link"
                       className="px-0 mt-2 text-primary"
-                      onClick={() => window.open("https://maps.google.com/?q=Kottoor,+Sreekandapuram,+Kannur,+Kerala+670631", "_blank")}
+                      onClick={() => window.open("https://maps.google.com/?q=12.039085906876565,75.51280720677588", "_blank")}
                     >
                       <Navigation className="w-4 h-4 mr-2" />
                       Get Directions
