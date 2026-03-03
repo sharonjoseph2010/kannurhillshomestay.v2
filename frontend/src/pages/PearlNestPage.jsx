@@ -46,7 +46,7 @@ export default function PearlNestPage() {
   const propertyConfig = {
     name: "Pearl Nest",
     shortName: "Pearl Nest",
-    logo: null,
+    logo: "https://i.ibb.co/wZdfZCH8/Pearl-Nest-Logo.png",
     phone: "+919845768698",
     email: "info@kannurhillshomestay.com",
     whatsapp: "919845768698",
