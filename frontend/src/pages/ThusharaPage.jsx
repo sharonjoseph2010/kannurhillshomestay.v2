@@ -102,6 +102,22 @@ export default function ThusharaPage() {
         <TestimonialsSection />
         <LocationSection />
         <FAQSection />
+        <section className="py-12 bg-background">
+          <div className="max-w-3xl mx-auto px-5 text-center">
+            <h2 className="text-2xl font-semibold mb-3">Explore Nearby Attractions</h2>
+            <p className="mb-5">
+              Thushara Homestay is the perfect base for North Kerala's best viewpoints.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="/palakkayam-thattu" className="underline hover:no-underline font-medium">
+                Palakkayam Thattu Guide (8 km)
+              </a>
+              <a href="/paithalmala" className="underline hover:no-underline font-medium">
+                Paithalmala Trekking Guide (15 km)
+              </a>
+            </div>
+          </div>
+        </section>
         <ContactSection config={propertyConfig} />
       </main>
       <PropertyFooter config={propertyConfig} />
