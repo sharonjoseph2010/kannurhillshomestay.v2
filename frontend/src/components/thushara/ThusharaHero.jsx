@@ -35,6 +35,7 @@ export const ThusharaHero = ({ images, openLightbox }) => {
             <img
               src={image.src}
               alt={image.alt}
+              style={image.position ? { objectPosition: image.position } : undefined}
               className="w-full h-full object-cover"
             />
           </motion.div>

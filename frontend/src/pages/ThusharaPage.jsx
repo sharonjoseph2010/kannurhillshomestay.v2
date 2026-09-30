@@ -16,40 +16,106 @@ export default function ThusharaPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const images = [
+  const gallery = [
     {
-      src: 'https://i.ibb.co/Sw54HWxg/Thushara-Homestay-Bedroom.jpg',
-      alt: 'Thushara Homestay Bedroom'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-banner.jpg',
+      alt: 'Thushara Homestay entrance and roadside view in Velladu, Alakode',
+      position: 'center 70%'
     },
     {
-      src: 'https://i.ibb.co/RTfFBBxr/Thushara-Homestay-Bedroom-1.jpg',
-      alt: 'Thushara Homestay Bedroom View'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-03.jpg',
+      alt: 'Thushara Homestay living room with sofa set'
     },
     {
-      src: 'https://i.ibb.co/mrCb1n6w/Thushara-Homestay-Dining.jpg',
-      alt: 'Thushara Homestay Dining Area'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-04.jpg',
+      alt: 'Thushara Homestay living and dining area'
     },
     {
-      src: 'https://i.ibb.co/G39FSvMs/Thushara-Homestay-Kitchenette.jpg',
-      alt: 'Thushara Homestay Kitchenette'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-bedroom-01.jpg',
+      alt: 'Thushara Homestay bedroom with double bed'
     },
     {
-      src: 'https://i.ibb.co/7J10bzfC/Thushara-Homestay-Living-Room.jpg',
-      alt: 'Thushara Homestay Living Room'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-bedroom-02.jpg',
+      alt: 'Thushara Homestay bedroom with wooden cot'
     },
     {
-      src: 'https://i.ibb.co/VW9M7DMH/Thushara-Homestay-Living-Room-1.jpg',
-      alt: 'Thushara Homestay Living Area'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-bedroom-03.jpg',
+      alt: 'Thushara Homestay bedroom and view to dining area'
     },
     {
-      src: 'https://i.ibb.co/zW0kgJxC/Thushara-Homestay-Sofa.jpg',
-      alt: 'Thushara Homestay Sofa Area'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-01.jpg',
+      alt: 'Thushara Homestay open living space'
     },
     {
-      src: 'https://i.ibb.co/yB0fb1ZF/Thushara-Homestay-Washroom.jpg',
-      alt: 'Thushara Homestay Washroom'
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-02.jpg',
+      alt: 'Thushara Homestay sofa seating'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-05.jpg',
+      alt: 'Thushara Homestay living room and balcony door'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-06.jpg',
+      alt: 'Thushara Homestay hall with ceiling fan'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-07.jpg',
+      alt: 'Thushara Homestay living room with day bed'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-extra-bed-01.jpg',
+      alt: 'Thushara Homestay extra bed with dining table'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-extra-bed-02.jpg',
+      alt: 'Thushara Homestay extra bed area'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-study-table-01.jpg',
+      alt: 'Thushara Homestay study table'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-restroom-01.jpg',
+      alt: 'Thushara Homestay bathroom with water heater'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-restroom-02.jpg',
+      alt: 'Thushara Homestay bathroom with shower'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-restroom-03.jpg',
+      alt: 'Thushara Homestay bathroom washbasin'
     }
   ];
+
+  const heroImages = [
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-banner.jpg',
+      alt: 'Thushara Homestay entrance and roadside view in Velladu, Alakode',
+      position: 'center 70%'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-03.jpg',
+      alt: 'Thushara Homestay living room with sofa set'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-bedroom-01.jpg',
+      alt: 'Thushara Homestay bedroom with double bed'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-04.jpg',
+      alt: 'Thushara Homestay living and dining area'
+    },
+    {
+      src: '/images/thushara/thushara-homestay-vellad-alakode-living-room-01.jpg',
+      alt: 'Thushara Homestay open living space'
+    }
+  ];
+
+  // Portrait photos: tall tiles, with three wide featured tiles so rows fill evenly
+  const galleryLayout = gallery.map((_, i) =>
+    [0, 3, 6].includes(i) ? "col-span-2 row-span-2" : "col-span-1 row-span-2"
+  );
 
   const propertyConfig = {
     name: "Thushara Homestay",
@@ -95,9 +161,9 @@ export default function ThusharaPage() {
     >
       <PropertyNavbar config={propertyConfig} />
       <main>
-        <ThusharaHero images={images} openLightbox={openLightbox} />
+        <ThusharaHero images={heroImages} openLightbox={openLightbox} />
         <AboutSection />
-        <GallerySection images={images} openLightbox={openLightbox} />
+        <GallerySection images={gallery} openLightbox={openLightbox} gridPositions={galleryLayout} />
         <PricingSection />
         <TestimonialsSection />
         <LocationSection />
@@ -125,7 +191,7 @@ export default function ThusharaPage() {
       <AnimatePresence>
         {lightboxOpen && (
           <LightboxGallery
-            images={images}
+            images={gallery}
             currentIndex={currentImageIndex}
             setCurrentIndex={setCurrentImageIndex}
             onClose={closeLightbox}

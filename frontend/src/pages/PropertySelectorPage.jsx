@@ -14,7 +14,8 @@ export default function PropertySelectorPage() {
       id: "thushara",
       name: "Thushara Homestay",
       location: "Velladu, Alakode",
-      image: "https://i.ibb.co/mrCb1n6w/Thushara-Homestay-Dining.jpg",
+      image: "/images/thushara/thushara-homestay-vellad-alakode-living-room-03.jpg",
+      imagePosition: "center 70%",
       highlights: [
         "Independent cottage",
         "Near Paithalmala",
@@ -155,6 +156,7 @@ export default function PropertySelectorPage() {
                     <img
                       src={property.image}
                       alt={property.name}
+                      style={property.imagePosition ? { objectPosition: property.imagePosition } : undefined}
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     />
 
