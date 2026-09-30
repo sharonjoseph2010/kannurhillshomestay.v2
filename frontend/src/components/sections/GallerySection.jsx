@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Images, Expand } from "lucide-react";
 
-export const GallerySection = ({ images, openLightbox }) => {
+export const GallerySection = ({ images, openLightbox, gridPositions: customGridPositions }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -27,7 +27,7 @@ export const GallerySection = ({ images, openLightbox }) => {
   };
 
   // Bento grid layout positions for 8 images
-  const gridPositions = [
+  const defaultGridPositions = [
     "col-span-2 row-span-2", // Large - Bedroom (featured)
     "col-span-1 row-span-1", // Small
     "col-span-1 row-span-1", // Small
@@ -37,6 +37,7 @@ export const GallerySection = ({ images, openLightbox }) => {
     "col-span-1 row-span-1", // Small
     "col-span-1 row-span-1", // Small
   ];
+  const gridPositions = customGridPositions || defaultGridPositions;
 
   return (
     <section id="gallery" ref={ref} className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
@@ -78,6 +79,7 @@ export const GallerySection = ({ images, openLightbox }) => {
               <img
                 src={image.src}
                 alt={image.alt}
+                style={image.position ? { objectPosition: image.position } : undefined}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />

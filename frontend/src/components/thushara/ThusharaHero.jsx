@@ -32,10 +32,19 @@ export const ThusharaHero = ({ images, openLightbox }) => {
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="absolute inset-0"
           >
+            {/* Phones/tablets: portrait photos fill the screen */}
             <img
               src={image.src}
               alt={image.alt}
-              className="w-full h-full object-cover"
+              style={image.position ? { objectPosition: image.position } : undefined}
+              className="w-full h-full object-cover xl:hidden"
+            />
+            {/* Wide screens: blurred copy as backdrop; the full photo is shown on the right below */}
+            <img
+              src={image.src}
+              alt=""
+              aria-hidden="true"
+              className="hidden xl:block w-full h-full object-cover scale-110 blur-2xl"
             />
           </motion.div>
         ))}
@@ -44,9 +53,26 @@ export const ThusharaHero = ({ images, openLightbox }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent" />
       </div>
 
+      {/* Wide screens: whole, uncropped photo beside the text */}
+      <div className="absolute inset-y-0 right-0 w-[45%] hidden xl:flex items-center justify-center pt-28 pb-20 pr-16 pointer-events-none">
+        <div className="relative w-full h-full">
+          {images.map((image, index) => (
+            <motion.img
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: index === currentSlide ? 1 : 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0 m-auto max-w-full max-h-full rounded-2xl shadow-2xl ring-1 ring-primary-foreground/20"
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
-        <div className="max-w-3xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 xl:w-full">
+        <div className="max-w-3xl xl:max-w-[600px]">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
