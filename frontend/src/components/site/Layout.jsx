@@ -78,7 +78,7 @@ export default function Layout({ children, book = "#book", property = THUSHARA }
       <header className="nav">
         <div className="wrap">
           <Link className="brand" to="/" aria-label={`${SITE.name}, home`}>
-            <img src={SITE.logo} alt="" width="67" height="36" />
+            <img src={SITE.logo} alt="Kannur Hills Homestays logo" width="67" height="36" />
             <span>
               <b>Kannur Hills</b>
               <small>Homestays</small>
