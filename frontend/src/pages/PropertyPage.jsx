@@ -72,7 +72,7 @@ function PropertyHero({ p }) {
               ) : null
             )}
           </div>
-          <Stamp className="dark-logo" text={`${p.shortName.toUpperCase()} · ${p.address.locality.toUpperCase()} · `} logo={p.logo.replace(".png", ".webp")} />
+          <Stamp className="dark-logo" alt={`${p.name} logo`} text={`${p.shortName.toUpperCase()} · ${p.address.locality.toUpperCase()} · `} logo={p.logo.replace(".png", ".webp")} />
           <span className="cap">{p.hero[i].alt}</span>
         </div>
       </div>
@@ -155,7 +155,7 @@ function Gallery({ p }) {
           <div className="thumbs">
             {p.gallery.map((g, k) => (
               <button key={g.src} aria-current={k === open} onClick={() => setOpen(k)} aria-label={`Photo ${k + 1}`}>
-                <img src={g.src.replace(".jpg", "-640.webp")} alt="" loading="lazy" />
+                <img src={g.src.replace(".jpg", "-640.webp")} alt={`Thumbnail: ${g.cap}`} loading="lazy" />
               </button>
             ))}
           </div>

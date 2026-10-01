@@ -30,7 +30,7 @@ export function SplitWords({ parts, as: Tag = "h1", className = "h1", id }) {
 }
 
 /** Rotating circular badge with a logo in the middle. */
-export function Stamp({ text, logo, className = "" }) {
+export function Stamp({ text, logo, alt = "Kannur Hills Homestays logo", className = "" }) {
   return (
     <div className={`stamp ${className}`} aria-hidden="true">
       <svg viewBox="0 0 150 150">
@@ -41,7 +41,7 @@ export function Stamp({ text, logo, className = "" }) {
           <textPath href="#stamp-circle">{text}</textPath>
         </text>
       </svg>
-      <img src={logo} alt="" width="70" height="70" />
+      <img src={logo} alt={alt} width="70" height="70" />
     </div>
   );
 }

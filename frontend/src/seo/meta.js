@@ -133,7 +133,7 @@ const PAGES = {
   "/": {
     title: "Kannur Hills Homestays | Thushara, Alakode & Pearl Nest, Sreekandapuram",
     description:
-      "Family-run homestays in Kannur, Kerala: Thushara in Alakode, 8 km from Palakkayam Thattu, and Pearl Nest in Sreekandapuram. AC cottages from ₹2,000/night.",
+      "Family-run homestays in Kannur, Kerala: Thushara in Alakode near Palakkayam Thattu, and Pearl Nest in Sreekandapuram. AC cottages from ₹2,000.",
     image: "/images/og/og-kannur-hills-homestays.jpg",
     lcp: { src: LANDSCAPE.src, sizes: "100vw" },
     jsonLd: () =>
@@ -167,7 +167,7 @@ const PAGES = {
   "/thushara": {
     title: "Thushara Homestay, Alakode | Stay near Palakkayam Thattu",
     description:
-      "AC 1BHK cottage in Velladu, Alakode near Karuvanchal: 8 km from Palakkayam Thattu, 15 km from Paithalmala. 4.9★ on Google. ₹2,000/night, book on WhatsApp.",
+      "AC 1BHK cottage in Velladu, Alakode: 8 km from Palakkayam Thattu, 15 km from Paithalmala. Rated 4.9 on Google. From ₹2,000 a night.",
     image: THUSHARA.og,
     lcp: { src: THUSHARA.hero[0].src, sizes: "(max-width: 1080px) 100vw, 45vw" },
     jsonLd: () =>
@@ -182,7 +182,7 @@ const PAGES = {
   "/pearlnest": {
     title: "Pearl Nest Homestay | AC Cottage in Sreekandapuram, Kannur",
     description:
-      "Independent 1BHK AC cottage in Kottoor, Sreekandapuram, Kannur. Sleeps 3, parking for 2 cars, home-cooked meals. ₹2,500/night. Book on WhatsApp.",
+      "Independent 1BHK AC cottage in Kottoor, Sreekandapuram, Kannur. Sleeps 3, parking for 2 cars, home-cooked meals. From ₹2,500 a night.",
     image: PEARLNEST.og,
     lcp: { src: PEARLNEST.hero[0].src, sizes: "(max-width: 1080px) 100vw, 45vw" },
     jsonLd: () =>
