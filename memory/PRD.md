@@ -13,7 +13,7 @@ Bookings are direct via WhatsApp (no backend).
 `/` home · `/thushara` · `/pearlnest` · `/palakkayam-thattu` (guide) · `/paithalmala` (guide)
 
 ## Architecture (Oct 2026 "Trailhead" redesign)
-- React 18 + react-router, built with CRA/craco. Plain CSS design system in `frontend/src/styles/site.css` (Fraunces + Inter, self-hosted in `public/fonts`). Tailwind/shadcn are still installed but unused by the new pages.
+- React 18 + react-router, built with CRA/craco. Plain CSS design system in `frontend/src/styles/site.css` (Fraunces + Inter, self-hosted in `public/fonts`). Only react, react-dom, react-router-dom and react-scripts are runtime dependencies.
 - **All content lives in `frontend/src/data/site.js`** — prices, phones, distances, FAQs, reviews, photo lists. Edit facts there only.
 - `frontend/src/seo/meta.js` — per-page title/description/canonical/OG + schema.org JSON-LD (Organization, LodgingBusiness ×2, FAQPage, BreadcrumbList, Article).
 - `frontend/scripts/prerender.js` (postbuild) server-renders every route to static HTML with its own head tags, writes `thushara.html`-style clean-URL copies, `404.html` (noindex), `sitemap.xml` (with images), `llms.txt` and `llms-full.txt` for AI assistants.
