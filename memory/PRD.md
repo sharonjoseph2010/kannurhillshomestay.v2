@@ -1,81 +1,30 @@
-# PRD — Multi-Property Homestay Website
+# PRD — Kannur Hills Homestays website
 
-## Original Problem Statement
-Redesign a static HTML website for "Thushara Homestay" into a modern, animated React application. Scope expanded to support two properties: "Thushara Homestay" and "Pearl Nest", with a property-selector homepage linking to individual property pages.
+Live at https://kannurhillshomestay.com (GitHub Pages, deployed by `.github/workflows/deploy.yml` on push to `main`).
 
-## App Architecture
-- **Frontend**: React.js + Tailwind CSS + shadcn/ui + Framer Motion + React Router
-- **Backend**: None (pure static frontend prototype)
-- **Routes**:
-  - `/` — Property selector homepage (LandingPage.jsx)
-  - `/thushara` — Thushara Homestay full page (ThusharaPage.jsx)
-  - `/pearlnest` — Pearl Nest Homestay full page (PearlNestPage.jsx)
+## What it is
+Marketing + booking site for two family-run homestays in Kannur district, Kerala:
+- **Thushara Homestay** — Velladu, Alakode (Karuvanchal–Velladu Road). 8 km from Palakkayam Thattu & Kuttippullu, 15 km from Paithalmala. ₹2,000 weekday / ₹2,200 weekend, extra bed ₹500. WhatsApp +91 83300 94302. Host: Mr. Joseph. Google 4.9★ (32 reviews, Oct 2026).
+- **Pearl Nest Homestay** — Kottoor, Sreekandapuram 670631. ₹2,500/night, extra person ₹500. WhatsApp +91 98457 68698.
 
-## Key Files
-- `/app/frontend/src/App.js` — React Router setup
-- `/app/frontend/src/pages/LandingPage.jsx` — Property selector
-- `/app/frontend/src/pages/ThusharaPage.jsx` — Thushara property
-- `/app/frontend/src/pages/PearlNestPage.jsx` — Pearl Nest property
-- `/app/frontend/public/index.html` — SEO meta tags + JSON-LD schema
-- `/app/frontend/src/index.css` — Design tokens
-- `/app/frontend/public/images/pearlnest/` — Real Pearl Nest images (6 local JPGs)
-- `/app/frontend/src/components/thushara/` — Thushara-specific components
-- `/app/frontend/src/components/pearlnest/` — Pearl Nest-specific components
-- `/app/frontend/src/components/sections/` — Shared section components (GallerySection, etc.)
-- `/app/frontend/src/components/layout/` — PropertyNavbar, PropertyFooter
+Bookings are direct via WhatsApp (no backend).
 
-## What's Been Implemented
+## Routes
+`/` home · `/thushara` · `/pearlnest` · `/palakkayam-thattu` (guide) · `/paithalmala` (guide)
 
-### Session 1 (original)
-- Full website redesign from static HTML to React SPA
-- shadcn/ui + Tailwind CSS design system
-- Framer Motion animations
-- Responsive design (mobile + desktop)
-- Real Google reviews in testimonials
-- Bento grid gallery with lightbox
-- SEO overhaul: meta tags, keywords, JSON-LD schema
-- FAQ section
-- Google Maps iframe integration
-
-### Session 2 (multi-property restructure)
-- Converted to multi-page app with React Router
-- New property selector homepage (LandingPage.jsx)
-- Thushara Homestay moved to /thushara
-- Pearl Nest placeholder page created at /pearlnest
-
-### Session 3 (Pearl Nest real images) — 2026-03-02
-- Downloaded 6 real images from imgbb URLs
-- Stored locally at `/app/frontend/public/images/pearlnest/` with SEO-friendly filenames
-- Updated PearlNestPage.jsx: local image paths + SEO alt text
-- Updated PearlNestHero.jsx: hero title "Pearl Nest", subtitle "Hill Town Stay in Sreekandapuram, Kannur"
-- Updated property cards on landing page with correct images (Thushara: Dining.jpg, Pearl Nest: kerala-stay.jpg)
-- All 6 images accessible via HTTP 200; all 9 frontend tests passed
-
-### Session 4 (Pearl Nest content) — 2026-03-02
-- Landing page Pearl Nest card: "Western Ghats access" → "From ₹2500/night"
-- PearlNestAbout: 6 real feature cards (Independent 1 BHK AC Cottage, Home-Cooked Meals, Easy Access, Hill Town Setting, All Amenities Close By, Peaceful Small-Town Atmosphere)
-- PearlNestPricing: ₹2500/night, 2 people, max 3, extra ₹500 rollaway, check-in 12pm, check-out 11am
-- New PearlNestReviews: "Guest reviews coming soon." (no fake reviews)
-- PearlNestLocation: Address Kottoor, Sreekandapuram, Kannur, Kerala 670631; nearby: Chamberi, Payyavoor, Naduvil, Iritti, Kannur
-- Contact phone: +919845768698
-- All 12 frontend tests passed; Thushara 100% unchanged
-
-## Prioritized Backlog
-
-### P0 (Critical) — DONE
-- [x] Populate Pearl Nest page with real content (About, Pricing, Location, Reviews, Contact)
-
-### P1 (High)
-- [ ] Fix duplicate JSON-LD schema markup in `public/index.html` (may have 3 separate schema blocks)
-- [ ] Add Pearl Nest real testimonials once guests have stayed
-
-### P2 (Nice to have)
-- [ ] Refactor duplicated Thushara/PearlNest components into shared reusable components with props
-- [ ] Remove hidden SEO keyword div in footer; integrate keywords naturally into visible content
-- [ ] Add proper Google Maps embed URL for Pearl Nest once address confirmed on Maps
+## Architecture (Oct 2026 "Trailhead" redesign)
+- React 18 + react-router, built with CRA/craco. Plain CSS design system in `frontend/src/styles/site.css` (Fraunces + Inter, self-hosted in `public/fonts`). Tailwind/shadcn are still installed but unused by the new pages.
+- **All content lives in `frontend/src/data/site.js`** — prices, phones, distances, FAQs, reviews, photo lists. Edit facts there only.
+- `frontend/src/seo/meta.js` — per-page title/description/canonical/OG + schema.org JSON-LD (Organization, LodgingBusiness ×2, FAQPage, BreadcrumbList, Article).
+- `frontend/scripts/prerender.js` (postbuild) server-renders every route to static HTML with its own head tags, writes `thushara.html`-style clean-URL copies, `404.html` (noindex), `sitemap.xml` (with images), `llms.txt` and `llms-full.txt` for AI assistants.
+- Images: originals in `public/images/{thushara,pearlnest,logos,og}`; run `python3 frontend/scripts/optimize-images.py` after adding photos to create the WebP variants used by `<Picture>`.
+- Motion is progressive (works without JS, honours prefers-reduced-motion).
 
 ## Constraints
-- DO NOT modify `.github/`, `.github/workflows/`, `deploy.yml`, `CNAME`
-- DO NOT modify Thushara Homestay implementation
-- Deploy continues via existing GitHub Actions workflow
-- Build command: `npm run build`
+- DO NOT modify `.github/`, `.github/workflows/`, `deploy.yml`, `CNAME`.
+- Keep URLs stable (SEO).
+
+## Backlog
+- Add Pearl Nest Google Maps listing + reviews once available (then set `PEARLNEST.rating` and `reviews`).
+- Submit sitemap in Google Search Console / Bing Webmaster Tools.
+- Add Booking.com / MakeMyTrip / Airbnb profile URLs to `sameAs` in `seo/meta.js` when available.
