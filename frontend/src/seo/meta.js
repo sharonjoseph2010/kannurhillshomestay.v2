@@ -131,7 +131,7 @@ const graph = (...nodes) => ({ "@context": "https://schema.org", "@graph": nodes
 
 const PAGES = {
   "/": {
-    title: "Kannur Hills Homestays | Thushara, Alakode & Pearl Nest, Sreekandapuram",
+    title: "Kannur Hills Homestays | Alakode & Sreekandapuram, Kerala",
     description:
       "Family-run homestays in Kannur, Kerala: Thushara in Alakode near Palakkayam Thattu, and Pearl Nest in Sreekandapuram. AC cottages from ₹2,000.",
     image: "/images/og/og-kannur-hills-homestays.jpg",
@@ -201,8 +201,8 @@ Object.values(GUIDES).forEach((g) => {
   PAGES[g.path] = {
     title:
       g.slug === "paithalmala"
-        ? "Paithalmala Trekking Guide | Stay 15 km Away at Thushara Homestay"
-        : "Palakkayam Thattu Guide | Stay 8 km Away at Thushara Homestay",
+        ? "Paithalmala Trek Guide & Stay 15 km Away | Thushara"
+        : "Palakkayam Thattu Guide & Stay 8 km Away | Thushara",
     description:
       g.slug === "paithalmala"
         ? "Paithalmala trek guide: the route, best time and how to reach Kannur's highest hill station, plus Thushara Homestay, an AC cottage 15 km away."
