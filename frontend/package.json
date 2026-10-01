@@ -74,7 +74,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
     "@craco/craco": "^7.1.0",
     "@eslint/js": "8.57.1",
     "autoprefixer": "^10.4.20",

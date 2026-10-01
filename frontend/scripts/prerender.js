@@ -1,183 +1,193 @@
 /**
- * Post-build prerender script.
- * Creates a static HTML snapshot for every route so search engines and
- * other crawlers see real content without executing JavaScript.
- * Runs automatically after `npm run build` (see "postbuild" in package.json).
+ * Post-build prerender (runs automatically after `npm run build`).
+ *
+ * 1. Server-renders every route of the real React app to static HTML, with
+ *    that page's own <title>, description, canonical, Open Graph tags and
+ *    JSON-LD. Search engines and AI crawlers (which often don't run
+ *    JavaScript) get the full page content; visitors get the same markup,
+ *    which React then hydrates.
+ * 2. Writes sitemap.xml (with image entries), llms.txt and llms-full.txt
+ *    from the same content data, so they can never drift out of sync.
  */
+process.env.NODE_ENV = process.env.NODE_ENV || "production";
 const fs = require("fs");
 const path = require("path");
+const Module = require("module");
+const babel = require("@babel/core");
 
-const BUILD = path.join(__dirname, "..", "build");
-const SITE = "https://kannurhillshomestay.com";
+const ROOT = path.join(__dirname, "..");
+const SRC = path.join(ROOT, "src");
+const BUILD = path.join(ROOT, "build");
 
-const WHATSAPP = "https://wa.me/918330094302";
+/* ---------- let Node require the app's JSX/ESM source ---------- */
+const babelOptions = {
+  babelrc: false,
+  configFile: false,
+  presets: [
+    [require.resolve("@babel/preset-env"), { targets: { node: "current" }, modules: "commonjs" }],
+    [require.resolve("@babel/preset-react"), { runtime: "automatic" }],
+  ],
+};
+const compile = (module, filename) => {
+  const { code } = babel.transformSync(fs.readFileSync(filename, "utf8"), { ...babelOptions, filename });
+  module._compile(code, filename);
+};
+const jsLoader = Module._extensions[".js"];
+Module._extensions[".jsx"] = compile;
+Module._extensions[".js"] = (module, filename) => (filename.startsWith(SRC) ? compile(module, filename) : jsLoader(module, filename));
+Module._extensions[".css"] = () => {};
+const resolve = Module._resolveFilename;
+Module._resolveFilename = function (request, ...rest) {
+  if (request.startsWith("@/")) request = path.join(SRC, request.slice(2));
+  return resolve.call(this, request, ...rest);
+};
 
-const routes = [
-  {
-    dir: "", // homepage
-    canonical: `${SITE}/`,
-    title: "Kannur Hills Homestays | Thushara & Pearl Nest, Kannur Kerala",
-    description:
-      "Two family-run homestays in the Kannur hills: Thushara Homestay in Velladu, Alakode (near Palakkayam Thattu & Paithalmala) and Pearl Nest in Sreekandapuram. AC rooms, parking, Kerala meals.",
-    html: `
-      <h1>Kannur Hills Homestays — Thushara & Pearl Nest</h1>
-      <p>Family-run homestays in the hills of Kannur district, Kerala. Choose your stay:</p>
-      <h2><a href="/thushara">Thushara Homestay — Velladu, Alakode</a></h2>
-      <p>Independent 1BHK AC cottage on the Karuvanchal–Velladu road. 8 km from Palakkayam Thattu, 15 km from Paithalmala. Free parking, kitchenette, traditional Kerala meals. From ₹2000/night. Ideal for visitors to Alakode, Karuvanchal, Naduvil and Vayattuparamb.</p>
-      <h2><a href="/pearlnest">Pearl Nest Homestay — Kottoor, Sreekandapuram</a></h2>
-      <p>Peaceful hill stay in Sreekandapuram, Kannur, Kerala 670631, with easy road access and essential amenities nearby.</p>
-      <h2>Nearby attractions</h2>
-      <p><a href="/palakkayam-thattu">Palakkayam Thattu visitor guide</a> · <a href="/paithalmala">Paithalmala trekking guide</a></p>
-      <p>Bookings: WhatsApp <a href="${WHATSAPP}">+91 83300 94302</a> · Email info@kannurhillshomestay.com</p>
-    `,
-  },
-  {
-    dir: "thushara",
-    canonical: `${SITE}/thushara`,
-    title: "Thushara Homestay | Stay near Palakkayam Thattu & Paithalmala",
-    description:
-      "Independent 1BHK AC cottage in Velladu, Alakode, Kannur — 8 km from Palakkayam Thattu, 15 km from Paithalmala. Free parking, kitchenette, Kerala meals. From ₹2000/night. Book on WhatsApp.",
-    html: `
-      <h1>Thushara Homestay — Velladu, Alakode, Kannur</h1>
-      <p>An independent 1BHK cottage in the Kannur hills, perfect for visiting Palakkayam Thattu (8 km), Kuttippullu (8 km) and Paithalmala (15 km). Serving guests travelling to Alakode, Karuvanchal, Naduvil and Vayattuparamb.</p>
-      <h2>The cottage</h2>
-      <p>Air-conditioned bedroom, living room, kitchenette, private bathroom and comfortable beds for up to 3 guests. Free private parking. Traditional Kerala meals available from the attached Vanitha Hotel.</p>
-      <h2>Tariff</h2>
-      <p>₹2000 per night on weekdays and ₹2200 on weekends for 2 guests. Extra bed ₹500 per night. Advance payment confirms your booking.</p>
-      <h2>Location</h2>
-      <p>Karuvanchal – Velladu Road, Velladu, Alakode, Kannur, Kerala 670571. <a href="https://maps.app.goo.gl/j38StCFFRSDCJRVy6">Open in Google Maps</a>.</p>
-      <h2>Nearby attractions</h2>
-      <p><a href="/palakkayam-thattu">Palakkayam Thattu — 8 km (guide)</a> · <a href="/paithalmala">Paithalmala — 15 km (guide)</a></p>
-      <h2>Book your stay</h2>
-      <p>WhatsApp <a href="${WHATSAPP}">+91 83300 94302</a> · Email info@kannurhillshomestay.com</p>
-    `,
-  },
-  {
-    dir: "pearlnest",
-    canonical: `${SITE}/pearlnest`,
-    title: "Pearl Nest Homestay | Kottoor, Sreekandapuram, Kannur",
-    description:
-      "Pearl Nest Homestay in Kottoor, Sreekandapuram — a peaceful hill stay in Kannur district, Kerala 670631, with comfortable rooms, easy road access and amenities nearby.",
-    html: `
-      <h1>Pearl Nest Homestay — Kottoor, Sreekandapuram, Kannur</h1>
-      <p>A peaceful homestay in the Kannur hills at Kottoor, Sreekandapuram, Kerala 670631. Comfortable rooms, a calm green setting, easy road access and all essential amenities nearby.</p>
-      <p>Bookings: WhatsApp <a href="${WHATSAPP}">+91 83300 94302</a> · Email info@kannurhillshomestay.com</p>
-      <p><a href="/">See all Kannur Hills homestays</a></p>
-    `,
-  },
-  {
-    dir: "palakkayam-thattu",
-    canonical: `${SITE}/palakkayam-thattu`,
-    title: "Palakkayam Thattu Guide | Stay 8 km Away — Thushara Homestay",
-    description:
-      "Palakkayam Thattu visitor guide: best time to visit, how to reach, and the closest comfortable stay — Thushara Homestay, an AC cottage just 8 km away in Velladu, Alakode.",
-    html: `
-      <h1>Palakkayam Thattu: Visitor Guide & Where to Stay Nearby</h1>
-      <p>Palakkayam Thattu is one of North Kerala's most loved hill destinations — a misty tabletop viewpoint in the Western Ghats near Alakode and Naduvil in Kannur district. Thushara Homestay is just 8 km away, one of the closest comfortable stays to the viewpoint.</p>
-      <h2>Why visit</h2>
-      <p>Sweeping valley views, rolling mist, dramatic sunrises, a cool climate year-round, off-road jeep rides to the top and seasonal adventure activities.</p>
-      <h2>Best time to visit</h2>
-      <p>October to February for clear mornings and misty evenings. Early morning is best for sunrise and mist-filled valleys.</p>
-      <h2>How to reach</h2>
-      <p>Via the Naduvil–Alakode region of Kannur district. From Thushara Homestay in Velladu it is a short 8 km drive; jeeps run from the base to the hilltop.</p>
-      <h2>Stay 8 km away</h2>
-      <p><a href="/thushara">Thushara Homestay</a> — independent 1BHK AC cottage with parking and Kerala meals, from ₹2000/night. Also nearby: Kuttippullu (8 km) and <a href="/paithalmala">Paithalmala (15 km)</a>.</p>
-      <p>Book on WhatsApp: <a href="${WHATSAPP}">+91 83300 94302</a></p>
-    `,
-  },
-  {
-    dir: "paithalmala",
-    canonical: `${SITE}/paithalmala`,
-    title: "Paithalmala Trekking Guide | Stay 15 km Away — Thushara Homestay",
-    description:
-      "Paithalmala guide: the trek, best time to visit, how to reach Kannur's highest hill station — and the closest cottage stay, Thushara Homestay, 15 km away in Velladu, Alakode.",
-    html: `
-      <h1>Paithalmala: Trekking Guide & Where to Stay Nearby</h1>
-      <p>Paithalmala is the highest hill station in Kannur district, around 1,370 m above sea level near the Kerala–Karnataka border, famous for its forest trek and summit watchtower. Thushara Homestay is 15 km away — an easy base for an early start.</p>
-      <h2>The trek</h2>
-      <p>From the entry near Pottenplave, a moderate trail climbs through forest and grassland to the watchtower, with valley views and mist along the way.</p>
-      <h2>Best time to visit</h2>
-      <p>October to February for the clearest views and most comfortable trekking weather. Start early in the morning.</p>
-      <h2>How to reach</h2>
-      <p>Via Taliparamba–Alakode roads to the Pottenplave area. Roughly 15 km from Thushara Homestay in Velladu.</p>
-      <h2>Stay 15 km away</h2>
-      <p><a href="/thushara">Thushara Homestay</a> — independent 1BHK AC cottage with parking and Kerala meals, from ₹2000/night. Combine with <a href="/palakkayam-thattu">Palakkayam Thattu (8 km)</a> for a full hill weekend.</p>
-      <p>Book on WhatsApp: <a href="${WHATSAPP}">+91 83300 94302</a></p>
-    `,
-  },
-];
+const React = require("react");
+const { renderToString } = require("react-dom/server");
+const { StaticRouter } = require("react-router-dom/server");
+const App = require(path.join(SRC, "App.js")).default;
+const { getPageMeta, ROUTES } = require(path.join(SRC, "seo", "meta.js"));
+const data = require(path.join(SRC, "data", "site.js"));
 
+/* ---------- helpers ---------- */
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 function setTag(html, regex, replacement, label) {
-  if (!regex.test(html)) {
-    console.warn(`  ! could not find ${label} — skipped`);
-    return html;
-  }
+  if (!regex.test(html)) throw new Error(`prerender: could not find ${label} in build/index.html`);
   return html.replace(regex, replacement);
 }
-
-function buildSnapshot(template, route) {
-  let html = template;
-  const esc = (s) => s.replace(/"/g, "&quot;");
-
-  html = setTag(html, /<title>[\s\S]*?<\/title>/, `<title>${route.title}</title>`, "title");
-  html = setTag(
-    html,
-    /<meta name="description" content="[\s\S]*?"\s*\/>/,
-    `<meta name="description" content="${esc(route.description)}" />`,
-    "meta description"
+function headFor(template, meta, { noindex = false } = {}) {
+  let h = template;
+  h = setTag(h, /<title>[\s\S]*?<\/title>/, `<title>${esc(meta.title)}</title>`, "title");
+  h = setTag(h, /<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${esc(meta.description)}"/>`, "description");
+  h = setTag(h, /<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${meta.canonical}"/>`, "canonical");
+  if (noindex) h = setTag(h, /<meta name="robots" content="[^"]*"\s*\/?>/, `<meta name="robots" content="noindex, follow"/>`, "robots");
+  const og = { "og:title": meta.title, "og:description": meta.description, "og:url": meta.canonical, "og:image": meta.image, "og:type": meta.type };
+  for (const [k, v] of Object.entries(og)) h = setTag(h, new RegExp(`<meta property="${k}" content="[^"]*"\\s*\\/?>`), `<meta property="${k}" content="${esc(v)}"/>`, k);
+  const tw = { "twitter:title": meta.title, "twitter:description": meta.description, "twitter:image": meta.image };
+  for (const [k, v] of Object.entries(tw)) h = setTag(h, new RegExp(`<meta name="${k}" content="[^"]*"\\s*\\/?>`), `<meta name="${k}" content="${esc(v)}"/>`, k);
+  h = setTag(
+    h,
+    /<script type="application\/ld\+json" id="ld-json">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json" id="ld-json">${meta.jsonLd.replace(/</g, "\\u003c")}</script>`,
+    "json-ld"
   );
-  html = setTag(
-    html,
-    /<link rel="canonical" href="[\s\S]*?"\s*\/>/,
-    `<link rel="canonical" href="${route.canonical}" />`,
-    "canonical"
-  );
-  html = setTag(
-    html,
-    /<meta property="og:title" content="[\s\S]*?"\s*\/>/,
-    `<meta property="og:title" content="${esc(route.title)}" />`,
-    "og:title"
-  );
-  html = setTag(
-    html,
-    /<meta property="og:description" content="[\s\S]*?"\s*\/>/,
-    `<meta property="og:description" content="${esc(route.description)}" />`,
-    "og:description"
-  );
-  html = setTag(
-    html,
-    /<meta property="og:url" content="[\s\S]*?"\s*\/>/,
-    `<meta property="og:url" content="${route.canonical}" />`,
-    "og:url"
-  );
-
-  // Inject crawler-visible static content inside the root div.
-  // React replaces it as soon as the app mounts, so users see the full app.
-  const staticBlock = `<div id="root"><div data-prerender="true">${route.html}</div></div>`;
-  html = setTag(html, /<div id="root"><\/div>/, staticBlock, "root div");
-
-  return html;
-}
-
-function main() {
-  const templatePath = path.join(BUILD, "index.html");
-  if (!fs.existsSync(templatePath)) {
-    console.error("build/index.html not found — run this after `npm run build`.");
-    process.exit(1);
+  if (meta.lcp) {
+    // fetch the hero photo first: same WebP variants as <Picture />
+    const base = meta.lcp.src.replace(/\.jpg$/, "");
+    const widths = meta.lcp.src.includes("/thushara/") ? [640, 960, 1280] : [640, 960, 1280, 1920];
+    const srcset = widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ");
+    h = h.replace("</head>", `<link rel="preload" as="image" type="image/webp" imagesrcset="${srcset}" imagesizes="${meta.lcp.sizes}" fetchpriority="high"/></head>`);
   }
-  const template = fs.readFileSync(templatePath, "utf8");
-
-  for (const route of routes) {
-    console.log(`Prerendering /${route.dir}`);
-    const out = buildSnapshot(template, route);
-    const dir = route.dir ? path.join(BUILD, route.dir) : BUILD;
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, "index.html"), out);
-  }
-
-  // SPA fallback for unknown URLs on GitHub Pages
-  fs.copyFileSync(path.join(BUILD, "index.html"), path.join(BUILD, "404.html"));
-  console.log("Done. Snapshots written for", routes.length, "routes + 404.html");
+  // preload the two fonts used above the fold so text doesn't reflow when they swap in
+  h = h.replace("</head>", `${FONT_PRELOADS}</head>`);
+  return h;
 }
+const FONT_PRELOADS = ["fraunces-latin-opsz-normal", "inter-latin-wght-normal", "fraunces-latin-opsz-italic"]
+  .map((f) => `<link rel="preload" as="font" type="font/woff2" href="/fonts/${f}.woff2" crossorigin/>`)
+  .join("");
+const render = (url) => renderToString(React.createElement(StaticRouter, { location: url }, React.createElement(App)));
 
-main();
+/* ---------- pages ---------- */
+const template = fs.readFileSync(path.join(BUILD, "index.html"), "utf8");
+for (const route of ROUTES) {
+  const html = headFor(template, getPageMeta(route)).replace('<div id="root"></div>', `<div id="root">${render(route)}</div>`);
+  const dir = route === "/" ? BUILD : path.join(BUILD, route.slice(1));
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), html);
+  // GitHub Pages serves /thushara from thushara.html with a 200 (the folder
+  // version would 301 to /thushara/), so the canonical URL resolves directly.
+  if (route !== "/") fs.writeFileSync(path.join(BUILD, `${route.slice(1)}.html`), html);
+  console.log(`Prerendered ${route.padEnd(20)} ${(html.length / 1024).toFixed(0)} KB`);
+}
+// GitHub Pages serves 404.html for unknown URLs: the app shows the homepage, but tell crawlers not to index it
+const notFound = headFor(template, { ...getPageMeta("/"), title: "Page not found | Kannur Hills Homestays" }, { noindex: true });
+fs.writeFileSync(path.join(BUILD, "404.html"), notFound.replace('<div id="root"></div>', `<div id="root">${render("/")}</div>`));
+
+/* ---------- sitemap.xml ---------- */
+const today = new Date().toISOString().slice(0, 10);
+const { SITE, THUSHARA, PEARLNEST, GUIDES, LANDSCAPE, HOME_FAQS } = data;
+const imagesFor = {
+  "/": [LANDSCAPE, THUSHARA.card, PEARLNEST.card],
+  "/thushara": THUSHARA.gallery,
+  "/pearlnest": PEARLNEST.gallery,
+  "/palakkayam-thattu": [LANDSCAPE],
+  "/paithalmala": [LANDSCAPE],
+};
+const priority = { "/": "1.0", "/thushara": "1.0", "/pearlnest": "0.9" };
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${ROUTES.map(
+  (r) => `  <url>
+    <loc>${SITE.url}${r === "/" ? "/" : r}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${priority[r] || "0.7"}</priority>
+${(imagesFor[r] || [])
+  .map((i) => `    <image:image><image:loc>${SITE.url}${i.src}</image:loc><image:title>${esc(i.alt)}</image:title></image:image>`)
+  .join("\n")}
+  </url>`
+).join("\n")}
+</urlset>
+`;
+fs.writeFileSync(path.join(BUILD, "sitemap.xml"), sitemap);
+
+/* ---------- llms.txt (https://llmstxt.org) ---------- */
+const inr = (n) => "₹" + n.toLocaleString("en-IN");
+const prop = (p) => `## ${p.name}
+
+${p.summary}
+
+- Page: ${SITE.url}${p.path}
+- Address: ${p.name}, ${p.address.street}, ${p.address.locality}, ${p.address.district}, ${p.address.region} ${p.address.postalCode}, India
+- Map: ${p.mapsUrl} (coordinates ${p.geo.lat.toFixed(5)}, ${p.geo.lng.toFixed(5)})
+- Booking: WhatsApp or call ${p.phoneDisplay} (https://wa.me/${p.whatsapp}) · email ${SITE.email}
+- Price: ${p.rates.map((r) => `${inr(r.price)} per night ${r.label.toLowerCase()} (${r.note})`).join("; ")}; ${p.extra.label.toLowerCase()} ${inr(p.extra.price)} per night
+- Check-in ${p.checkIn}, check-out ${p.checkOut}; up to ${p.maxGuests} guests
+- Meals: ${p.mealsNote}
+${p.rating ? `- Google rating: ${p.rating.value}/5 from ${p.rating.count} reviews\n` : ""}${p.host ? `- Host: ${p.host}\n` : ""}- Amenities: ${p.amenities.join(", ")}
+- Nearby: ${p.nearby.map((n) => (n.km ? `${n.name} (~${n.km} km)` : n.name)).join(", ")}${p.alsoNearby.length ? `; also ${p.alsoNearby.join(", ")}` : ""}
+`;
+const llms = `# ${SITE.name}
+
+> Two family-run homestays (independent 1BHK AC cottages) in the hills of Kannur district, Kerala, India: Thushara Homestay in Velladu, Alakode (near Karuvanchal) and Pearl Nest in Kottoor, Sreekandapuram. Thushara is the closest cottage stay to Palakkayam Thattu (8 km), Kuttippullu (8 km) and Paithalmala hill station (15 km). Bookings are direct via WhatsApp.
+
+Good matches for: homestays, hotels, rooms or accommodation in Alakode, Karuvanchal, Velladu, Naduvil, Vayattuparamb, Sreekandapuram, Chemperi and Payyavoor; places to stay near Palakkayam Thattu, Paithalmala or Kuttippullu; budget family stays in the Kannur hills.
+
+${prop(THUSHARA)}
+${prop(PEARLNEST)}
+## Booking terms
+
+${SITE.bookingTerms.map((t) => `- ${t}`).join("\n")}
+- Please do not visit without a prior booking.
+
+## Pages
+
+- [Home](${SITE.url}/): both homestays, nearby trails, booking
+- [Thushara Homestay](${SITE.url}/thushara): photos, tariff, map, reviews, FAQ
+- [Pearl Nest Homestay](${SITE.url}/pearlnest): photos, tariff, map, FAQ
+- [Palakkayam Thattu guide](${SITE.url}/palakkayam-thattu): best time, how to reach, where to stay
+- [Paithalmala trekking guide](${SITE.url}/paithalmala): the trek, best time, how to reach, where to stay
+- [Full details for AI assistants](${SITE.url}/llms-full.txt)
+`;
+fs.writeFileSync(path.join(BUILD, "llms.txt"), llms);
+
+const faqBlock = (title, faqs) => `### ${title}\n\n${faqs.map((f) => `**${f.q}**\n${f.a}\n`).join("\n")}`;
+const guideBlock = (g) =>
+  `## ${g.title}\n\n${g.lede}\n\n${g.sections.map((s) => `### ${s.h}\n\n${s.p.join("\n\n")}${s.list ? "\n\n" + s.list.map((l) => `- ${l}`).join("\n") : ""}`).join("\n\n")}\n\n${faqBlock(`${g.name} FAQ`, g.faqs)}`;
+const llmsFull = `${llms}
+---
+
+# Full details
+
+${faqBlock("General FAQ", HOME_FAQS)}
+${faqBlock("Thushara Homestay FAQ", THUSHARA.faqs)}
+### What guests say about Thushara Homestay (Google reviews)
+
+${THUSHARA.reviews.map((r) => `- "${r.text}" (${r.name}, ${r.rating}/5)`).join("\n")}
+
+${faqBlock("Pearl Nest FAQ", PEARLNEST.faqs)}
+${Object.values(GUIDES).map(guideBlock).join("\n\n")}
+`;
+fs.writeFileSync(path.join(BUILD, "llms-full.txt"), llmsFull);
+
+console.log(`Done: ${ROUTES.length} pages + 404.html, sitemap.xml, llms.txt, llms-full.txt`);
