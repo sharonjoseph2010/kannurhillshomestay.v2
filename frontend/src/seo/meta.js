@@ -91,22 +91,9 @@ function lodging(p) {
   // Google profile + booking-site listings of the same property, so they're recognised as one place
   const sameAs = [p.googleUrl, p.mapsUrl.includes("goo.gl") && p.mapsUrl, ...p.listings.map((l) => l.url)].filter(Boolean);
   if (sameAs.length) node.sameAs = sameAs;
-  if (p.rating) {
-    node.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: p.rating.value,
-      reviewCount: p.rating.count,
-      bestRating: 5,
-      worstRating: 1,
-    };
-    node.review = p.reviews.map((r) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: r.name },
-      reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
-      reviewBody: r.text,
-      publisher: { "@type": "Organization", name: "Google" },
-    }));
-  }
+  // No aggregateRating/review markup: the rating and reviews come from Google, and Google's
+  // review-snippet rules say not to mark up ratings taken from other websites (and a business's
+  // own LocalBusiness page can't get review stars anyway). The reviews stay visible on the page.
   return node;
 }
 
@@ -206,8 +193,8 @@ Object.values(GUIDES).forEach((g) => {
   PAGES[g.path] = {
     title:
       g.slug === "paithalmala"
-        ? "Paithalmala Trek Guide & Stay 15 km Away | Thushara"
-        : "Palakkayam Thattu Guide & Stay 8 km Away | Thushara",
+        ? "Paithalmala Trek Guide & Homestay 15 km Away | Thushara"
+        : "Palakkayam Thattu Homestay & Travel Guide | Thushara",
     description:
       g.slug === "paithalmala"
         ? "Paithalmala trek guide: the route, best time and how to reach Kannur's highest hill station, plus Thushara Homestay, an AC cottage 15 km away."
@@ -237,7 +224,7 @@ Object.values(GUIDES).forEach((g) => {
           },
           mentions: { "@id": `${SITE.url}${THUSHARA.path}#lodging` },
         },
-        { ...lodging(THUSHARA), review: undefined },
+        lodging(THUSHARA),
         faqPage(g.faqs, url),
         breadcrumbs([["Home", "/"], [THUSHARA.name, THUSHARA.path], [`${g.name} guide`, g.path]])
       ),
