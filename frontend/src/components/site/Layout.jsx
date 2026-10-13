@@ -5,7 +5,7 @@ import { Arrow, WhatsApp } from "../kit/Icons";
 import Seo from "./Seo";
 
 const NAV = [
-  { to: THUSHARA.path, label: "Thushara", hint: "Velladu, Alakode" },
+  { to: THUSHARA.path, label: "Thushara", hint: "Karuvanchal, Alakode" },
   { to: PEARLNEST.path, label: "Pearl Nest", hint: "Sreekandapuram" },
   { to: GUIDES["palakkayam-thattu"].path, label: "Palakkayam Thattu", hint: "Guide" },
   { to: GUIDES.paithalmala.path, label: "Paithalmala", hint: "Trek guide" },
@@ -151,7 +151,7 @@ function Footer() {
                   <Link to={p.path}>{p.name}</Link>
                   <br />
                   <small>
-                    {p.address.locality} · <a href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
+                    {p.place} · <a href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
                   </small>
                 </li>
               ))}

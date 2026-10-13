@@ -4,7 +4,7 @@ Live at https://kannurhillshomestay.com (GitHub Pages, deployed by `.github/work
 
 ## What it is
 Marketing + booking site for two family-run homestays in Kannur district, Kerala:
-- **Thushara Homestay** — Velladu, Alakode (Karuvanchal–Velladu Road). 8 km from Palakkayam Thattu & Kuttippullu, 15 km from Paithalmala. ₹2,000 weekday / ₹2,200 weekend, extra bed ₹500. WhatsApp +91 83300 94302. Host: Mr. Joseph. Google 4.9★ (32 reviews, Oct 2026).
+- **Thushara Homestay** — Pallikkavala, Karuvanchal, Kerala 670571 (Alakode area, on the Karuvanchal–Velladu road). Address and map pin match the Google Business Profile exactly; keep them in sync. 8 km from Palakkayam Thattu & Kuttippullu, 15 km from Paithalmala. ₹2,000 weekday / ₹2,200 weekend, extra bed ₹500. WhatsApp +91 83300 94302. Host: Mr. Joseph. Google 4.9★ (32 reviews, Oct 2026).
 - **Pearl Nest Homestay** — Kottoor, Sreekandapuram 670631. ₹2,500/night, extra person ₹500. WhatsApp +91 98457 68698.
 
 Bookings are direct via WhatsApp (no backend).

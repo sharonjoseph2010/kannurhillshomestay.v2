@@ -85,7 +85,7 @@ function StayCard({ p, photos, tags, delay }) {
           <Arrow size={20} className="" />
         </div>
         <div className="loc">
-          {p.address.locality}, {p.address.district} · {p.address.street}
+          {p.place}, {p.address.district} · {p.address.street}
         </div>
         <div className="tags">
           {tags.map((t) => (
@@ -180,7 +180,7 @@ export function TrailRadar({ id = "trails" }) {
               <em>North Kerala's best views</em>
             </h2>
           </div>
-          <p>Tap a place to see how close it is to Thushara Homestay in Velladu. Distances are approximate, by road.</p>
+          <p>Tap a place to see how close it is to Thushara Homestay in Karuvanchal, Alakode. Distances are approximate, by road.</p>
         </div>
         <div className="tmap">
           <div className="tlist">
@@ -247,7 +247,7 @@ export function TrailRadar({ id = "trails" }) {
                 <circle cx="300" cy="300" r="20" fill="none" stroke="#9cc27d" strokeOpacity=".4" />
                 <text x="328" y="296">THUSHARA</text>
                 <text x="328" y="313" style={{ fontWeight: 400, opacity: 0.7 }}>
-                  Velladu, Alakode
+                  Karuvanchal, Alakode
                 </text>
               </g>
             </svg>

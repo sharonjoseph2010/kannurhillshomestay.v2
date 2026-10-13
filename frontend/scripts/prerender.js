@@ -138,9 +138,9 @@ const prop = (p) => `## ${p.name}
 ${p.summary}
 
 - Page: ${SITE.url}${p.path}
-- Address: ${p.name}, ${p.address.street}, ${p.address.locality}, ${p.address.district}, ${p.address.region} ${p.address.postalCode}, India
-- Map: ${p.mapsUrl} (coordinates ${p.geo.lat.toFixed(5)}, ${p.geo.lng.toFixed(5)})
-- Booking: WhatsApp or call ${p.phoneDisplay} (https://wa.me/${p.whatsapp}) · email ${SITE.email}
+- Address: ${p.name}, ${p.address.street}, ${p.address.locality}${p.address.area ? ` (${p.address.area})` : ""}, ${p.address.district}, ${p.address.region} ${p.address.postalCode}, India
+- Map: ${p.googleUrl || p.mapsUrl} (coordinates ${p.geo.lat.toFixed(5)}, ${p.geo.lng.toFixed(5)})
+${p.listings.length ? `- Also listed as the same property on: ${p.listings.map((l) => `${l.name} (${l.url})`).join(", ")}\n` : ""}- Booking: WhatsApp or call ${p.phoneDisplay} (https://wa.me/${p.whatsapp}) · email ${SITE.email}
 - Price: ${p.rates.map((r) => `${inr(r.price)} per night ${r.label.toLowerCase()} (${r.note})`).join("; ")}; ${p.extra.label.toLowerCase()} ${inr(p.extra.price)} per night
 - Check-in ${p.checkIn}, check-out ${p.checkOut}; up to ${p.maxGuests} guests
 - Meals: ${p.mealsNote}
