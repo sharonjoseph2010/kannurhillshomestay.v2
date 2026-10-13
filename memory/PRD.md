@@ -4,13 +4,13 @@ Live at https://kannurhillshomestay.com (GitHub Pages, deployed by `.github/work
 
 ## What it is
 Marketing + booking site for two family-run homestays in Kannur district, Kerala:
-- **Thushara Homestay** — Pallikkavala, Karuvanchal, Kerala 670571 (Alakode area, on the Karuvanchal–Velladu road). Address and map pin match the Google Business Profile exactly; keep them in sync. 8 km from Palakkayam Thattu & Kuttippullu, 15 km from Paithalmala. ₹2,000 weekday / ₹2,200 weekend, extra bed ₹500. WhatsApp +91 83300 94302. Host: Mr. Joseph. Google 4.9★ (32 reviews, Oct 2026).
+- **Thushara Homestay** — Pallikkavala, Karuvanchal, Kerala 670571 (Alakode area, on the Karuvanchal–Velladu road). Address and map pin match the Google Business Profile exactly; keep them in sync. 8 km from Palakkayam Thattu & Kuttippullu, 15 km from Paithalmala. ₹2,000 weekday / ₹2,200 weekend, extra bed ₹500. WhatsApp +91 83300 94302. Check-in 1 PM (earlier on request), check-out 11 AM. Host: Mr. Joseph. Google 4.9★ (32 reviews, Oct 2026).
 - **Pearl Nest Homestay** — Kottoor, Sreekandapuram 670631. ₹2,500/night, extra person ₹500. WhatsApp +91 98457 68698.
 
 Bookings are direct via WhatsApp (no backend).
 
 ## Routes
-`/` home · `/thushara` · `/pearlnest` · `/palakkayam-thattu` (guide) · `/paithalmala` (guide)
+`/` home · `/thushara` · `/pearlnest` · `/palakkayam-thattu` (guide) · `/paithalmala` (guide) · `/things-to-do-near-alakode` (guide)
 
 ## Architecture (Oct 2026 "Trailhead" redesign)
 - React 18 + react-router, built with CRA/craco. Plain CSS design system in `frontend/src/styles/site.css` (Fraunces + Inter, self-hosted in `public/fonts`). Only react, react-dom, react-router-dom and react-scripts are runtime dependencies.

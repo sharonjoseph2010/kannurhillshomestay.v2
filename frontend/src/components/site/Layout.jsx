@@ -167,6 +167,9 @@ function Footer() {
                 <Link to="/paithalmala">Paithalmala trekking guide</Link>
               </li>
               <li>
+                <Link to="/things-to-do-near-alakode">Things to do near Alakode</Link>
+              </li>
+              <li>
                 <a href={THUSHARA.mapsUrl} target="_blank" rel="noopener noreferrer">
                   Thushara on Google Maps <Arrow size={12} className="" />
                 </a>

@@ -166,7 +166,8 @@ ${SITE.bookingTerms.map((t) => `- ${t}`).join("\n")}
 - [Thushara Homestay](${SITE.url}/thushara): photos, tariff, map, reviews, FAQ
 - [Pearl Nest Homestay](${SITE.url}/pearlnest): photos, tariff, map, FAQ
 - [Palakkayam Thattu guide](${SITE.url}/palakkayam-thattu): best time, how to reach, where to stay
-- [Paithalmala trekking guide](${SITE.url}/paithalmala): the trek, best time, how to reach, where to stay
+- [Paithalmala trekking guide](${SITE.url}/paithalmala): the trek, best time, weather, Paithalmala vs Ranipuram, where to stay
+- [Things to do near Alakode](${SITE.url}/things-to-do-near-alakode): viewpoints, treks and waterfalls near Alakode and Karuvanchal, with a two-day plan
 - [Full details for AI assistants](${SITE.url}/llms-full.txt)
 `;
 fs.writeFileSync(path.join(BUILD, "llms.txt"), llms);

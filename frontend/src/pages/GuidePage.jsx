@@ -72,6 +72,13 @@ export default function GuidePage({ g }) {
                     ))}
                   </ul>
                 )}
+                {s.link && (
+                  <p>
+                    <Link to={s.link.to}>
+                      {s.link.label} <Arrow size={14} className="" />
+                    </Link>
+                  </p>
+                )}
               </div>
             ))}
             <div className="stay-card rv">
@@ -79,7 +86,7 @@ export default function GuidePage({ g }) {
                 <Picture src={THUSHARA.card.src} alt={THUSHARA.card.alt} pos={THUSHARA.card.pos} sizes="200px" />
               </div>
               <div>
-                <h3>Stay {g.km} km away at Thushara Homestay</h3>
+                <h3>{g.km ? `Stay ${g.km} km away at Thushara Homestay` : "Stay at Thushara Homestay, Karuvanchal"}</h3>
                 <p>
                   Independent 1BHK AC cottage in Karuvanchal, Alakode · {THUSHARA.rating.value}★ from {THUSHARA.rating.count} Google reviews · from ₹2,000/night
                 </p>
