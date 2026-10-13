@@ -282,6 +282,13 @@ function Location({ p }) {
                   </li>
                 ))}
               </ul>
+              {p.slug === "thushara" && (
+                <p style={{ marginTop: 14 }}>
+                  <Link to="/things-to-do-near-alakode">
+                    Things to do near Alakode <Arrow size={14} className="" />
+                  </Link>
+                </p>
+              )}
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ Website for **[kannurhillshomestay.com](https://kannurhillshomestay.com)**: two 
 | Thushara Homestay | Pallikkavala, Karuvanchal (Alakode), 670571 — same as the Google Business Profile | `/thushara` |
 | Pearl Nest Homestay | Kottoor, Sreekandapuram | `/pearlnest` |
 
-Guides: `/palakkayam-thattu` and `/paithalmala`.
+Guides: `/palakkayam-thattu`, `/paithalmala` and `/things-to-do-near-alakode` (all in `GUIDES` in `src/data/site.js`; each has its own `seoTitle` and `seoDescription`).
 
 ## How the site goes live
 

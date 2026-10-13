@@ -166,14 +166,15 @@ ${SITE.bookingTerms.map((t) => `- ${t}`).join("\n")}
 - [Thushara Homestay](${SITE.url}/thushara): photos, tariff, map, reviews, FAQ
 - [Pearl Nest Homestay](${SITE.url}/pearlnest): photos, tariff, map, FAQ
 - [Palakkayam Thattu guide](${SITE.url}/palakkayam-thattu): best time, how to reach, where to stay
-- [Paithalmala trekking guide](${SITE.url}/paithalmala): the trek, best time, how to reach, where to stay
+- [Paithalmala trekking guide](${SITE.url}/paithalmala): the trek, best time, weather, Paithalmala vs Ranipuram, where to stay
+- [Things to do near Alakode](${SITE.url}/things-to-do-near-alakode): viewpoints, treks and waterfalls near Alakode and Karuvanchal, with a two-day plan
 - [Full details for AI assistants](${SITE.url}/llms-full.txt)
 `;
 fs.writeFileSync(path.join(BUILD, "llms.txt"), llms);
 
 const faqBlock = (title, faqs) => `### ${title}\n\n${faqs.map((f) => `**${f.q}**\n${f.a}\n`).join("\n")}`;
 const guideBlock = (g) =>
-  `## ${g.title}\n\n${g.lede}\n\n${g.sections.map((s) => `### ${s.h}\n\n${s.p.join("\n\n")}${s.list ? "\n\n" + s.list.map((l) => `- ${l}`).join("\n") : ""}`).join("\n\n")}\n\n${faqBlock(`${g.name} FAQ`, g.faqs)}`;
+  `## ${g.title}\n\n${g.lede}\n\n${g.sections.map((s) => `### ${s.h}\n\n${(s.p || []).join("\n\n")}${s.list ? (s.p ? "\n\n" : "") + s.list.map((l) => `- ${l}`).join("\n") : ""}`).join("\n\n")}\n\n${faqBlock(`${g.name} FAQ`, g.faqs)}`;
 const llmsFull = `${llms}
 ---
 

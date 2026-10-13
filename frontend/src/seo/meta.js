@@ -191,14 +191,8 @@ const PAGES = {
 Object.values(GUIDES).forEach((g) => {
   const url = SITE.url + g.path;
   PAGES[g.path] = {
-    title:
-      g.slug === "paithalmala"
-        ? "Paithalmala Trek Guide & Homestay 15 km Away | Thushara"
-        : "Palakkayam Thattu Homestay & Travel Guide | Thushara",
-    description:
-      g.slug === "paithalmala"
-        ? "Paithalmala trek guide: the route, best time and how to reach Kannur's highest hill station, plus Thushara Homestay, an AC cottage 15 km away."
-        : "Palakkayam Thattu guide: best time, how to reach and jeep rides, plus the closest stay: Thushara Homestay, an AC cottage 8 km away in Alakode.",
+    title: g.seoTitle,
+    description: g.seoDescription,
     image: g.og,
     type: "article",
     lcp: { src: LANDSCAPE.src, sizes: "100vw" },
@@ -216,8 +210,8 @@ Object.values(GUIDES).forEach((g) => {
           author: { "@id": ORG_ID },
           publisher: { "@id": ORG_ID },
           mainEntityOfPage: url,
-          dateModified: "2026-10-01",
-          about: {
+          dateModified: "2026-10-13",
+          about: g.about || {
             "@type": "TouristAttraction",
             name: g.name,
             containedInPlace: { "@type": "AdministrativeArea", name: "Kannur district, Kerala, India" },
