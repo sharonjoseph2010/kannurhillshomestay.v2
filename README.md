@@ -41,7 +41,7 @@ Page titles and Google descriptions are in [`frontend/src/seo/meta.js`](frontend
 2. Create the fast-loading versions: `cd frontend && python3 scripts/optimize-images.py` (needs Python with Pillow).
 3. Add it to that property's `gallery` list in `site.js`, with an `alt` description (what's in the photo, plus the place name; this helps Google).
 
-Logos are in `frontend/public/images/logos/`; social-share images (1200×630) are in `frontend/public/images/og/`.
+The only logo is the Kannur Hills one (`frontend/public/images/logos/`, 600×324: keep that shape wherever it is shown); social-share images (1200×630) are in `frontend/public/images/og/`.
 
 ## For developers
 

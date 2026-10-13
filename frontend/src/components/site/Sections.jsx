@@ -69,9 +69,6 @@ function StayCard({ p, photos, tags, delay }) {
             ) : null
           )}
         </div>
-        <div className="logo">
-          <img src={p.logo.replace(".png", ".webp")} alt={`${p.name} logo`} width="64" height="46" loading="lazy" />
-        </div>
         <span className="price">From {inr(p.priceFrom)} / night</span>
         <div className="dots" aria-hidden="true">
           {photos.map((ph, k) => (

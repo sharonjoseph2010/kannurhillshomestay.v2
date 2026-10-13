@@ -48,7 +48,6 @@ function lodging(p) {
     description: p.summary,
     url: SITE.url + p.path,
     image: p.gallery.slice(0, 6).map((g) => abs(g.src)),
-    logo: abs(p.logo),
     telephone: p.phone,
     email: SITE.email,
     priceRange: lo === hi ? `₹${lo}` : `₹${lo}–₹${hi}`,

@@ -151,8 +151,7 @@ section { position: relative; padding: 120px 0; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .stamp { position: relative; width: 150px; height: 150px; flex: none; }
 .stamp svg { position: absolute; inset: 0; animation: spin 26s linear infinite; }
-.stamp img { position: absolute; width: 70px; left: 40px; top: 47px; }
-.stamp.dark-logo img { width: 74px; left: 38px; top: 42px; }
+.stamp img { position: absolute; width: 70px; height: auto; left: 40px; top: 56px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(243, 238, 226, 0.2); }
 .stats b { display: block; font-family: var(--serif); font-weight: 350; font-size: 34px; line-height: 1; }
@@ -188,8 +187,6 @@ section { position: relative; padding: 120px 0; }
 .cycle .on img { transform: scale(1.01); }
 .stay:hover .cycle .on img { transform: scale(1.06); }
 .frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(13, 28, 18, 0.35), transparent 30%, transparent 60%, rgba(13, 28, 18, 0.55)); }
-.frame .logo { position: absolute; left: 20px; top: 20px; z-index: 2; background: var(--paper); border-radius: 18px; padding: 10px 12px; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.4); }
-.frame .logo img { height: 46px; width: auto; }
 .frame .price { position: absolute; right: 20px; top: 24px; z-index: 2; background: rgba(250, 247, 239, 0.94); color: var(--forest); font-weight: 600; font-size: 13px; padding: 9px 15px; border-radius: 999px; }
 .dots { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 2; display: flex; justify-content: center; gap: 6px; }
 .dots i { width: 6px; height: 6px; border-radius: 9px; background: rgba(250, 247, 239, 0.5); transition: width 0.4s, background 0.4s; }
@@ -344,8 +341,7 @@ section { position: relative; padding: 120px 0; }
 .pframe { position: relative; aspect-ratio: 4 / 5; max-height: 76vh; justify-self: end; width: 100%; }
 .pframe .frame { aspect-ratio: auto; height: 100%; border-radius: 200px 200px 28px 28px; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.7); }
 .pframe .frame::after { background: linear-gradient(180deg, transparent 60%, rgba(13, 28, 18, 0.45)); }
-.pframe .stamp { position: absolute; left: -50px; bottom: 60px; z-index: 3; background: var(--paper); border-radius: 50%; box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5); }
-.pframe .stamp svg text { fill: var(--forest); }
+.pframe .stamp { position: absolute; left: -50px; bottom: 60px; z-index: 3; background: var(--forest); border-radius: 50%; box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5); }
 .pframe .cap { position: absolute; right: 22px; bottom: 20px; z-index: 3; font-size: 13px; color: var(--cream); opacity: 0.9; }
 
 /* facts */
@@ -476,7 +472,7 @@ section { position: relative; padding: 120px 0; }
   .phero .grid { grid-template-columns: 1fr; gap: 48px; }
   .pframe { justify-self: stretch; max-height: none; aspect-ratio: 4 / 4.4; }
   .pframe .stamp { left: auto; right: 18px; bottom: auto; top: -40px; width: 120px; height: 120px; }
-  .pframe .stamp img { width: 58px; left: 31px; top: 34px; }
+  .pframe .stamp img { width: 58px; left: 31px; top: 44px; }
   .article { grid-template-columns: 1fr; gap: 30px; }
   .toc { position: static; display: none; }
 }
