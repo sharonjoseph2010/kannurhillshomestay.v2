@@ -173,7 +173,7 @@ fs.writeFileSync(path.join(BUILD, "llms.txt"), llms);
 
 const faqBlock = (title, faqs) => `### ${title}\n\n${faqs.map((f) => `**${f.q}**\n${f.a}\n`).join("\n")}`;
 const guideBlock = (g) =>
-  `## ${g.title}\n\n${g.lede}\n\n${g.sections.map((s) => `### ${s.h}\n\n${s.p.join("\n\n")}${s.list ? "\n\n" + s.list.map((l) => `- ${l}`).join("\n") : ""}`).join("\n\n")}\n\n${faqBlock(`${g.name} FAQ`, g.faqs)}`;
+  `## ${g.title}\n\n${g.lede}\n\n${g.sections.map((s) => `### ${s.h}\n\n${(s.p || []).join("\n\n")}${s.list ? (s.p ? "\n\n" : "") + s.list.map((l) => `- ${l}`).join("\n") : ""}`).join("\n\n")}\n\n${faqBlock(`${g.name} FAQ`, g.faqs)}`;
 const llmsFull = `${llms}
 ---
 

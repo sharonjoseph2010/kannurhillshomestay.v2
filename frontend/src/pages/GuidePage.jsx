@@ -62,7 +62,7 @@ export default function GuidePage({ g }) {
             {g.sections.map((s) => (
               <div key={s.h} className="rv">
                 <h2 id={slugify(s.h)}>{s.h}</h2>
-                {s.p.map((t) => (
+                {(s.p || []).map((t) => (
                   <p key={t.slice(0, 24)}>{t}</p>
                 ))}
                 {s.list && (
