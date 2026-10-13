@@ -123,7 +123,7 @@ export default function HomePage() {
                 </p>
                 <SplitWords id="hero-title" parts={["Homestays in the Kannur hills, your base camp for the ", { em: "Western Ghats" }]} />
                 <p className="lede rise" style={{ "--d": "0.45s" }}>
-                  Two family-run homestays in Kannur, Kerala: <strong>Thushara Homestay</strong> in Velladu, Alakode, 8 km from Palakkayam
+                  Two family-run homestays in Kannur, Kerala: <strong>Thushara Homestay</strong> in Karuvanchal, Alakode, 8 km from Palakkayam
                   Thattu, and <strong>Pearl Nest</strong> in Sreekandapuram. Independent AC cottages, home-cooked Kerala meals and free parking.
                 </p>
                 <div className="ctas rise" style={{ "--d": "0.6s" }}>

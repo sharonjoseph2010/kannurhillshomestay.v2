@@ -31,7 +31,7 @@ function PropertyHero({ p }) {
           </nav>
           <p className="eyebrow">
             <span>
-              {p.address.locality} · {p.address.district}, Kerala
+              {p.place} · {p.address.district}, Kerala
             </span>
           </p>
           <SplitWords id="p-title" parts={rest ? [first + " ", { em: rest }] : [{ em: p.name }]} />
@@ -240,12 +240,12 @@ function Location({ p }) {
           <div>
             <div className="kicker">Location</div>
             <h2 className="display">
-              Find us in <em>{a.locality.split(",").pop().trim()}</em>
+              Find us in <em>{a.area || a.locality}</em>
             </h2>
           </div>
           <p>
             {p.slug === "thushara"
-              ? "On the Karuvanchal–Velladu road in Velladu, with easy access to Alakode, Karuvanchal, Naduvil and Vayattuparamb. Looking for hotels in Alakode or rooms in Karuvanchal? This is the closest cottage stay to Paithalmala, Palakkayam Thattu and Kuttippullu."
+              ? "At Pallikkavala, Karuvanchal, on the Karuvanchal–Velladu road, with easy access to Alakode, Karuvanchal, Naduvil and Vayattuparamb. Looking for hotels in Alakode or rooms in Karuvanchal? This is the closest cottage stay to Paithalmala, Palakkayam Thattu and Kuttippullu."
               : "In Kottoor, Sreekandapuram: a well-connected, peaceful residential area of Kannur district, with shops, restaurants and essentials within walking distance."}
           </p>
         </div>
@@ -261,7 +261,8 @@ function Location({ p }) {
                 <br />
                 {a.street}
                 <br />
-                {a.locality}, {a.district}
+                {a.locality}
+                {a.area ? `, ${a.area}` : ""}, {a.district}
                 <br />
                 {a.region} {a.postalCode}, India
               </address>

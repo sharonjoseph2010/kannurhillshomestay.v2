@@ -66,8 +66,11 @@ function lodging(p) {
       addressCountry: p.address.country,
     },
     geo: { "@type": "GeoCoordinates", latitude: p.geo.lat, longitude: p.geo.lng },
-    hasMap: p.mapsUrl,
-    containedInPlace: { "@type": "AdministrativeArea", name: "Kannur district, Kerala, India" },
+    hasMap: p.googleUrl || p.mapsUrl,
+    containedInPlace: {
+      "@type": "Place",
+      name: p.address.area ? `${p.address.area}, Kannur district, Kerala, India` : "Kannur district, Kerala, India",
+    },
     amenityFeature: p.amenities.map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
     makesOffer: p.rates.map((r) => ({
       "@type": "Offer",
@@ -85,7 +88,9 @@ function lodging(p) {
       closes: "23:59",
     },
   };
-  if (p.mapsUrl.includes("goo.gl")) node.sameAs = [p.mapsUrl];
+  // Google profile + booking-site listings of the same property, so they're recognised as one place
+  const sameAs = [p.googleUrl, p.mapsUrl.includes("goo.gl") && p.mapsUrl, ...p.listings.map((l) => l.url)].filter(Boolean);
+  if (sameAs.length) node.sameAs = sameAs;
   if (p.rating) {
     node.aggregateRating = {
       "@type": "AggregateRating",
@@ -167,7 +172,7 @@ const PAGES = {
   "/thushara": {
     title: "Thushara Homestay, Alakode | Stay near Palakkayam Thattu",
     description:
-      "AC 1BHK cottage in Velladu, Alakode: 8 km from Palakkayam Thattu, 15 km from Paithalmala. Rated 4.9 on Google. From ₹2,000 a night.",
+      "AC 1BHK cottage in Karuvanchal, Alakode: 8 km from Palakkayam Thattu, 15 km from Paithalmala. Rated 4.9 on Google. From ₹2,000 a night.",
     image: THUSHARA.og,
     lcp: { src: THUSHARA.hero[0].src, sizes: "(max-width: 1080px) 100vw, 45vw" },
     jsonLd: () =>

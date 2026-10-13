@@ -59,15 +59,25 @@ export const THUSHARA = {
   phoneDisplay: "+91 83300 94302",
   whatsapp: "918330094302",
   address: {
-    street: "Karuvanchal – Velladu Road",
-    locality: "Velladu, Alakode",
+    // Matches the Google Business Profile exactly: "Pallikkavala, Karuvanchal, Kerala 670571"
+    street: "Pallikkavala",
+    locality: "Karuvanchal",
+    area: "Alakode",
     district: "Kannur",
     region: "Kerala",
     postalCode: "670571",
     country: "IN",
   },
-  geo: { lat: 12.166062784878234, lng: 75.47289838675535 },
+  place: "Karuvanchal, Alakode",
+  // Pin of the Google Business Profile (Google Maps place ID 0x3ba4456a09b981c5:0x39f2052c1342c38)
+  geo: { lat: 12.1661362, lng: 75.4751729 },
   mapsUrl: "https://maps.app.goo.gl/QvMVtBEhVdnxb5d36",
+  googleUrl: "https://www.google.com/maps?cid=260962843211607096",
+  // The same property on booking sites, so search engines and AI tools can tie them to this page
+  listings: [
+    { name: "Booking.com", url: "https://www.booking.com/hotel/in/tushara-homestay.html" },
+    { name: "MakeMyTrip", url: "https://www.makemytrip.com/hotels/thushara_homestay-details-talipparamba.html" },
+  ],
   mapEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6698.4066631757505!2d75.47517289999999!3d12.166136199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba4456a09b981c5%3A0x39f2052c1342c38!2sThushara%20Homestay!5e1!3m2!1sen!2sin!4v1768812365162!5m2!1sen!2sin",
   rating: { value: 4.9, count: 32, source: "Google" },
@@ -85,7 +95,7 @@ export const THUSHARA = {
   mealsNote:
     "Traditional Kerala meals from Vanitha Hotel, the women's-group restaurant on the ground floor, at additional cost.",
   summary:
-    "Thushara Homestay is an independent 1BHK air-conditioned cottage on the Karuvanchal–Velladu road in Velladu, Alakode, Kannur. It sleeps up to 3 guests and is 8 km from Palakkayam Thattu and Kuttippullu and 15 km from Paithalmala hill station, with free parking and Kerala meals from the attached Vanitha Hotel.",
+    "Thushara Homestay is an independent 1BHK air-conditioned cottage at Pallikkavala, Karuvanchal (Alakode), Kannur, Kerala 670571, on the Karuvanchal–Velladu road. It sleeps up to 3 guests and is 8 km from Palakkayam Thattu and Kuttippullu and 15 km from Paithalmala hill station, with free parking and Kerala meals from the attached Vanitha Hotel.",
   intro: [
     "Get a taste of authentic Kerala hill life at Thushara Homestay. You get the whole cottage to yourself: an air-conditioned bedroom, a living room with sofas, a small dining table, a kitchenette with kettle, tea and coffee, and a modern private bathroom.",
     "We sit on the first floor right on the Karuvanchal–Velladu road, looking out over green gardens and tall trees. It's the closest comfortable base for Palakkayam Thattu, Kuttippullu and Paithalmala, and our host Mr. Joseph is happy to arrange jeeps and local trips.",
@@ -109,7 +119,7 @@ export const THUSHARA = {
     { icon: "map", title: "Tour assistance", text: "We help arrange 4x4 jeeps, local sightseeing and transport." },
     { icon: "air", title: "Fresh mountain air", text: "Wake up to misty mornings and cool, refreshing breezes." },
   ],
-  amenities: ["Air conditioning", "Free parking", "Kitchenette", "Private bathroom", "Kerala meals", "Power backup", "Extra bed"],
+  amenities: ["Air conditioning", "Free parking", "Kitchenette", "Private bathroom", "Restaurant on site (Vanitha Hotel)", "Kerala meals", "Power backup", "Extra bed"],
   nearby: [
     { name: "Palakkayam Thattu", km: 8, text: "Misty tabletop viewpoint with jeep rides to the top and sweeping sunrise views.", guide: "/palakkayam-thattu" },
     { name: "Kuttippullu", km: 8, text: "A quiet grassland viewpoint, perfect for an easy evening outing." },
@@ -125,7 +135,7 @@ export const THUSHARA = {
     { src: T("living-room-04"), alt: "Living and dining area at Thushara Homestay" },
   ],
   gallery: [
-    { src: T("banner"), alt: "Thushara Homestay entrance and roadside view in Velladu, Alakode", cap: "Entrance", pos: "center 70%" },
+    { src: T("banner"), alt: "Thushara Homestay entrance and roadside view in Karuvanchal, Alakode", cap: "Entrance", pos: "center 70%" },
     { src: T("living-room-03"), alt: "Thushara Homestay living room with sofa set", cap: "Living room" },
     { src: T("bedroom-01"), alt: "Thushara Homestay bedroom with double bed", cap: "Bedroom" },
     { src: T("living-room-04"), alt: "Thushara Homestay living and dining area", cap: "Living & dining" },
@@ -143,7 +153,7 @@ export const THUSHARA = {
     { src: T("restroom-02"), alt: "Thushara Homestay bathroom with shower", cap: "Bathroom" },
     { src: T("restroom-03"), alt: "Thushara Homestay bathroom washbasin", cap: "Bathroom" },
   ],
-  card: { src: T("living-room-03"), alt: "Thushara Homestay living room in Velladu, Alakode", pos: "center 65%" },
+  card: { src: T("living-room-03"), alt: "Thushara Homestay living room in Karuvanchal, Alakode", pos: "center 65%" },
   og: "/images/og/og-thushara-homestay-alakode.jpg",
   reviews: [
     { name: "Jai Ganesh Deva S.S", rating: 5, when: "Family holiday", text: "A hidden gem for budget travellers near the Paithalmala–Karuvanchal–Kappimala tourist hotspots of Kannur district. Full marks to the owner, Mr. Joseph, who makes every effort to see that you are comfortable. He also organised outdoor trips in a 4x4 vehicle." },
@@ -154,9 +164,10 @@ export const THUSHARA = {
     { name: "Sachin Hegde", rating: 4, when: "Trip with friends", text: "Luxury room at an affordable price. It has AC, a kitchen with all the utensils, an extra bed and power backup. Totally worth the money if you are visiting Palakkayam Thattu, Paithalmala or Ezharakund waterfalls." },
   ],
   faqs: [
-    { q: "How far is Thushara Homestay from Paithalmala?", a: "Thushara Homestay in Velladu is about 15 km from Paithalmala hill station, making it an easy base for an early-morning trek. We can help arrange transport." },
+    { q: "What is the address of Thushara Homestay?", a: "Thushara Homestay, Pallikkavala, Karuvanchal, Kerala 670571, near Alakode in Kannur district, on the Karuvanchal–Velladu road. Search \"Thushara Homestay\" on Google Maps for directions, or call +91 83300 94302." },
+    { q: "How far is Thushara Homestay from Paithalmala?", a: "Thushara Homestay in Karuvanchal is about 15 km from Paithalmala hill station, making it an easy base for an early-morning trek. We can help arrange transport." },
     { q: "How far is it to Palakkayam Thattu and Kuttippullu?", a: "Both Palakkayam Thattu and Kuttippullu are about 8 km from the homestay, around 15–20 minutes by road. Jeeps run from the base to the Palakkayam Thattu viewpoint." },
-    { q: "Is Thushara Homestay a good place to stay in Alakode or Karuvanchal?", a: "Yes. We are on the Karuvanchal–Velladu road in Velladu, Alakode, convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb as well as the nearby hill stations." },
+    { q: "Is Thushara Homestay a good place to stay in Alakode or Karuvanchal?", a: "Yes. We are at Pallikkavala, Karuvanchal, on the Karuvanchal–Velladu road near Alakode, convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb as well as the nearby hill stations." },
     { q: "What facilities are included in the stay?", a: "An independent 1BHK cottage with an AC bedroom, living room, kitchenette, private bathroom, comfortable beds for up to 3 people, power backup and free parking. Traditional Kerala meals are available from the attached Vanitha Hotel." },
     { q: "What is the price per night?", a: "₹2,000 per night on weekdays and ₹2,200 per night on weekends for 2 guests. An extra bed for a third guest is ₹500 per night. Meals are charged separately." },
     { q: "What are the check-in and check-out times?", a: "Check-in is from 12:00 PM and check-out is by 11:00 AM." },
@@ -183,9 +194,12 @@ export const PEARLNEST = {
     postalCode: "670631",
     country: "IN",
   },
+  place: "Sreekandapuram",
   geo: { lat: 12.039085906876565, lng: 75.51280720677588 },
   mapsUrl: "https://maps.google.com/?q=12.039085906876565,75.51280720677588",
   mapEmbed: "https://maps.google.com/maps?q=12.039085906876565,75.51280720677588&z=16&output=embed",
+  googleUrl: null,
+  listings: [],
   rating: null,
   priceFrom: 2500,
   rates: [{ label: "Standard stay", price: 2500, note: "Per night, 2 guests" }],
@@ -265,7 +279,7 @@ export const PROPERTIES = [THUSHARA, PEARLNEST];
 /* ------------------------------------------------------------------ */
 
 export const HOME_FAQS = [
-  { q: "Where are Kannur Hills Homestays located?", a: "We run two homestays in Kannur district, Kerala: Thushara Homestay in Velladu, Alakode (Karuvanchal–Velladu road) and Pearl Nest in Kottoor, Sreekandapuram." },
+  { q: "Where are Kannur Hills Homestays located?", a: "We run two homestays in Kannur district, Kerala: Thushara Homestay at Pallikkavala, Karuvanchal, near Alakode (Karuvanchal–Velladu road) and Pearl Nest in Kottoor, Sreekandapuram." },
   { q: "Which homestay is closest to Palakkayam Thattu and Paithalmala?", a: "Thushara Homestay. It is about 8 km from Palakkayam Thattu and Kuttippullu and 15 km from Paithalmala." },
   { q: "How much does a stay cost?", a: "Thushara Homestay is ₹2,000 per night on weekdays and ₹2,200 on weekends; Pearl Nest is ₹2,500 per night. Both prices are for 2 guests, with an extra guest at ₹500 per night." },
   { q: "Are meals available?", a: "Yes. Thushara guests can eat traditional Kerala meals at the attached Vanitha Hotel; Pearl Nest offers home-cooked meals on request. Meals are charged separately." },
@@ -289,12 +303,12 @@ export const GUIDES = {
     sections: [
       { h: "Why visit Palakkayam Thattu?", p: ["Perched high above the plains, Palakkayam Thattu offers sweeping views of green valleys, rolling mist and dramatic sunrises. The hilltop is known for its cool climate year-round, off-road jeep rides to the top and seasonal adventure activities. It's a favourite for families, couples and photographers alike."] },
       { h: "Best time to visit", p: ["October to February is the most pleasant season, with clear mornings and misty evenings. Early morning is the best time to catch the sunrise and mist-filled valleys before day crowds arrive. The monsoon months turn the hills a deep green but can bring heavy rain and slippery paths."] },
-      { h: "How to reach", p: ["Palakkayam Thattu is reached via the Naduvil–Alakode region of Kannur district. From Thushara Homestay in Velladu it is a short 8 km drive. Jeeps operate from the base to the hilltop viewpoint. If you're staying with us, we're happy to help arrange transport and local guidance. Just ask."] },
-      { h: "Stay 8 km from Palakkayam Thattu", p: ["Thushara Homestay in Velladu, Alakode is an independent 1BHK cottage with AC, a living room, kitchenette, private bathroom and free parking. It's comfortable for up to 3 guests, from ₹2,000/night, with traditional Kerala meals available."], list: ["Palakkayam Thattu: 8 km", "Kuttippullu viewpoint: 8 km", "Paithalmala hill station: 15 km", "Convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb"] },
+      { h: "How to reach", p: ["Palakkayam Thattu is reached via the Naduvil–Alakode region of Kannur district. From Thushara Homestay in Karuvanchal it is a short 8 km drive. Jeeps operate from the base to the hilltop viewpoint. If you're staying with us, we're happy to help arrange transport and local guidance. Just ask."] },
+      { h: "Stay 8 km from Palakkayam Thattu", p: ["Thushara Homestay in Karuvanchal, Alakode is an independent 1BHK cottage with AC, a living room, kitchenette, private bathroom and free parking. It's comfortable for up to 3 guests, from ₹2,000/night, with traditional Kerala meals available."], list: ["Palakkayam Thattu: 8 km", "Kuttippullu viewpoint: 8 km", "Paithalmala hill station: 15 km", "Convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb"] },
     ],
     faqs: [
       { q: "How far is Palakkayam Thattu from Thushara Homestay?", a: "Just 8 km, around 15–20 minutes by road." },
-      { q: "Is there accommodation near Palakkayam Thattu?", a: "Yes. Thushara Homestay in Velladu is one of the closest cottage stays, 8 km from the viewpoint, with AC, parking and Kerala meals." },
+      { q: "Is there accommodation near Palakkayam Thattu?", a: "Yes. Thushara Homestay in Karuvanchal is one of the closest cottage stays, 8 km from the viewpoint, with AC, parking and Kerala meals." },
       { q: "What else can I visit nearby?", a: "Combine your trip with Kuttippullu (8 km) and Paithalmala (15 km from the homestay) for a full hill-country weekend. Ezharakund and Kappimala waterfalls are also close by." },
     ],
     related: "paithalmala",
@@ -311,11 +325,11 @@ export const GUIDES = {
     sections: [
       { h: "The trek", p: ["From the entry point near Pottenplave, a trail winds up through forest and grassland to the summit watchtower. The round trip is a moderate trek that rewards you with valley views, mist and, on clear days, sightlines deep into Coorg. Carry water, wear good footwear and start early for the best weather."] },
       { h: "Best time to visit", p: ["The cooler months from October to February offer the clearest views and most comfortable trekking weather. Mornings are best, as the hills are often wrapped in mist just after sunrise. Monsoon months are lush but wet and slippery."] },
-      { h: "How to reach", p: ["Paithalmala lies in the Pottenplave area of Kannur district, reachable via Taliparamba–Alakode roads. From Thushara Homestay in Velladu it's roughly a 15 km drive to the base. We can help arrange transport and share route tips when you stay with us."] },
-      { h: "Stay 15 km from Paithalmala", p: ["Thushara Homestay in Velladu, Alakode is an independent 1BHK cottage with AC, living room, kitchenette, private bathroom and free parking. It's comfortable for up to 3 guests, from ₹2,000/night, with traditional Kerala meals available."], list: ["Paithalmala hill station: 15 km", "Palakkayam Thattu: 8 km", "Kuttippullu viewpoint: 8 km", "Convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb"] },
+      { h: "How to reach", p: ["Paithalmala lies in the Pottenplave area of Kannur district, reachable via Taliparamba–Alakode roads. From Thushara Homestay in Karuvanchal it's roughly a 15 km drive to the base. We can help arrange transport and share route tips when you stay with us."] },
+      { h: "Stay 15 km from Paithalmala", p: ["Thushara Homestay in Karuvanchal, Alakode is an independent 1BHK cottage with AC, living room, kitchenette, private bathroom and free parking. It's comfortable for up to 3 guests, from ₹2,000/night, with traditional Kerala meals available."], list: ["Paithalmala hill station: 15 km", "Palakkayam Thattu: 8 km", "Kuttippullu viewpoint: 8 km", "Convenient for Alakode, Karuvanchal, Naduvil and Vayattuparamb"] },
     ],
     faqs: [
-      { q: "How far is Paithalmala from Alakode?", a: "The Paithalmala base area is a comfortable drive from Alakode town; from our homestay in Velladu (on the Karuvanchal–Velladu road) it is about 15 km." },
+      { q: "How far is Paithalmala from Alakode?", a: "The Paithalmala base area is a comfortable drive from Alakode town; from our homestay in Karuvanchal (on the Karuvanchal–Velladu road) it is about 15 km." },
       { q: "Is there a homestay near Paithalmala?", a: "Yes. Thushara Homestay is a 1BHK AC cottage 15 km from Paithalmala, ideal for an early start to the trek." },
       { q: "Can I combine Paithalmala and Palakkayam Thattu in one trip?", a: "Absolutely. They're on the same side of Kannur district. Many guests trek Paithalmala in the morning and watch sunset from Palakkayam Thattu." },
     ],

@@ -81,7 +81,7 @@ export default function GuidePage({ g }) {
               <div>
                 <h3>Stay {g.km} km away at Thushara Homestay</h3>
                 <p>
-                  Independent 1BHK AC cottage in Velladu, Alakode · {THUSHARA.rating.value}★ from {THUSHARA.rating.count} Google reviews · from ₹2,000/night
+                  Independent 1BHK AC cottage in Karuvanchal, Alakode · {THUSHARA.rating.value}★ from {THUSHARA.rating.count} Google reviews · from ₹2,000/night
                 </p>
                 <div className="ctas">
                   <Link className="btn btn-cream" to="/thushara">
