@@ -41,7 +41,7 @@ export function Stamp({ text, logo, alt = "Kannur Hills Homestays logo", classNa
           <textPath href="#stamp-circle">{text}</textPath>
         </text>
       </svg>
-      <img src={logo} alt={alt} width="70" height="70" />
+      <img src={logo} alt={alt} width="70" height="38" />
     </div>
   );
 }

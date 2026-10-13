@@ -72,7 +72,7 @@ function PropertyHero({ p }) {
               ) : null
             )}
           </div>
-          <Stamp className="dark-logo" alt={`${p.name} logo`} text={`${p.shortName.toUpperCase()} · ${p.address.locality.toUpperCase()} · `} logo={p.logo.replace(".png", ".webp")} />
+          <Stamp text={`${p.shortName.toUpperCase()} · ${p.address.locality.toUpperCase()} · `} logo={SITE.logo.replace(".png", ".webp")} />
           <span className="cap">{p.hero[i].alt}</span>
         </div>
       </div>
