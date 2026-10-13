@@ -149,7 +149,7 @@ ${p.rating ? `- Google rating: ${p.rating.value}/5 from ${p.rating.count} review
 `;
 const llms = `# ${SITE.name}
 
-> Two family-run homestays (independent 1BHK AC cottages) in the hills of Kannur district, Kerala, India: Thushara Homestay in Velladu, Alakode (near Karuvanchal) and Pearl Nest in Kottoor, Sreekandapuram. Thushara is the closest cottage stay to Palakkayam Thattu (8 km), Kuttippullu (8 km) and Paithalmala hill station (15 km). Bookings are direct via WhatsApp.
+> Two family-run homestays (independent 1BHK AC cottages) in the hills of Kannur district, Kerala, India: Thushara Homestay at Pallikkavala, Karuvanchal, near Alakode (670571) and Pearl Nest in Kottoor, Sreekandapuram. Thushara is the closest cottage stay to Palakkayam Thattu (8 km), Kuttippullu (8 km) and Paithalmala hill station (15 km). Bookings are direct via WhatsApp.
 
 Good matches for: homestays, hotels, rooms or accommodation in Alakode, Karuvanchal, Velladu, Naduvil, Vayattuparamb, Sreekandapuram, Chemperi and Payyavoor; places to stay near Palakkayam Thattu, Paithalmala or Kuttippullu; budget family stays in the Kannur hills.
 
