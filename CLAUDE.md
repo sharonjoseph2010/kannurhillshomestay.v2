@@ -8,7 +8,9 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
 - **Never state anything you haven't checked.** Mark guesses as guesses. Don't invent facts about places, prices, fees, timings or Google features. If a fact isn't known, leave it out and ask.
 
 ## How changes go live
-1. Branch from the latest `main`, make the change, then check it builds: `cd frontend && npm ci && CI=true npm run build`. CI treats warnings as errors.
+1. Branch from the latest `main`, make the change, then check it builds. There's no lockfile, so install the same way the deploy workflow does (then undo the `package.json` change the first command makes):
+   `cd frontend && npm config set legacy-peer-deps true && npm install ajv@6.12.6 ajv-keywords@3.5.2 --save-dev && npm install --force && git checkout package.json && rm -f package-lock.json`
+   Then build: `CI=true npm run build`. CI treats warnings as errors.
 2. Open **one** pull request for the batch, and tell Sharon only when it's complete. She merges it on GitHub. If more commits land after she has merged, open a new PR rather than adding to the merged one.
 3. On merge, GitHub Actions deploys to GitHub Pages in about 3 minutes. Browsers may show the old version for about 10 minutes; a hard refresh (⌘ Shift R) fixes that.
 
@@ -19,6 +21,7 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
 - **Page titles, descriptions and structured data:** `frontend/src/seo/meta.js`. Guide titles and descriptions are `seoTitle` and `seoDescription` in `GUIDES`.
 - **New guide page:** add an entry to `GUIDES`. The route, sitemap and `llms.txt` follow automatically, apart from the hand-written page list in `scripts/prerender.js`. Link it from the footer (`components/site/Layout.jsx`).
 - **Photos:** after adding originals, run `python3 frontend/scripts/optimize-images.py`.
+- **"More stays we manage" chip:** `frontend/public/kh-more-stays.js`, loaded on every page from `public/index.html`. Its text, stays and phone numbers are in the CONFIG block at the top of that file. The site's overrides are in `site.css` (search `khh`): it sits on layer 100, above the phone booking bar, and is hidden while the phone menu is open.
 
 ## SEO rules we've settled
 - **Titles:** 60 characters or fewer. **Meta descriptions:** 120–160 characters. Bing flags anything outside these.
