@@ -26,5 +26,5 @@ Bookings are direct via WhatsApp (no backend).
 
 ## Backlog
 - Add Pearl Nest Google Maps listing + reviews once available (then set `PEARLNEST.rating` and `reviews`).
-- Submit sitemap in Google Search Console / Bing Webmaster Tools.
-- Add Booking.com / MakeMyTrip / Airbnb profile URLs to `sameAs` in `seo/meta.js` when available.
+- Done: sitemap submitted to Google Search Console and Bing Webmaster Tools; Google profile, Booking.com and MakeMyTrip URLs are in `sameAs` (`THUSHARA.googleUrl` / `listings`). Airbnb URL not added (not known).
+- See `CLAUDE.md` for working rules, SEO decisions and open items.

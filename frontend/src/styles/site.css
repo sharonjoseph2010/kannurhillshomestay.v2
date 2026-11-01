@@ -455,6 +455,11 @@ section { position: relative; padding: 120px 0; }
 
 .mbar { display: none; }
 
+/* "More stays we manage" chip (public/kh-more-stays.js). Sits above page content and the
+   phone booking bar, below the photo lightbox; hidden while the phone menu is open. */
+body .khh { --khh-z: 100; }
+.menu-open .khh { display: none; }
+
 /* ------------------------------------------------------------- REVEAL */
 .js .rv { opacity: 0; transform: translateY(34px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
 .js .rv.in { opacity: 1; transform: none; }
@@ -535,6 +540,7 @@ section { position: relative; padding: 120px 0; }
     transform: translateY(130%); transition: transform 0.5s var(--ease);
   }
   .mbar.show { transform: none; }
+  body .khh { --khh-bottom: 84px; } /* clear the phone booking bar */
   .mbar a { flex: 1; padding: 13px; border-radius: 999px; text-align: center; font-size: 14px; font-weight: 600; color: var(--cream); }
   .mbar a.wa { background: #25d366; color: #05260e; }
   .footer { padding-bottom: 100px; }
