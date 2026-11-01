@@ -21,7 +21,7 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
 - **Page titles, descriptions and structured data:** `frontend/src/seo/meta.js`. Guide titles and descriptions are `seoTitle` and `seoDescription` in `GUIDES`.
 - **New guide page:** add an entry to `GUIDES`. The route, sitemap and `llms.txt` follow automatically, apart from the hand-written page list in `scripts/prerender.js`. Link it from the footer (`components/site/Layout.jsx`).
 - **Photos:** after adding originals, run `python3 frontend/scripts/optimize-images.py`.
-- **"More stays we manage" chip:** `frontend/public/kh-more-stays.js`, loaded on every page from `public/index.html`. Its text, stays and phone numbers are in the CONFIG block at the top of that file. The site's overrides are in `site.css` (search `khh`): it sits on layer 100, above the phone booking bar, and is hidden while the phone menu is open.
+- **"More stays we manage" chip:** `frontend/public/kh-more-stays.js`, loaded on every page from `public/index.html`. It shows straight away on every visit (no scroll trigger, nothing remembered between visits), and Call uses the same number as WhatsApp (83300 94302). Its text, stays and phone numbers are in the CONFIG block at the top of that file. The site's overrides are in `site.css` (search `khh`): it sits on layer 100, above the phone booking bar, and is hidden while the phone menu is open.
 
 ## SEO rules we've settled
 - **Titles:** 60 characters or fewer. **Meta descriptions:** 120–160 characters. Bing flags anything outside these.
