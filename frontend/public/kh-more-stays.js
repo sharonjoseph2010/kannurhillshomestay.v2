@@ -3,15 +3,12 @@
  * One self-contained file: styles + markup + behaviour. No dependencies.
  *
  * Behaviour
- *  - First visit: nothing until the visitor scrolls ~35% of the page
- *    (or 8 s on pages too short to scroll), then a chip appears bottom-right:
- *    "+3  Bigger group? More rooms nearby".
+ *  - On every visit the chip is there straight away, bottom-right, on phones and
+ *    desktop: "+3  Bigger group? More rooms nearby".
  *  - Tap the chip -> panel opens (bottom sheet on phones, small popover on desktop)
  *    listing the 3 managed stays with WhatsApp + Call.
- *  - Close the panel or dismiss the chip -> it shrinks to a small "+3 stays" pill
- *    in the same corner, so it can always be reopened.
- *  - The visitor is remembered for 30 days: on later visits only the small pill
- *    shows (no attention animation, no wait).
+ *  - Close the panel or dismiss the chip -> it shrinks to a small "+3 more stays"
+ *    pill in the same corner for the rest of the visit, so it can always be reopened.
  *
  * Install: add a deferred script tag for /kh-more-stays.js just before the closing body tag.
  * Edit the CONFIG block below for numbers, copy, timing and position.
@@ -25,12 +22,9 @@
   var CONFIG = {
     whatsapp: "918330094302",          // country code + number, digits only
     whatsappLabel: "83300 94302",
-    call: "+919645243610",
-    callLabel: "96452 43610",
-    scrollTrigger: 0.35,               // fraction of the page scrolled before the chip appears
-    shortPageDelayMs: 8000,            // fallback for pages that barely scroll
-    rememberDays: 30,                  // how long a visitor counts as "seen"
-    storageKey: "khh_more_stays_v1",
+    call: "+918330094302",             // same number as WhatsApp
+    callLabel: "83300 94302",
+    storageKey: "khh_more_stays_v1",   // only used by reset() to clear what older versions stored
     loadFonts: true,                   // loads Inter Tight + Source Serif 4 from Google Fonts when the chip first appears
     chip: { badge: "+3", label: "Bigger group? More rooms nearby", compact: "more stays" },
     eyebrow: "Kannur Hills Homestay",
@@ -52,17 +46,6 @@
     },
     continueLabel: "Continue to Thushara"
   };
-
-  /* --------------------------------------------------------------- STORAGE */
-  function readSeen() {
-    try {
-      var t = parseInt(localStorage.getItem(CONFIG.storageKey), 10);
-      return t && Date.now() - t < CONFIG.rememberDays * 864e5;
-    } catch (e) { return false; }
-  }
-  function markSeen() {
-    try { localStorage.setItem(CONFIG.storageKey, String(Date.now())); } catch (e) {}
-  }
 
   /* ------------------------------------------------------------- ANALYTICS */
   function track(action) {
@@ -261,7 +244,6 @@
     if (first) {
       chip.classList.remove("khh-compact");
       chip.classList.add("khh-in", "khh-pulse");
-      markSeen();
       track("chip_shown");
     } else {
       compact();
@@ -300,28 +282,12 @@
   }
 
   /* ------------------------------------------------------------ TRIGGER */
-  function init() {
-    if (readSeen()) { showChip(false); return; }
-    var fired = false, timer;
-    function fire() {
-      if (fired) return; fired = true;
-      window.removeEventListener("scroll", onScroll);
-      clearTimeout(timer);
-      showChip(true);
-    }
-    function scrollable() { return document.documentElement.scrollHeight - window.innerHeight; }
-    function onScroll() {
-      var max = scrollable();
-      if (max > 0 && window.scrollY / max >= CONFIG.scrollTrigger) fire();
-    }
-    if (scrollable() < window.innerHeight * 0.5) timer = setTimeout(fire, CONFIG.shortPageDelayMs);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
+  // Always show the full chip as soon as the page is ready, on every visit.
+  function init() { showChip(true); }
 
   // public helpers (handy for testing in the console)
   window.KHHMoreStays = {
-    open: function () { showChip(!readSeen()); openPanel(); },
+    open: function () { if (!built || chip.hidden) showChip(true); openPanel(); },
     reset: function () { try { localStorage.removeItem(CONFIG.storageKey); } catch (e) {} },
     config: CONFIG
   };
