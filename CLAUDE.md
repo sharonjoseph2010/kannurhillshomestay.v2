@@ -11,7 +11,7 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
 1. Branch from the latest `main`, make the change, then check it builds. There's no lockfile, so install the same way the deploy workflow does (then undo the `package.json` change the first command makes):
    `cd frontend && npm config set legacy-peer-deps true && npm install ajv@6.12.6 ajv-keywords@3.5.2 --save-dev && npm install --force && git checkout package.json && rm -f package-lock.json`
    Then build: `CI=true npm run build`. CI treats warnings as errors.
-2. Open **one** pull request for the batch, and tell Sharon only when it's complete. She merges it on GitHub. If more commits land after she has merged, open a new PR rather than adding to the merged one.
+2. Open **one** pull request for the batch, and tell Sharon only when it's complete. He merges it on GitHub. If more commits land after he has merged, open a new PR rather than adding to the merged one.
 3. On merge, GitHub Actions deploys to GitHub Pages in about 3 minutes. Browsers may show the old version for about 10 minutes; a hard refresh (⌘ Shift R) fixes that.
 
 **Never** edit `.github/`, `deploy.yml` or `CNAME`. Keep page URLs stable.

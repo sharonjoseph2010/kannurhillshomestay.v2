@@ -4,7 +4,7 @@ import { SITE } from "../data/site";
 import Layout from "../components/site/Layout";
 import Picture from "../components/kit/Picture";
 import { Arrow, Pin, Stars } from "../components/kit/Icons";
-import { SplitWords, Stamp } from "../components/kit/Motion";
+import { SplitWords } from "../components/kit/Motion";
 import { Features, TrailRadar, Reviews, BookSection, Faq, useCycle, useDeferred } from "../components/site/Sections";
 
 const inr = (n) => "₹" + n.toLocaleString("en-IN");
@@ -12,16 +12,8 @@ const inr = (n) => "₹" + n.toLocaleString("en-IN");
 function PropertyHero({ p }) {
   const { i } = useCycle(p.hero.length, { auto: 4200 });
   const ready = useDeferred(1500);
-  const first = p.name.split(" ")[0];
-  const rest = p.name.slice(first.length).trim();
   return (
     <section className="phero" aria-labelledby="p-title">
-      <svg className="topo-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        {[0, 1, 2, 3, 4, 5, 6].map((k) => (
-          <path key={k} d={`M-50 ${160 + k * 110} C 300 ${80 + k * 110}, 520 ${260 + k * 110}, 820 ${150 + k * 110} S 1300 ${60 + k * 120}, 1500 ${180 + k * 105}`} />
-        ))}
-      </svg>
-      <div className="mist" />
       <div className="wrap grid">
         <div>
           <nav className="crumbs" aria-label="Breadcrumb">
@@ -29,12 +21,10 @@ function PropertyHero({ p }) {
             <span aria-hidden="true">/</span>
             <span aria-current="page">{p.name}</span>
           </nav>
-          <p className="eyebrow">
-            <span>
-              {p.place} · {p.address.district}, Kerala
-            </span>
+          <p className="place">
+            {p.place}, {p.address.district}, Kerala
           </p>
-          <SplitWords id="p-title" parts={rest ? [first + " ", { em: rest }] : [{ em: p.name }]} />
+          <SplitWords id="p-title" parts={[p.name]} />
           <p className="sub rise" style={{ "--d": "0.35s" }}>{p.tagline}. Sleeps up to {p.maxGuests}, from {inr(p.priceFrom)} a night.</p>
           <div className="chips rise" style={{ "--d": "0.45s" }}>
             {(p.nearby[0].km ? p.nearby.slice(0, 3).map((n) => `${n.name} ${n.km} km`) : ["1BHK AC cottage", "Parking for 2 cars", "Home-cooked meals"]).map(
@@ -47,7 +37,7 @@ function PropertyHero({ p }) {
           </div>
           <div className="ctas rise" style={{ "--d": "0.55s" }}>
             <a className="btn btn-cream" href="#book">
-              Check availability <Arrow />
+              Check availability
             </a>
             <a className="btn btn-ghost" href="#gallery">
               See all {p.gallery.length} photos
@@ -72,7 +62,6 @@ function PropertyHero({ p }) {
               ) : null
             )}
           </div>
-          <Stamp text={`${p.shortName.toUpperCase()} · ${p.address.locality.toUpperCase()} · `} logo={SITE.logo.replace(".png", ".webp")} />
           <span className="cap">{p.hero[i].alt}</span>
         </div>
       </div>
@@ -107,10 +96,7 @@ function Gallery({ p }) {
       <div className="wrap">
         <div className="head rv">
           <div>
-            <div className="kicker">Gallery</div>
-            <h2 className="display">
-              Look around <em>{p.shortName}</em>
-            </h2>
+            <h2 className="display">Look around {p.shortName}</h2>
           </div>
           <p>Real photos of the cottage, taken by us. Tap any photo to open it full screen.</p>
         </div>
@@ -137,7 +123,7 @@ function Gallery({ p }) {
         >
           <header>
             <span>
-              {open + 1} / {n} · {p.gallery[open].cap}
+              {p.gallery[open].cap}, photo {open + 1} of {n}
             </span>
             <button className="x" onClick={() => setOpen(-1)} aria-label="Close gallery" autoFocus>
               ×
@@ -171,17 +157,13 @@ function Rates({ p }) {
       <div className="wrap">
         <div className="head rv">
           <div>
-            <div className="kicker">Tariff</div>
-            <h2 className="display">
-              Simple, <em>honest pricing</em>
-            </h2>
+            <h2 className="display">Tariff</h2>
           </div>
           <p>Rates are for the whole cottage for 2 guests. No hidden charges. Meals are paid separately at the restaurant or to the cook.</p>
         </div>
         <div className="rates">
           {p.rates.map((r, k) => (
             <div key={r.label} className={`rate rv${k === p.rates.length - 1 && p.rates.length > 1 ? " feature" : ""}`}>
-              {k === p.rates.length - 1 && p.rates.length > 1 && <span className="tag">Most popular</span>}
               <h3>{r.label}</h3>
               <div className="amt">
                 {inr(r.price)}
@@ -238,10 +220,7 @@ function Location({ p }) {
       <div className="wrap">
         <div className="head rv">
           <div>
-            <div className="kicker">Location</div>
-            <h2 className="display">
-              Find us in <em>{a.area || a.locality}</em>
-            </h2>
+            <h2 className="display">Find us in {a.area || a.locality}</h2>
           </div>
           <p>
             {p.slug === "thushara"
@@ -268,7 +247,7 @@ function Location({ p }) {
               </address>
               <div className="ctas" style={{ marginTop: 18 }}>
                 <a className="btn btn-forest" href={p.mapsUrl} target="_blank" rel="noopener noreferrer">
-                  Get directions <Arrow />
+                  Get directions
                 </a>
               </div>
             </div>
@@ -285,7 +264,7 @@ function Location({ p }) {
               {p.slug === "thushara" && (
                 <p style={{ marginTop: 14 }}>
                   <Link to="/things-to-do-near-alakode">
-                    Things to do near Alakode <Arrow size={14} className="" />
+                    Things to do near Alakode
                   </Link>
                 </p>
               )}
@@ -305,10 +284,7 @@ export default function PropertyPage({ p }) {
       <section id="about">
         <div className="wrap facts">
           <div>
-            <div className="kicker rv">Welcome to {p.shortName}</div>
-            <h2 className="display rv">
-              Your home <em>in the hills</em>
-            </h2>
+            <h2 className="display rv">Welcome to {p.shortName}</h2>
             <div style={{ marginTop: 26 }}>
               {p.intro.map((t) => (
                 <p className="lead rv" key={t.slice(0, 20)}>
@@ -347,10 +323,7 @@ export default function PropertyPage({ p }) {
         <div className="wrap">
           <div className="head rv">
             <div>
-              <div className="kicker">What's included</div>
-              <h2 className="display">
-                Everything you need, <em>nothing you don't</em>
-              </h2>
+              <h2 className="display">What’s included</h2>
             </div>
           </div>
           <Features items={p.features} />
@@ -369,7 +342,7 @@ export default function PropertyPage({ p }) {
       <Location p={p} />
       {p.slug === "thushara" && <TrailRadar id="nearby" />}
 
-      <BookSection initial={p.slug} lock title={<>Book {p.shortName}, <em>straight from the family</em></>} />
+      <BookSection initial={p.slug} lock title={`Book ${p.shortName}, straight from the family`} />
       <Faq faqs={p.faqs} title={`${p.shortName}: good to know`} />
     </Layout>
   );

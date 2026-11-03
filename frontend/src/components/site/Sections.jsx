@@ -82,7 +82,7 @@ function StayCard({ p, photos, tags, delay }) {
           <Arrow size={20} className="" />
         </div>
         <div className="loc">
-          {p.place}, {p.address.district} · {p.address.street}
+          {p.address.street}, {p.place}, {p.address.district}
         </div>
         <div className="tags">
           {tags.map((t) => (
@@ -100,7 +100,7 @@ export function StayCards() {
       <StayCard
         p={THUSHARA}
         photos={[THUSHARA.card, THUSHARA.gallery[2], THUSHARA.gallery[0], THUSHARA.gallery[3]]}
-        tags={["8 km · Palakkayam Thattu", "15 km · Paithalmala", "4.9★ Google", "Kerala meals"]}
+        tags={["Palakkayam Thattu 8 km", "Paithalmala 15 km", `${THUSHARA.rating.value} on Google`, "Kerala meals"]}
         delay={0}
       />
       <StayCard
@@ -119,7 +119,6 @@ export function Features({ items }) {
     <div className="fgrid">
       {items.map((f, k) => (
         <div className="f" key={f.title} style={{ transitionDelay: `${(k % 3) * 0.12}s` }}>
-          <div className="n">{String(k + 1).padStart(2, "0")}</div>
           <FeatureIcon name={f.icon} />
           <h3>{f.title}</h3>
           <p>{f.text}</p>
@@ -136,29 +135,9 @@ export function TrailRadar({ id = "trails" }) {
   const spots = THUSHARA.nearby.filter((n) => PIN_POS[n.name]);
   const [sel, setSel] = useState(0);
   const [drawKey, setDrawKey] = useState(0);
-  const ref = useRef(null);
   const [x, y] = PIN_POS[spots[sel].name];
   const cx = (300 + x) / 2 + (y - 300) * 0.25;
   const cy = (300 + y) / 2 - (x - 300) * 0.25;
-
-  useEffect(() => {
-    if (reduced() || !ref.current) return undefined;
-    const host = ref.current;
-    const flies = [];
-    for (let k = 0; k < 22; k++) {
-      const f = document.createElement("span");
-      f.className = "fly";
-      f.style.left = Math.random() * 100 + "%";
-      f.style.top = 10 + Math.random() * 85 + "%";
-      f.style.setProperty("--x", Math.random() * 80 - 40 + "px");
-      f.style.setProperty("--y", Math.random() * -70 - 10 + "px");
-      f.style.setProperty("--d", 6 + Math.random() * 7 + "s");
-      f.style.setProperty("--dl", -Math.random() * 9 + "s");
-      host.appendChild(f);
-      flies.push(f);
-    }
-    return () => flies.forEach((f) => f.remove());
-  }, []);
 
   const pick = (k) => {
     setSel(k);
@@ -166,16 +145,11 @@ export function TrailRadar({ id = "trails" }) {
   };
 
   return (
-    <section className="trails dark" id={id} ref={ref}>
+    <section className="trails dark" id={id}>
       <div className="wrap">
         <div className="head rv">
           <div>
-            <div className="kicker">Trails nearby</div>
-            <h2 className="display">
-              Wake up close to
-              <br />
-              <em>North Kerala's best views</em>
-            </h2>
+            <h2 className="display">Trails nearby</h2>
           </div>
           <p>Tap a place to see how close it is to Thushara Homestay in Karuvanchal, Alakode. Distances are approximate, by road.</p>
         </div>
@@ -196,7 +170,7 @@ export function TrailRadar({ id = "trails" }) {
                   <p>{s.text}</p>
                   {s.guide && (
                     <Link className="more" to={s.guide} onClick={(e) => e.stopPropagation()}>
-                      Read the {s.name} guide →
+                      Read the {s.name} guide
                     </Link>
                   )}
                 </div>
@@ -205,12 +179,6 @@ export function TrailRadar({ id = "trails" }) {
           </div>
           <div className="radar rv" role="img" aria-label="Illustrative distance map from Thushara Homestay to nearby attractions">
             <svg viewBox="0 0 600 600">
-              <defs>
-                <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stopColor="#9cc27d" stopOpacity="0" />
-                  <stop offset="1" stopColor="#9cc27d" stopOpacity=".12" />
-                </linearGradient>
-              </defs>
               <g className="topo">
                 <path d="M120 300c0-110 70-190 190-190s180 90 170 190-80 180-190 180-170-70-170-180z" />
                 <path d="M160 300c0-80 50-150 150-150s140 70 132 150-60 140-150 140-132-60-132-140z" />
@@ -219,19 +187,15 @@ export function TrailRadar({ id = "trails" }) {
               <circle className="ring" cx="300" cy="300" r="110" />
               <circle className="ring" cx="300" cy="300" r="190" />
               <circle className="ring" cx="300" cy="300" r="280" />
-              <text className="ringlbl" x="306" y="186">8 KM</text>
-              <text className="ringlbl" x="306" y="106">15 KM</text>
-              <text className="ringlbl" x="306" y="16">40 KM</text>
-              <g className="sweep">
-                <path d="M300 300 L300 20 A280 280 0 0 1 498 102 Z" fill="url(#sw)" />
-              </g>
+              <text className="ringlbl" x="306" y="186">8 km</text>
+              <text className="ringlbl" x="306" y="106">15 km</text>
+              <text className="ringlbl" x="306" y="16">40 km</text>
               <path key={drawKey} className="route draw" d={`M300 300 Q${cx} ${cy} ${x} ${y}`} />
               {spots.map((s, k) => {
                 const [px, py] = PIN_POS[s.name];
                 const left = px < 300 && s.name === "Kuttippullu";
                 return (
                   <g key={s.name} className={`pin${k === sel ? " on" : ""}`} onClick={() => pick(k)} style={{ cursor: "pointer" }}>
-                    <circle className="pulse" cx={px} cy={py} r="8" />
                     <circle className="core" cx={px} cy={py} r="7" />
                     <text x={left ? px - 94 : px + 14} y={left ? py - 14 : py + (s.name === "Kannur Town" ? 24 : 5)}>
                       {s.name}
@@ -241,8 +205,8 @@ export function TrailRadar({ id = "trails" }) {
               })}
               <g className="home">
                 <circle cx="300" cy="300" r="10" />
-                <circle cx="300" cy="300" r="20" fill="none" stroke="#9cc27d" strokeOpacity=".4" />
-                <text x="328" y="296">THUSHARA</text>
+                <circle className="halo" cx="300" cy="300" r="20" />
+                <text x="328" y="296">Thushara</text>
                 <text x="328" y="313" style={{ fontWeight: 400, opacity: 0.7 }}>
                   Karuvanchal, Alakode
                 </text>
@@ -252,7 +216,7 @@ export function TrailRadar({ id = "trails" }) {
           </div>
         </div>
         <p className="also">
-          <b>Also nearby:</b> {THUSHARA.alsoNearby.join(" · ")} · Kannur Airport &amp; Railway Station (~42 km)
+          <b>Also nearby:</b> {THUSHARA.alsoNearby.join(", ")}, Kannur Airport &amp; Railway Station (~42 km)
         </p>
       </div>
     </section>
@@ -324,13 +288,6 @@ export function FilmStrip({ items }) {
 /* ------------------------------------------------------------ reviews */
 export function Reviews({ p = THUSHARA }) {
   const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const n = p.reviews.length;
-  useEffect(() => {
-    if (paused || reduced() || !n) return undefined;
-    const t = setInterval(() => setI((v) => (v + 1) % n), 6500);
-    return () => clearInterval(t);
-  }, [paused, n]);
   if (!p.rating) {
     return (
       <div className="soon rv">
@@ -353,14 +310,14 @@ export function Reviews({ p = THUSHARA }) {
           </a>
         </small>
       </div>
-      <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div>
         <div className="kicker">What guests say</div>
         <div className="qwrap" aria-live="polite">
           {p.reviews.map((r, k) => (
             <figure className={`q${k === i ? " on" : ""}`} key={r.name} aria-hidden={k !== i}>
               <blockquote>“{r.text}”</blockquote>
               <cite>
-                {r.name} · {r.when} · Google review
+                {r.name}, {r.when.toLowerCase()}, Google review
               </cite>
             </figure>
           ))}
@@ -371,10 +328,7 @@ export function Reviews({ p = THUSHARA }) {
               key={r.name}
               aria-label={`Show review by ${r.name}`}
               aria-current={k === i}
-              onClick={() => {
-                setI(k);
-                setPaused(true);
-              }}
+              onClick={() => setI(k)}
             />
           ))}
         </div>
@@ -467,7 +421,7 @@ export function Planner({ initial = "thushara", lock = false }) {
       </div>
       <div className="est">
         <span>
-          {calc.nights} night{calc.nights > 1 ? "s" : ""} · {guests} guest{guests > 1 ? "s" : ""} · {p.shortName}
+          {calc.nights} night{calc.nights > 1 ? "s" : ""}, {guests} guest{guests > 1 ? "s" : ""}, {p.shortName}
         </span>
         <b>{inr(calc.total)}</b>
       </div>
@@ -486,24 +440,15 @@ export function BookSection({ id = "book", initial = "thushara", lock = false, t
       <div className="wrap">
         <div className="plan rv">
           <div>
-            <div className="kicker">Book direct</div>
-            <h2 className="display">
-              {title || (
-                <>
-                  Plan your stay,
-                  <br />
-                  <em>we'll reply on WhatsApp</em>
-                </>
-              )}
-            </h2>
+            <h2 className="display">{title || "Book direct, we\u2019ll reply on WhatsApp"}</h2>
             <p className="s">
-              Pick your dates and we'll open WhatsApp with your message ready to send. Advance payment confirms the booking.
+              Pick your dates and we’ll open WhatsApp with your message ready to send. Advance payment confirms the booking.
             </p>
             <div className="direct">
               {props.map((x) => (
                 <a key={x.slug} href={`tel:${x.phone}`}>
                   <span>
-                    <small>{x.shortName} · Call or WhatsApp</small>
+                    <small>{x.shortName}, call or WhatsApp</small>
                     {x.phoneDisplay}
                   </span>
                   <Arrow className="" />
@@ -518,7 +463,7 @@ export function BookSection({ id = "book", initial = "thushara", lock = false, t
               </a>
             </div>
             <p className="note">
-              <b>Important:</b> please don't visit without a prior booking, or you may have to return disappointed.
+              <b>Important:</b> please don’t visit without a prior booking, or you may have to return disappointed.
             </p>
             {children}
           </div>
@@ -535,7 +480,6 @@ export function Faq({ faqs, title = "Good to know", intro }) {
     <section id="faq">
       <div className="wrap faq">
         <div className="rv">
-          <div className="kicker">FAQ</div>
           <h2 className="display">{title}</h2>
           {intro && (
             <p className="lead" style={{ marginTop: 20 }}>
