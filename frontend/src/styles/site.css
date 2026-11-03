@@ -462,6 +462,15 @@ body .khh { --khh-z: 100; }
 .menu-open .khh { display: none; }
 /* its small labels in sentence case, untracked and readable */
 body .khh-chip-txt small, body .khh-eye, body .khh-pl { font-size: 12px; letter-spacing: 0; text-transform: none; }
+/* On wide screens the corner is outside where the eye goes, so the chip sits halfway up the
+   right edge, in the empty margin beside the page, and its panel opens centred on that spot.
+   Below this width the margin is too narrow and the chip would cover text, so it stays
+   bottom-right. */
+@media (min-width: 1880px) {
+  body .khh-chip { bottom: auto; top: calc(50% - 25px); }
+  body .khh-panel { bottom: auto; top: 50%; max-height: calc(100vh - 32px); transform: translate(14px, -50%) scale(0.98); transform-origin: right center; }
+  body .khh-panel.khh-on { transform: translateY(-50%); }
+}
 
 /* ------------------------------------------------------------- REVEAL */
 .js .rv { opacity: 0; transform: translateY(34px); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
