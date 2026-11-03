@@ -10,7 +10,6 @@ const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|
 
 export default function GuidePage({ g }) {
   const related = GUIDES[g.related];
-  const [head, tail] = g.title.split(": ");
   const wa = `https://wa.me/${THUSHARA.whatsapp}?text=${encodeURIComponent(`Hi! I'm planning to visit ${g.name} and would like to stay at Thushara Homestay.`)}`;
   return (
     <Layout book="/thushara#book">
@@ -24,7 +23,6 @@ export default function GuidePage({ g }) {
             pos={g.slug === "paithalmala" ? "center 30%" : "center 65%"}
           />
         </div>
-        <div className="mist" />
         <div className="shade" />
         <div className="wrap" style={{ position: "relative" }}>
           <nav className="crumbs" aria-label="Breadcrumb">
@@ -34,7 +32,7 @@ export default function GuidePage({ g }) {
             <span aria-hidden="true">/</span>
             <span aria-current="page">{g.name} guide</span>
           </nav>
-          <SplitWords parts={[head + ": ", { em: tail }]} />
+          <SplitWords parts={[g.title]} />
           <div className="gstats rise" style={{ "--d": "0.5s" }}>
             {g.stats.map(([b, s]) => (
               <div key={s}>
@@ -75,7 +73,7 @@ export default function GuidePage({ g }) {
                 {s.link && (
                   <p>
                     <Link to={s.link.to}>
-                      {s.link.label} <Arrow size={14} className="" />
+                      {s.link.label}
                     </Link>
                   </p>
                 )}
@@ -88,11 +86,12 @@ export default function GuidePage({ g }) {
               <div>
                 <h3>{g.km ? `Stay ${g.km} km away at Thushara Homestay` : "Stay at Thushara Homestay, Karuvanchal"}</h3>
                 <p>
-                  Independent 1BHK AC cottage in Karuvanchal, Alakode · {THUSHARA.rating.value}★ from {THUSHARA.rating.count} Google reviews · from ₹2,000/night
+                  Independent 1BHK AC cottage in Karuvanchal, Alakode. Rated {THUSHARA.rating.value} from {THUSHARA.rating.count} Google reviews,
+                  from ₹2,000 a night.
                 </p>
                 <div className="ctas">
                   <Link className="btn btn-cream" to="/thushara">
-                    View the cottage <Arrow />
+                    View the cottage
                   </Link>
                   <a className="btn btn-wa" href={wa} target="_blank" rel="noopener noreferrer">
                     <WhatsApp /> Book on WhatsApp

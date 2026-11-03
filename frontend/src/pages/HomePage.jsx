@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { SITE, THUSHARA, PEARLNEST, HOME_FAQS, LANDSCAPE } from "../data/site";
+import { THUSHARA, PEARLNEST, HOME_FAQS, LANDSCAPE } from "../data/site";
 import Layout from "../components/site/Layout";
 import Picture from "../components/kit/Picture";
-import { Arrow } from "../components/kit/Icons";
-import { SplitWords, Stamp, Marquee } from "../components/kit/Motion";
+import { SplitWords } from "../components/kit/Motion";
 import { StayCards, Features, TrailRadar, FilmStrip, Reviews, BookSection, Faq } from "../components/site/Sections";
 
 const STRIP = [
@@ -20,144 +19,63 @@ const STRIP = [
   { ...PEARLNEST.gallery[5], where: "Pearl Nest" },
 ];
 
-const STORY = [
-  "Tucked into the green folds of the ",
-  { hl: "Western Ghats" },
-  ", our two family-run homestays put you minutes from ",
-  { hl: "misty tabletops" },
-  ", forest treks and valley sunrises, with a ",
-  { hl: "home-cooked Kerala meal" },
-  " waiting when you return.",
-];
-
-function useHeroMotion() {
+/* Gentle parallax on the hero photo; skipped when the visitor prefers reduced motion. */
+function useHeroParallax() {
   const bg = useRef(null);
-  const mist = useRef(null);
-  const story = useRef(null);
-  const clock = useRef(null);
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const words = story.current ? Array.from(story.current.querySelectorAll(".word")) : [];
-    const light = () => {
-      if (!story.current) return;
-      const r = story.current.getBoundingClientRect();
-      const p = Math.max(0, Math.min(1, (window.innerHeight * 0.85 - r.top) / (r.height + window.innerHeight * 0.35)));
-      const n = Math.round(p * words.length);
-      words.forEach((w, i) => w.classList.toggle("lit", i < n));
-    };
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
     const onScroll = () => {
       const y = window.scrollY;
-      if (!reduce && bg.current && y < window.innerHeight * 1.2) {
+      if (bg.current && y < window.innerHeight * 1.2) {
         bg.current.style.transform = `translate3d(0, ${y * 0.35}px, 0) scale(${1 + (y / window.innerHeight) * 0.08})`;
-        bg.current.style.filter = `blur(${(y / window.innerHeight) * 4}px)`;
       }
-      light();
     };
-    const onMove = (e) => {
-      if (!mist.current) return;
-      const x = e.clientX / window.innerWidth - 0.5;
-      const yy = e.clientY / window.innerHeight - 0.5;
-      mist.current.style.translate = `${x * -30}px ${yy * -14}px`;
-    };
-    const tick = () => {
-      if (!clock.current) return;
-      const t = new Date().toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true });
-      clock.current.textContent = `Alakode · ${t.toUpperCase()} IST`;
-    };
-    tick();
-    const ct = setInterval(tick, 20000);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    if (!reduce) window.addEventListener("mousemove", onMove, { passive: true });
-    // count-up for the hero stats
-    const counters = reduce ? [] : Array.from(document.querySelectorAll("[data-count]"));
-    const timers = counters.map((el) => {
-      const n = +el.dataset.count;
-      el.textContent = "0";
-      let t0;
-      let raf;
-      const step = (t) => {
-        t0 = t0 || t;
-        const p = Math.min((t - t0) / 1800, 1);
-        const v = Math.round(n * (1 - Math.pow(1 - p, 4)));
-        el.textContent = n > 999 ? v.toLocaleString("en-IN") : String(v);
-        if (p < 1) raf = requestAnimationFrame(step);
-      };
-      const to = setTimeout(() => (raf = requestAnimationFrame(step)), 1000);
-      return () => {
-        clearTimeout(to);
-        cancelAnimationFrame(raf);
-        el.textContent = n > 999 ? n.toLocaleString("en-IN") : String(n);
-      };
-    });
-    return () => {
-      clearInterval(ct);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMove);
-      timers.forEach((f) => f());
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return { bg, mist, story, clock };
+  return bg;
 }
 
 export default function HomePage() {
-  const { bg, mist, story, clock } = useHeroMotion();
+  const bg = useHeroParallax();
   return (
     <Layout book="#book">
       <section className="hero" aria-labelledby="hero-title">
         <div className="bg" ref={bg}>
           <Picture src={LANDSCAPE.src} alt={LANDSCAPE.alt} eager sizes="100vw" width={LANDSCAPE.w} height={LANDSCAPE.h} />
         </div>
-        <div className="mist" ref={mist} />
-        <div className="mist m2" />
         <div className="shade" />
         <div className="content">
           <div className="wrap">
-            <div className="hero-grid">
-              <div>
-                <p className="eyebrow">
-                  <span>Alakode · Sreekandapuram · Kannur, Kerala</span>
-                  <span className="clock" ref={clock}>
-                    Alakode · IST
-                  </span>
-                </p>
-                <SplitWords id="hero-title" parts={["Homestays in the Kannur hills, your base camp for the ", { em: "Western Ghats" }]} />
-                <p className="lede rise" style={{ "--d": "0.45s" }}>
-                  Two family-run homestays in Kannur, Kerala: <strong>Thushara Homestay</strong> in Karuvanchal, Alakode, 8 km from Palakkayam
-                  Thattu, and <strong>Pearl Nest</strong> in Sreekandapuram. Independent AC cottages, home-cooked Kerala meals and free parking.
-                </p>
-                <div className="ctas rise" style={{ "--d": "0.6s" }}>
-                  <a className="btn btn-cream" href="#stays">
-                    Choose your stay <Arrow />
-                  </a>
-                  <a className="btn btn-ghost" href="#trails">
-                    Explore nearby trails
-                  </a>
-                </div>
-              </div>
-              <Stamp text="KANNUR HILLS · HOMESTAYS · KERALA · " logo={SITE.logo} />
+            <SplitWords id="hero-title" parts={["Homestays in the Kannur hills, your base camp for the Western Ghats"]} />
+            <p className="lede rise" style={{ "--d": "0.45s" }}>
+              Two family-run homestays in Kannur, Kerala: <strong>Thushara Homestay</strong> in Karuvanchal, Alakode, 8 km from Palakkayam
+              Thattu, and <strong>Pearl Nest</strong> in Sreekandapuram. Independent AC cottages, home-cooked Kerala meals and free parking.
+            </p>
+            <div className="ctas rise" style={{ "--d": "0.6s" }}>
+              <a className="btn btn-cream" href="#stays">
+                Choose your stay
+              </a>
+              <a className="btn btn-ghost" href="#trails">
+                Explore nearby trails
+              </a>
             </div>
             <div className="stats rise" style={{ "--d": "0.75s" }}>
               <div>
-                <b>
-                  <i data-count="8">8</i> km
-                </b>
+                <b>8 km</b>
                 <span>to Palakkayam Thattu</span>
               </div>
               <div>
-                <b>
-                  <i data-count="15">15</i> km
-                </b>
+                <b>15 km</b>
                 <span>to Paithalmala</span>
               </div>
               <div>
-                <b>{THUSHARA.rating.value} ★</b>
-                <span>{THUSHARA.rating.count} Google reviews</span>
+                <b>{THUSHARA.rating.value}</b>
+                <span>Google rating, {THUSHARA.rating.count} reviews</span>
               </div>
               <div>
-                <b>
-                  ₹<i data-count="2000">2,000</i>
-                </b>
+                <b>₹2,000</b>
                 <span>per night, from</span>
               </div>
             </div>
@@ -165,24 +83,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Marquee items={["Alakode", "Karuvanchal", "Velladu", "Naduvil", "Vayattuparamb", "Palakkayam Thattu", "Paithalmala", "Kuttippullu", "Sreekandapuram", "Chemperi", "Payyavoor"]} />
-
       <section className="story" aria-label="About Kannur Hills Homestays">
         <div className="wrap side">
           <div>
-            <div className="kicker">Welcome to the hills</div>
-            <p className="big" ref={story}>
-              {STORY.flatMap((part, k) =>
-                (typeof part === "string" ? part : part.hl).split(/(\s+)/).map((t, j) =>
-                  /^\s*$/.test(t) ? (
-                    t
-                  ) : (
-                    <span key={`${k}-${j}`} className={`word${typeof part === "string" ? "" : " hl"}`}>
-                      {t}
-                    </span>
-                  )
-                )
-              )}
+            <p className="big">
+              Tucked into the green folds of the Western Ghats, our two family-run homestays put you minutes from misty tabletops, forest
+              treks and valley sunrises, with a home-cooked Kerala meal waiting when you return.
             </p>
           </div>
           <p className="sig rv">
@@ -196,12 +102,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="head rv">
             <div>
-              <div className="kicker">Our homestays</div>
-              <h2 className="display">
-                Two cottages,
-                <br />
-                <em>one warm welcome</em>
-              </h2>
+              <h2 className="display">Our homestays</h2>
             </div>
             <p>Both are independent 1BHK AC cottages for up to 3 guests, with parking and home-style food. Hover or tap to look inside.</p>
           </div>
@@ -213,12 +114,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="head rv">
             <div>
-              <div className="kicker">Why guests return</div>
-              <h2 className="display">
-                Everything you need,
-                <br />
-                <em>nothing you don't</em>
-              </h2>
+              <h2 className="display">Why guests return</h2>
             </div>
             <p>Simple, spotless and cared for, run by a local family who know every trail around.</p>
           </div>
@@ -240,9 +136,8 @@ export default function HomePage() {
       <section className="strip" aria-labelledby="strip-title">
         <div className="wrap head rv" style={{ marginBottom: 36 }}>
           <div>
-            <div className="kicker">Look inside</div>
             <h2 className="display" id="strip-title">
-              Rooms made for <em>slow mornings</em>
+              Look inside
             </h2>
           </div>
           <p>

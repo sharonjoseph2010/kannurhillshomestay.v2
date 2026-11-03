@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SITE, THUSHARA, PEARLNEST, GUIDES } from "../../data/site";
-import { Arrow, WhatsApp } from "../kit/Icons";
+import { WhatsApp } from "../kit/Icons";
 import Seo from "./Seo";
 
 const NAV = [
@@ -151,7 +151,9 @@ function Footer() {
                   <Link to={p.path}>{p.name}</Link>
                   <br />
                   <small>
-                    {p.place} · <a href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
+                    {p.place}
+                    <br />
+                    <a href={`tel:${p.phone}`}>{p.phoneDisplay}</a>
                   </small>
                 </li>
               ))}
@@ -171,18 +173,15 @@ function Footer() {
               </li>
               <li>
                 <a href={THUSHARA.mapsUrl} target="_blank" rel="noopener noreferrer">
-                  Thushara on Google Maps <Arrow size={12} className="" />
+                  Thushara on Google Maps
                 </a>
               </li>
             </ul>
           </div>
           <div>
             <h2>Serving</h2>
-            <p style={{ lineHeight: 1.8 }}>{SITE.areas.join(" · ")}, Kannur district, Kerala</p>
+            <p style={{ lineHeight: 1.8 }}>{SITE.areas.join(", ")}, Kannur district, Kerala</p>
           </div>
-        </div>
-        <div className="big" aria-hidden="true">
-          Kannur Hills
         </div>
         <div className="base">
           <span>© {new Date().getFullYear()} {SITE.name}</span>
