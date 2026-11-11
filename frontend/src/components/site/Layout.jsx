@@ -78,10 +78,10 @@ export default function Layout({ children, book = "#book", property = THUSHARA }
       <header className="nav">
         <div className="wrap">
           <Link className="brand" to="/" aria-label={`${SITE.name}, home`}>
-            <img src={SITE.logo} alt="Kannur Hills Homestays logo" width="67" height="36" />
+            <img src={SITE.logo} alt={`${SITE.name} logo`} width="67" height="36" />
             <span>
               <b>Kannur Hills</b>
-              <small>Homestays</small>
+              <small>Homestay</small>
             </span>
           </Link>
           <nav className="links" aria-label="Main">
@@ -135,6 +135,7 @@ function Footer() {
         <div className="cols">
           <div>
             <h2>{SITE.name}</h2>
+            <p className="slogan">{SITE.tagline}</p>
             <p style={{ lineHeight: 1.7 }}>
               Family-run homestays in the hills of Kannur district, Kerala: independent AC cottages near Palakkayam Thattu, Kuttippullu and
               Paithalmala.
