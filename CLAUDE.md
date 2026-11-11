@@ -34,7 +34,8 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
   - Profile link: https://www.google.com/maps?cid=260962843211607096
 - **No `aggregateRating` or `review` markup.** The 4.9★ and the reviews come from Google. Google's rules forbid marking up ratings taken from other sites, and a business's own page can't get stars anyway. Keep them visible on the page only.
 - **Drive times from the homestay:** Palakkayam Thattu 8 km, about 30 minutes. Kuttippullu 8 km. Paithalmala 15 km to the base, about 45 minutes. Kappimala about 30 minutes and Ezharakund about 45 minutes (Google Maps estimates). Alakode to Sreekandapuram about 30 minutes.
-- **Unknown:** entry fees and jeep fares. Don't publish numbers for them.
+- **Unknown:** entry fees and jeep fares. Don't publish numbers for them unless Sharon supplies them.
+- **Placeholders:** text like `[ENTRY FEE – Sharon to confirm]` in `site.js` makes the build fail on purpose (check at the end of `scripts/prerender.js`), so it can never go live. Preview locally with `ALLOW_PLACEHOLDERS=1 npm run build`.
 - **Hosting:** GitHub Pages can't do 301 redirects. `/page` is served from `page.html`; `/page/` is served from `page/index.html`, which `scripts/prerender.js` writes as a tiny instant-redirect page (meta refresh 0 + JS) to `/page`. Google treats an instant meta refresh as a permanent redirect. A checker will still show status 200 for `/page/`.
 
 ## Google Search Console data

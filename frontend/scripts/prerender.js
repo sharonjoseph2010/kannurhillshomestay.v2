@@ -217,4 +217,22 @@ ${Object.values(GUIDES).map(guideBlock).join("\n\n")}
 `;
 fs.writeFileSync(path.join(BUILD, "llms-full.txt"), llmsFull);
 
+/* ---------- safety check: never publish unfilled placeholders ---------- */
+// Text like "[ENTRY FEE – Sharon to confirm]" must be replaced with real facts before the site goes live.
+// The GitHub deploy runs this same build, so a leftover placeholder fails the deploy and the live site stays as it was.
+// For a local preview only: ALLOW_PLACEHOLDERS=1 npm run build
+const leftovers = [];
+(function scan(dir) {
+  for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, f.name);
+    if (f.isDirectory()) { if (f.name !== "static") scan(p); }
+    else if (/\.(html|txt|xml)$/.test(f.name) && fs.readFileSync(p, "utf8").includes("to confirm]")) leftovers.push(path.relative(BUILD, p));
+  }
+})(BUILD);
+if (leftovers.length) {
+  const msg = `Unfilled "[... to confirm]" placeholders in: ${leftovers.join(", ")}`;
+  if (process.env.ALLOW_PLACEHOLDERS) console.warn(`WARNING (local preview only): ${msg}`);
+  else throw new Error(`prerender: ${msg}. Replace them in src/data/site.js before publishing.`);
+}
+
 console.log(`Done: ${ROUTES.length} pages + 404.html, sitemap.xml, llms.txt, llms-full.txt`);

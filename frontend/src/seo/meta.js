@@ -203,7 +203,7 @@ Object.values(GUIDES).forEach((g) => {
         {
           "@type": "Article",
           "@id": `${url}#article`,
-          headline: g.title,
+          headline: g.headline || g.title,
           description: g.lede,
           image: abs(g.og),
           inLanguage: "en-IN",
