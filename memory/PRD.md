@@ -1,4 +1,4 @@
-# PRD — Kannur Hills Homestays website
+# PRD — Kannur Hills Homestay website
 
 Live at https://kannurhillshomestay.com (GitHub Pages, deployed by `.github/workflows/deploy.yml` on push to `main`).
 

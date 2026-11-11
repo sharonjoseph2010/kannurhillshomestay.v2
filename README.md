@@ -1,4 +1,4 @@
-# Kannur Hills Homestays
+# Kannur Hills Homestay
 
 Website for **[kannurhillshomestay.com](https://kannurhillshomestay.com)**: two family-run homestays in the Kannur hills, Kerala.
 

@@ -17,14 +17,14 @@ function PropertyHero({ p }) {
       <div className="wrap grid">
         <div>
           <nav className="crumbs" aria-label="Breadcrumb">
-            <Link to="/">Kannur Hills Homestays</Link>
+            <Link to="/">{SITE.name}</Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{p.name}</span>
           </nav>
           <p className="place">
             {p.place}, {p.address.district}, Kerala
           </p>
-          <SplitWords id="p-title" parts={[p.name]} />
+          <SplitWords id="p-title" parts={[p.h1 || p.name]} />
           <p className="sub rise" style={{ "--d": "0.35s" }}>{p.tagline}. Sleeps up to {p.maxGuests}, from {inr(p.priceFrom)} a night.</p>
           <div className="chips rise" style={{ "--d": "0.45s" }}>
             {(p.nearby[0].km ? p.nearby.slice(0, 3).map((n) => `${n.name} ${n.km} km`) : ["1BHK AC cottage", "Parking for 2 cars", "Home-cooked meals"]).map(
