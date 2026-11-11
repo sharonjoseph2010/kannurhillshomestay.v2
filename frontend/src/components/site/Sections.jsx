@@ -291,7 +291,6 @@ export function Reviews({ p = THUSHARA }) {
   if (!p.rating) {
     return (
       <div className="soon rv">
-        <Stars />
         <h3>Guest reviews coming soon</h3>
         <p>Pearl Nest is our newest homestay. Be among the first to stay and share your experience!</p>
       </div>

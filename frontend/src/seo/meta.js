@@ -16,6 +16,7 @@ const organization = {
   "@type": "Organization",
   "@id": ORG_ID,
   name: SITE.name,
+  slogan: SITE.tagline,
   url: SITE.url + "/",
   logo: abs(SITE.logo),
   email: SITE.email,
@@ -122,7 +123,7 @@ const graph = (...nodes) => ({ "@context": "https://schema.org", "@graph": nodes
 
 const PAGES = {
   "/": {
-    title: "Kannur Hills Homestays | Alakode & Sreekandapuram, Kerala",
+    title: `${SITE.name} | Alakode & Sreekandapuram, Kerala`,
     description:
       "Family-run homestays in Kannur, Kerala: Thushara in Alakode near Palakkayam Thattu, and Pearl Nest in Sreekandapuram. AC cottages from ₹2,000.",
     image: "/images/og/og-kannur-hills-homestays.jpg",
@@ -135,14 +136,14 @@ const PAGES = {
           "@type": "WebPage",
           "@id": `${SITE.url}/#webpage`,
           url: SITE.url + "/",
-          name: "Kannur Hills Homestays",
+          name: SITE.name,
           isPartOf: { "@id": SITE_ID },
           about: { "@id": ORG_ID },
           primaryImageOfPage: abs(LANDSCAPE.src),
         },
         {
           "@type": "ItemList",
-          name: "Homestays by Kannur Hills Homestays",
+          name: `Homestays by ${SITE.name}`,
           itemListElement: PROPERTIES.map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
@@ -202,14 +203,14 @@ Object.values(GUIDES).forEach((g) => {
         {
           "@type": "Article",
           "@id": `${url}#article`,
-          headline: g.title,
+          headline: g.headline || g.title,
           description: g.lede,
           image: abs(g.og),
           inLanguage: "en-IN",
           author: { "@id": ORG_ID },
           publisher: { "@id": ORG_ID },
           mainEntityOfPage: url,
-          dateModified: "2026-10-13",
+          dateModified: g.updated,
           about: g.about || {
             "@type": "TouristAttraction",
             name: g.name,

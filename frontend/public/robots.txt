@@ -1,4 +1,4 @@
-# Kannur Hills Homestays: everyone is welcome to read and recommend us.
+# Kannur Hills Homestay: everyone is welcome to read and recommend us.
 User-agent: *
 Allow: /
 

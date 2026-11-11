@@ -85,22 +85,48 @@ function headFor(template, meta, { noindex = false } = {}) {
 const FONT_PRELOADS = ["fraunces-latin-opsz-normal", "inter-latin-wght-normal", "fraunces-latin-opsz-italic"]
   .map((f) => `<link rel="preload" as="font" type="font/woff2" href="/fonts/${f}.woff2" crossorigin/>`)
   .join("");
+// The <noscript> line is the first text in every page's HTML (what non-JS readers and some crawlers see first),
+// so each property page names its own homestay and number; every other page lists both.
+function noscriptFor(html, route) {
+  const { THUSHARA, PEARLNEST, SITE } = data;
+  const line =
+    route === PEARLNEST.path
+      ? `Book ${PEARLNEST.name} on WhatsApp: ${PEARLNEST.phoneDisplay}<br />${SITE.email}`
+      : route === THUSHARA.path
+      ? `Book ${THUSHARA.name} on WhatsApp: ${THUSHARA.phoneDisplay}<br />${SITE.email}`
+      : `Book ${THUSHARA.name} on WhatsApp: ${THUSHARA.phoneDisplay}<br />${PEARLNEST.shortName}: ${PEARLNEST.phoneDisplay}<br />${SITE.email}`;
+  return setTag(html, /(<noscript>\s*<p[^>]*>)[\s\S]*?(<\/p>\s*<\/noscript>)/, `$1${line}$2`, "noscript");
+}
+// GitHub Pages can't send 301 redirects, and it serves /page/ from page/index.html. So that file is a tiny
+// page that forwards instantly to /page. Google treats an instant meta refresh as a permanent redirect.
+function slashRedirect(route, title) {
+  const url = data.SITE.url + route;
+  return `<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"/><title>${esc(title)}</title><link rel="canonical" href="${url}"/><meta http-equiv="refresh" content="0; url=${route}"/><script>location.replace(${JSON.stringify(route)} + location.search + location.hash)</script></head>
+<body><p>This page has moved to <a href="${route}">${url}</a>.</p></body></html>
+`;
+}
 const render = (url) => renderToString(React.createElement(StaticRouter, { location: url }, React.createElement(App)));
 
 /* ---------- pages ---------- */
 const template = fs.readFileSync(path.join(BUILD, "index.html"), "utf8");
 for (const route of ROUTES) {
-  const html = headFor(template, getPageMeta(route)).replace('<div id="root"></div>', `<div id="root">${render(route)}</div>`);
-  const dir = route === "/" ? BUILD : path.join(BUILD, route.slice(1));
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "index.html"), html);
-  // GitHub Pages serves /thushara from thushara.html with a 200 (the folder
-  // version would 301 to /thushara/), so the canonical URL resolves directly.
-  if (route !== "/") fs.writeFileSync(path.join(BUILD, `${route.slice(1)}.html`), html);
+  const meta = getPageMeta(route);
+  const html = noscriptFor(headFor(template, meta), route).replace('<div id="root"></div>', `<div id="root">${render(route)}</div>`);
+  if (route === "/") {
+    fs.writeFileSync(path.join(BUILD, "index.html"), html);
+  } else {
+    // GitHub Pages serves /thushara from thushara.html with a 200, so the canonical URL resolves directly.
+    fs.writeFileSync(path.join(BUILD, `${route.slice(1)}.html`), html);
+    // /thushara/ is served from thushara/index.html: make that forward to /thushara.
+    const dir = path.join(BUILD, route.slice(1));
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, "index.html"), slashRedirect(route, meta.title));
+  }
   console.log(`Prerendered ${route.padEnd(20)} ${(html.length / 1024).toFixed(0)} KB`);
 }
 // GitHub Pages serves 404.html for unknown URLs: the app shows the homepage, but tell crawlers not to index it
-const notFound = headFor(template, { ...getPageMeta("/"), title: "Page not found | Kannur Hills Homestays" }, { noindex: true });
+const notFound = noscriptFor(headFor(template, { ...getPageMeta("/"), title: `Page not found | ${data.SITE.name}` }, { noindex: true }), "/404");
 fs.writeFileSync(path.join(BUILD, "404.html"), notFound.replace('<div id="root"></div>', `<div id="root">${render("/")}</div>`));
 
 /* ---------- sitemap.xml ---------- */
@@ -190,5 +216,23 @@ ${faqBlock("Pearl Nest FAQ", PEARLNEST.faqs)}
 ${Object.values(GUIDES).map(guideBlock).join("\n\n")}
 `;
 fs.writeFileSync(path.join(BUILD, "llms-full.txt"), llmsFull);
+
+/* ---------- safety check: never publish unfilled placeholders ---------- */
+// Text like "[ENTRY FEE – Sharon to confirm]" must be replaced with real facts before the site goes live.
+// The GitHub deploy runs this same build, so a leftover placeholder fails the deploy and the live site stays as it was.
+// For a local preview only: ALLOW_PLACEHOLDERS=1 npm run build
+const leftovers = [];
+(function scan(dir) {
+  for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, f.name);
+    if (f.isDirectory()) { if (f.name !== "static") scan(p); }
+    else if (/\.(html|txt|xml)$/.test(f.name) && fs.readFileSync(p, "utf8").includes("to confirm]")) leftovers.push(path.relative(BUILD, p));
+  }
+})(BUILD);
+if (leftovers.length) {
+  const msg = `Unfilled "[... to confirm]" placeholders in: ${leftovers.join(", ")}`;
+  if (process.env.ALLOW_PLACEHOLDERS) console.warn(`WARNING (local preview only): ${msg}`);
+  else throw new Error(`prerender: ${msg}. Replace them in src/data/site.js before publishing.`);
+}
 
 console.log(`Done: ${ROUTES.length} pages + 404.html, sitemap.xml, llms.txt, llms-full.txt`);

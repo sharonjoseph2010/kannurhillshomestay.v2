@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { THUSHARA, PEARLNEST, HOME_FAQS, LANDSCAPE } from "../data/site";
+import { SITE, THUSHARA, PEARLNEST, HOME_FAQS, LANDSCAPE } from "../data/site";
 import Layout from "../components/site/Layout";
 import Picture from "../components/kit/Picture";
 import { SplitWords } from "../components/kit/Motion";
@@ -83,7 +83,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="story" aria-label="About Kannur Hills Homestays">
+      <section className="story" aria-label={`About ${SITE.name}`}>
         <div className="wrap side">
           <div>
             <p className="big">

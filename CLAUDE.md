@@ -1,4 +1,4 @@
-# Kannur Hills Homestays website: notes for Claude
+# Kannur Hills Homestay website: notes for Claude
 
 Read `memory/PRD.md` first (what the site is, routes, architecture). This file covers how to work on it.
 
@@ -24,6 +24,7 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
 - **"More stays we manage" chip:** `frontend/public/kh-more-stays.js`, loaded on every page from `public/index.html`. It shows straight away on every visit (no scroll trigger, nothing remembered between visits), and Call uses the same number as WhatsApp (83300 94302). Its text, stays and phone numbers are in the CONFIG block at the top of that file. The site's overrides are in `site.css` (search `khh`): it sits on layer 100, above the phone booking bar, and is hidden while the phone menu is open.
 
 ## SEO rules we've settled
+- **Brand:** "Kannur Hills Homestay" (singular). Tagline: "Home to another home" (footer, and `slogan` on the Organization). It comes from `SITE.name` / `SITE.tagline`; don't hard-code it. Image file names still say "homestays"; leave them.
 - **Titles:** 60 characters or fewer. **Meta descriptions:** 120–160 characters. Bing flags anything outside these.
 - **Thushara's details must match its Google Business Profile exactly:**
   - Address: "Pallikkavala, Karuvanchal, Kerala 670571".
@@ -33,8 +34,9 @@ Sharon (GitHub `sharonjoseph2010`) runs the site for the family homestays and is
   - Profile link: https://www.google.com/maps?cid=260962843211607096
 - **No `aggregateRating` or `review` markup.** The 4.9★ and the reviews come from Google. Google's rules forbid marking up ratings taken from other sites, and a business's own page can't get stars anyway. Keep them visible on the page only.
 - **Drive times from the homestay:** Palakkayam Thattu 8 km, about 30 minutes. Kuttippullu 8 km. Paithalmala 15 km to the base, about 45 minutes. Kappimala about 30 minutes and Ezharakund about 45 minutes (Google Maps estimates). Alakode to Sreekandapuram about 30 minutes.
-- **Unknown:** entry fees and jeep fares. Don't publish numbers for them.
-- **Hosting:** GitHub Pages can't do 301 redirects. `/page/` and `/page` both serve the page, with a canonical tag pointing to `/page`; that's fine.
+- **Unknown:** entry fees and jeep fares. Don't publish numbers for them unless Sharon supplies them.
+- **Placeholders:** text like `[ENTRY FEE – Sharon to confirm]` in `site.js` makes the build fail on purpose (check at the end of `scripts/prerender.js`), so it can never go live. Preview locally with `ALLOW_PLACEHOLDERS=1 npm run build`.
+- **Hosting:** GitHub Pages can't do 301 redirects. `/page` is served from `page.html`; `/page/` is served from `page/index.html`, which `scripts/prerender.js` writes as a tiny instant-redirect page (meta refresh 0 + JS) to `/page`. Google treats an instant meta refresh as a permanent redirect. A checker will still show status 200 for `/page/`.
 
 ## Google Search Console data
 - A service account (named `gsc-reader`, in the Google Cloud project `kannur-hills-seo`, with Full permission) can read Search Console. It cannot press "Request indexing".
